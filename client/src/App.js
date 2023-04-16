@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./styles/App.css";
 import Header from "./components/Header";
+import Login from "./components/pages/Login";
+import Register from "./components/pages/Register";
 import MainContainer from "./components/MainContainer";
 
 function App() {
@@ -13,6 +15,8 @@ function App() {
         currentPage={currentPage}
         handlePageChange={handlePageChange}
       />
+      {/* <Login/> */}
+      {/* <Register/> */}
     </div>
   );
 }

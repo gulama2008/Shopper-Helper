@@ -1,9 +1,9 @@
 import React from "react";
 import Navbar from "./Navbar";
-import AddNewList from "./pages/AddNewList";
-import HistoricalList from "./pages/HistoricalList";
-import Statistics from "./pages/Statistics";
-import Settings from "./pages/Settings";
+import AddNewList from "./pages/AddNewList/AddNewList";
+import HistoricalList from "./pages/HistoricalList/HistoricalList";
+import Statistics from "./pages/Statistics/Statistics";
+import Settings from "./pages/Settings/Settings";
 import { Col, Row, Statistic } from "antd";
 import "../styles/MainContainer.css"
 
