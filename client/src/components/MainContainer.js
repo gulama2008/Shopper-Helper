@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "./Navbar";
-import AddNewList from "./pages/AddNewList/AddNewList";
+import CreateNewList from "./pages/CreateNewList/CreateNewList";
 import HistoricalList from "./pages/HistoricalList/HistoricalList";
 import Statistics from "./pages/Statistics/Statistics";
 import Settings from "./pages/Settings/Settings";
@@ -12,8 +12,8 @@ export default function MainContainer(props) {
   const { currentPage, handlePageChange }=props;
   // This method is checking to see what the value of `currentPage` is. Depending on the value of currentPage, we return the corresponding component to render.
   const renderPage = () => {
-    if (currentPage === "AddNewList") {
-      return <AddNewList />;
+    if (currentPage === "CreateNewList") {
+      return <CreateNewList />;
     }
     if (currentPage === "HistoricalList") {
       return <HistoricalList />;

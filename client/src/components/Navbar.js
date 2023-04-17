@@ -11,24 +11,7 @@ export default function Navbar(props) {
   //get the props passing from component App
   const { currentPage, handlePageChange } = props;
   const [mouseEnter, setMouseEnter] = useState("");
-  // const [navbarItems, setNavbarItems] = useState([
-  //   {
-  //     icon: ProfileOutlined,
-  //     title: "Add New List",
-  //   },
-  //   {
-  //     icon: FileSearchOutlined,
-  //     title: "Historical List",
-  //   },
-  //   {
-  //     icon: BarChartOutlined,
-  //     title: "Statistics",
-  //   },
-  //   {
-  //     icon: SettingOutlined,
-  //     title: "Settings",
-  //   },
-  // ]);
+  
   const handleMouseEnter = (title) => {
     setMouseEnter(title);
   };
@@ -39,30 +22,20 @@ export default function Navbar(props) {
   return (
     <div className="navbar-container">
       <ul className="navbar">
-        {/* {navbarItems.map((item,index) => { 
-          return (
-            <li className="navbar-item" onClick={handleOnClick} key={ index}>
-            <a className="navbar-anchor">
-                <item.icon></item.icon>
-                <span className="navbar-item-title">{ item.title}</span>
-            </a>
-          </li>
-          )   
-        })} */}
         <li
           className="navbar-item"
           onClick={() => {
-            handlePageChange("AddNewList");
+            handlePageChange("CreateNewList");
           }}
           onMouseEnter={() => {
-            handleMouseEnter("AddNewList");
+            handleMouseEnter("CreateNewList");
           }}
           onMouseLeave={handleMouseLeave}
           style={{
             backgroundColor:
-              currentPage === "AddNewList"
+              currentPage === "CreateNewList"
                 ? "rgb(40, 40, 93)"
-                : mouseEnter === "AddNewList"
+                : mouseEnter === "CreateNewList"
                 ? "rgb(70, 70, 214)"
                 : "rgba(0, 22, 40, 255)",
           }}
@@ -71,13 +44,13 @@ export default function Navbar(props) {
             className="navbar-anchor"
             style={{
               color:
-                currentPage === "AddNewList"
+                currentPage === "CreateNewList"
                   ? "white"
                   : "rgba(140, 150, 159, 255)",
             }}
           >
             <ProfileOutlined />
-            <span className="navbar-item-title">Add New List</span>
+            <span className="navbar-item-title">Create New List</span>
           </a>
         </li>
         <li

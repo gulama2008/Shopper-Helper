@@ -6,7 +6,7 @@ import Register from "./components/pages/Register";
 import MainContainer from "./components/MainContainer";
 
 function App() {
-  const [currentPage, setCurrentPage] = useState("AddNewList");
+  const [currentPage, setCurrentPage] = useState("CreateNewList");
   const handlePageChange = (page) => setCurrentPage(page);
   return (
     <div className="app-container">
