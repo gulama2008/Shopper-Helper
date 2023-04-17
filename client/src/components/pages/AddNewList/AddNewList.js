@@ -4,11 +4,23 @@ import ItemTags from "./ItemTags";
 import ShoppingList from "./ShoppingList";
 
 export default function AddNewList() {
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState([
+    {
+      name: "Apple",
+      quantity: 1,
+      shop: "Woolworths",
+      price: 0,
+    },
+  ]);
   const addItem = (item) => { 
-    const newItems = [...items, item];
+    const itemObj = {
+      name: item,
+      quantity: 1,
+      shop: "Woolworths",
+      price: 0,
+    }
+    const newItems = [...items, itemObj];
     setItems(newItems);
-    console.log(items);
   }
 
   return (
