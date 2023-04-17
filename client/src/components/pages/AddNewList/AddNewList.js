@@ -19,7 +19,7 @@ export default function AddNewList() {
         <ItemTags items={items} addItem={addItem} />
       </div>
       <div>
-        <ShoppingList />
+        <ShoppingList items={ items} />
       </div>
     </div>
   );
