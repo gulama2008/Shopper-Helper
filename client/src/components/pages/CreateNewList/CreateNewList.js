@@ -8,34 +8,42 @@ import "../../../styles/AddNewList.css"
 
 const { Text, Link } = Typography;
 export default function AddNewList() {
-  const [items, setItems] = useState([
-    {
-      name: "Apple",
-      quantity: 1,
-      shop: "Woolworths",
-      price: 0,
-    },
-  ]);
-  const addItem = (item) => { 
-    const itemObj = {
-      name: item,
-      quantity: 1,
-      shop: "Woolworths",
-      price: 0,
-    }
-    const newItems = [...items, itemObj];
-    setItems(newItems);
+  const [items, setItems] = useState([]);
+  const addItem = (item) => {
+    const newItemList = [...items, item];
+    setItems(newItemList);
+  };
+
+  //set inputItemValue state to receive values passed by clicking the tag
+  const [inputItemValue, setInputItemValue] = useState({
+    name: "",
+    quantity: "",
+    unit: "",
+    shop:"",
+  });
+  //add properties from the tag clicked to inputItemValue state
+  const addItemByTag = (item) => { 
+    setInputItemValue(item);
+  }
+
+  const addItemByInput = (item) => { 
+    setInputItemValue(item);
   }
 
   return (
     <div className="addnewlist-container">
       <div>
-        <InputItem items={items} addItem={addItem} />
-
-        
-        <Text strong className="choose-item-text">Or choose one item from the following tags</Text>
-      
-        <ItemTags items={items} addItem={addItem} />
+        <InputItem
+          items={items}
+          addItem={addItem}
+          inputItemValue={inputItemValue}
+          // addItemByTag={addItemByTag}
+          addItemByInput={ addItemByInput}
+        />
+        <Text strong className="choose-item-text">
+          Or choose one item from the following tags
+        </Text>
+        <ItemTags items={items} addItemByTag={addItemByTag} />
       </div>
       <Divider />
       <div>

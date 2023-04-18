@@ -30,11 +30,76 @@
 
 import { Button, Form, Input, Select, InputNumber } from "antd";
 import { useState } from "react";
-const InputItem = () => {
+const InputItem = (props) => {
+  const { items, addItem, inputItemValue, addItemByTag, addItemByInput } =
+    props;
   const [form] = Form.useForm();
   const [formLayout, setFormLayout] = useState("inline");
 
-  const selectOptions = [
+  //set states for the current values in all form's areas
+  const [currentItemName, setCurrentItemName] = useState();
+  const [currentItemQuantity, setCurrentItemQuantity] = useState();
+  const [currentItemUnit, setCurrentItemUnit] = useState();
+  const [currentItemShop, setCurrentItemShop] = useState();
+  const [currentFullItem, setCurrentFullItem] = useState({
+    name: "",
+    quantity: "",
+    unit: "",
+    shop:"",
+  });
+  //handle functions when values changes in form's areas
+  const handleNameChange = async(e) => {
+    const newName=await setCurrentItemName(e.target.value);
+    setCurrentFullItem({
+      name: currentItemName,
+      quantity: currentItemQuantity,
+      unit: currentItemUnit,
+      shop: currentItemShop
+    });
+    addItemByInput(currentFullItem);
+  }
+  const handleQuantityChange = (e) => {
+    setCurrentItemQuantity(e.target.value);
+  };
+  const handleUnitChange = (e) => {
+    setCurrentItemUnit(e.target.value);
+  };
+  const handleShopChange = (e) => {
+    setCurrentItemShop(e.target.value);
+  };
+
+  //set state for a collection of all values from the form areas
+  // const [itemObj, setItemObj] = useState();
+
+  const handleAddButtonClick = (e) => { 
+    e.preventDefault();
+    const newItem = {
+      name: currentItemName,
+      quantity: currentItemQuantity,
+      unit: currentItemUnit,
+      shop: currentItemShop,
+    }
+    addItem(newItem);
+  }
+  const unitOptions = [
+    {
+      value: "kg",
+      label: "kg",
+    },
+    {
+      value: "box",
+      label: "box",
+    },
+    {
+      value: "bottle",
+      label: "bottle",
+    },
+    {
+      value: "bag",
+      label: "bag",
+    },
+  ];
+  const shopOptions = [
     {
       value: "Woolworths",
       label: "Woolworths",
@@ -60,12 +125,8 @@ const InputItem = () => {
       label: "Big W",
     },
   ];
-  const handleShopChange = (value) => {
-    console.log(`selected ${value}`);
-  };
-  const handlePriceChange = (value) => {
-    console.log("changed", value);
-  };
+  
+  
   return (
     <Form
       layout={formLayout}
@@ -76,14 +137,37 @@ const InputItem = () => {
       style={{}}
     >
       <Form.Item label="Item">
-        <Input placeholder="Please enter an item" />
+        <Input
+          placeholder="Please enter an item"
+          // value={inputItemValue ? inputItemValue.name : currentItemName}
+          value={ inputItemValue.name}
+          onChange={handleNameChange}
+        />
       </Form.Item>
       <Form.Item label="Quantity">
-        <Input
+        <InputNumber
+          min={1}
           placeholder=""
           style={{
             width: 50,
           }}
+          onChange={handleQuantityChange}
+          value={
+            inputItemValue
+              ? inputItemValue.defaultQuantity
+              : currentItemQuantity
+          }
+        />
+      </Form.Item>
+      <Form.Item label="Unit">
+        <Select
+          defaultValue="kg"
+          style={{
+            width: 80,
+          }}
+          onChange={handleUnitChange}
+          options={unitOptions}
+          value={inputItemValue ? inputItemValue.defaultUnit : currentItemUnit}
         />
       </Form.Item>
       <Form.Item label="Shop">
@@ -93,14 +177,14 @@ const InputItem = () => {
             width: 120,
           }}
           onChange={handleShopChange}
-          options={selectOptions}
+          options={shopOptions}
+          value={inputItemValue ? inputItemValue.defaultShop : currentItemShop}
         />
       </Form.Item>
-      {/* <Form.Item label="Price">
-        <InputNumber min={0} defaultValue={0} onChange={handlePriceChange} />
-      </Form.Item> */}
       <Form.Item>
-        <Button type="primary">Add</Button>
+        <Button type="primary" onClick={handleAddButtonClick}>
+          Add
+        </Button>
       </Form.Item>
     </Form>
   );
