@@ -112,13 +112,13 @@ export default function AddNewList() {
     shop:"",
   });
   //add properties from the tag clicked to inputItemValue state
-  const addItemByTag = (item) => { 
-    setInputItemValue(item);
-  }
+  // const addItemByTag = (item) => { 
+  //   setInputItemValue(item);
+  // }
 
-  const addItemByInput = (item) => { 
-    setInputItemValue(item);
-  }
+  // const addItemByInput = (item) => { 
+  //   setInputItemValue(item);
+  // }
 
   return (
     <div className="addnewlist-container">
@@ -128,13 +128,14 @@ export default function AddNewList() {
           addItem={addItem}
           unitOptions={unitOptions}
           shopOptions={shopOptions}
-          inputItemValue={inputItemValue}
-          addItemByInput={addItemByInput}
+          // inputItemValue={inputItemValue}
+          // addItemByTag={addItemByTag}
+          // addItemByInput={addItemByInput}
         />
         <Text strong className="choose-item-text">
           Or choose one item from the following tags
         </Text>
-        <ItemTags items={items} addItemByTag={addItemByTag} />
+        <ItemTags items={items} addItem={ addItem} />
       </div>
       <Divider />
       <div>

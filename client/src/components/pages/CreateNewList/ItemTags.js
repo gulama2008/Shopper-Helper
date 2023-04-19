@@ -4,54 +4,47 @@ import { useState } from "react";
 import "../../../styles/ItemTags.css"
 
 function ItemTags(props) {
-  const { items,addItemByTag}=props
+  const { items,addItem}=props
   const tagArray = [
     {
       id: 1,
       name: "Apple",
-      defaultQuantity: 3,
-      defaultUnit: "kg",
-      defaultShop: "Woolworths",
+      quantity: 3,
+      unit: "kg",
+      shop: "Woolworths",
+      price: "",
     },
     {
       id: 2,
       name: "Milk",
-      defaultQuantity: 2,
-      defaultUnit: "bottle",
-      defaultShop: "Aldi",
+      quantity: 1,
+      unit: "bottle",
+      shop: "Coles",
+      price: 3.5,
     },
     {
       id: 3,
       name: "Egg",
-      defaultQuantity: 2,
-      defaultUnit: "box",
-      defaultShop: "Coles",
+      quantity: 2,
+      unit: "box",
+      shop: "Aldi",
+      price: 4.5,
     },
     {
       id: 4,
       name: "Tomato",
-      defaultQuantity: 5,
-      defaultUnit: "kg",
-      defaultShop: "Woolworths",
+      quantity: 3,
+      unit: "kg",
+      shop: "Woolworths",
+      price: "",
     },
   ];
   const [tags, setTags] = useState(tagArray);
 
-  const test = {
-    id: 1,
-    name: "Apple",
-    defaultQuantity: 0,
-    defaultUnit: "kg",
-    defaultShop: "Woolworths",
-  };
-
   const handleTagClick = (e) => { 
     const item = tags.find((tag) => tag.name === e.target.innerText)
-    addItemByTag(item);
-    // addItemByTag();
+    addItem(item);
   } 
-
-  
 
   return (
     <Space size={[0, 8]} wrap>
