@@ -23,7 +23,7 @@ const { Text} = Typography;
 const dateFormatList = ["DD/MM/YYYY", "DD/MM/YY", "DD-MM-YYYY", "DD-MM-YY"];
 
 const ShoppingList = (props) => {
-  const { items, updateItem, unit, shops } = props;
+  const { items, updateItem, unitOptions, shopOptions } = props;
 
   //change the date of each item in the state into the date on the date-picker
   const handleDateChange = (date, dateString) => {
@@ -228,7 +228,7 @@ const ShoppingList = (props) => {
                       width: 80,
                     }}
                     onChange={handleUnitChange(index)}
-                    options={unit}
+                    options={unitOptions}
                   />
                 </div>
               </Col>
@@ -241,7 +241,7 @@ const ShoppingList = (props) => {
                       width: 120,
                     }}
                     onChange={handleShopChange(index)}
-                    options={shops}
+                    options={shopOptions}
                   />
                 </div>
               </Col>

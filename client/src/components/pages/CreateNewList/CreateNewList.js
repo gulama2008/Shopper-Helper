@@ -61,7 +61,7 @@ export default function AddNewList() {
     },
   ];
   const [items, setItems] = useState(test);
-  const [unit, setUnit] = useState([
+  const [unitOptions, setUnitOptions] = useState([
     {
       value: "kg",
       label: "kg",
@@ -79,7 +79,7 @@ export default function AddNewList() {
       label: "bag",
     },
   ]);
-  const [shops, setShops] = useState([
+  const [shopOptions, setShopOptions] = useState([
     {
       value: "Woolworths",
       label: "Woolworths",
@@ -126,8 +126,9 @@ export default function AddNewList() {
         <InputItem
           items={items}
           addItem={addItem}
+          unitOptions={unitOptions}
+          shopOptions={shopOptions}
           inputItemValue={inputItemValue}
-          // addItemByTag={addItemByTag}
           addItemByInput={addItemByInput}
         />
         <Text strong className="choose-item-text">
@@ -137,7 +138,7 @@ export default function AddNewList() {
       </div>
       <Divider />
       <div>
-        <ShoppingList items={items} updateItem={updateItem} unit={ unit} shops={ shops} />
+        <ShoppingList items={items} updateItem={updateItem} unitOptions={ unitOptions} shopOptions={ shopOptions} />
       </div>
     </div>
   );
