@@ -3,10 +3,18 @@ import InputItem from "./InputItem";
 import ItemTags from "./ItemTags";
 import ShoppingList from "./ShoppingList";
 import { Divider } from "antd";
-import { Space, Typography } from "antd";
+import { DatePicker, Typography } from "antd";
 import "../../../styles/AddNewList.css"
+import dayjs from "dayjs";
+import customParseFormat from "dayjs/plugin/customParseFormat";
+dayjs.extend(customParseFormat);
+const { RangePicker } = DatePicker;
+const dateFormat = "DD/MM/YYYY";
+const weekFormat = "DD/MM";
+const monthFormat = "MM/YYYY";
+const { Text } = Typography;
+const dateFormatList = ["DD/MM/YYYY", "DD/MM/YY", "DD-MM-YYYY", "DD-MM-YY"];
 
-const { Text, Link } = Typography;
 export default function AddNewList() {
   const test = [
     {
@@ -61,6 +69,7 @@ export default function AddNewList() {
     },
   ];
   const [items, setItems] = useState(test);
+  const [date, setDate] = useState(dayjs().format("DD/MM/YYYY"));
   const [unitOptions, setUnitOptions] = useState([
     {
       value: "kg",
@@ -104,21 +113,15 @@ export default function AddNewList() {
   const updateItem = (newItemList) => { 
     setItems(newItemList);
   }
-  //set inputItemValue state to receive values passed by clicking the tag
-  const [inputItemValue, setInputItemValue] = useState({
-    name: "",
-    quantity: "",
-    unit: "",
-    shop:"",
-  });
-  //add properties from the tag clicked to inputItemValue state
-  // const addItemByTag = (item) => { 
-  //   setInputItemValue(item);
-  // }
-
-  // const addItemByInput = (item) => { 
-  //   setInputItemValue(item);
-  // }
+  
+  const handleDateChange = (date, dateString) => {
+    setDate(dateString);
+    const newItemList = items.map((item) => {
+      item.date = dateString;
+      return item;
+    });
+    updateItem(newItemList);
+  };
 
   return (
     <div className="addnewlist-container">
@@ -128,18 +131,29 @@ export default function AddNewList() {
           addItem={addItem}
           unitOptions={unitOptions}
           shopOptions={shopOptions}
-          // inputItemValue={inputItemValue}
-          // addItemByTag={addItemByTag}
-          // addItemByInput={addItemByInput}
+          date={ date}
         />
         <Text strong className="choose-item-text">
           Or choose one item from the following tags
         </Text>
-        <ItemTags items={items} addItem={ addItem} />
+        <ItemTags items={items} addItem={addItem} date={ date} />
       </div>
       <Divider />
+      <div className="date-picker">
+        <DatePicker
+          defaultValue={dayjs()}
+          format={dateFormatList}
+          onChange={handleDateChange}
+        />
+      </div>
       <div>
-        <ShoppingList items={items} updateItem={updateItem} unitOptions={ unitOptions} shopOptions={ shopOptions} />
+        <ShoppingList
+          items={items}
+          updateItem={updateItem}
+          unitOptions={unitOptions}
+          shopOptions={shopOptions}
+          date={ date}
+        />
       </div>
     </div>
   );

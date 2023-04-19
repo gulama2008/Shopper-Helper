@@ -4,7 +4,7 @@ import { useState } from "react";
 import "../../../styles/ItemTags.css"
 
 function ItemTags(props) {
-  const { items,addItem}=props
+  const { items,addItem,date}=props
   const tagArray = [
     {
       id: 1,
@@ -13,6 +13,7 @@ function ItemTags(props) {
       unit: "kg",
       shop: "Woolworths",
       price: "",
+      bought:false
     },
     {
       id: 2,
@@ -21,6 +22,7 @@ function ItemTags(props) {
       unit: "bottle",
       shop: "Coles",
       price: 3.5,
+      bought:false,
     },
     {
       id: 3,
@@ -29,6 +31,7 @@ function ItemTags(props) {
       unit: "box",
       shop: "Aldi",
       price: 4.5,
+      bought:false
     },
     {
       id: 4,
@@ -37,12 +40,14 @@ function ItemTags(props) {
       unit: "kg",
       shop: "Woolworths",
       price: "",
+      bought:false
     },
   ];
   const [tags, setTags] = useState(tagArray);
 
   const handleTagClick = (e) => { 
     const item = tags.find((tag) => tag.name === e.target.innerText)
+    item.date = date;
     addItem(item);
   } 
 

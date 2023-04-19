@@ -23,16 +23,16 @@ const { Text} = Typography;
 const dateFormatList = ["DD/MM/YYYY", "DD/MM/YY", "DD-MM-YYYY", "DD-MM-YY"];
 
 const ShoppingList = (props) => {
-  const { items, updateItem, unitOptions, shopOptions } = props;
+  const { items, updateItem, unitOptions, shopOptions,date } = props;
 
   //change the date of each item in the state into the date on the date-picker
-  const handleDateChange = (date, dateString) => {
-    const newItemList = items.map((item) => {
-      item.date = dateString;
-      return item;
-    });
-    updateItem(newItemList);
-  };
+  // const handleDateChange = (date, dateString) => {
+  //   const newItemList = items.map((item) => {
+  //     item.date = dateString;
+  //     return item;
+  //   });
+  //   updateItem(newItemList);
+  // };
 
   //change the quantity of each item in the state into the quantity entered in the input box
   const handleQuantityChange = (index) => {
@@ -117,13 +117,7 @@ const ShoppingList = (props) => {
 
   return (
     <div>
-      <div className="date-picker">
-        <DatePicker
-          defaultValue={dayjs()}
-          format={dateFormatList}
-          onChange={handleDateChange}
-        />
-      </div>
+      
       <div>
         <Row
           className="title-row"

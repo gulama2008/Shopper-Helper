@@ -1,8 +1,9 @@
 import { Button, Form, Input, Select, InputNumber } from "antd";
 import React from "react";
 import { useState } from "react";
+
 const InputItem = (props) => {
-  const { items, addItem, inputItemValue, addItemByTag, addItemByInput,unitOptions,shopOptions } =
+  const { items, addItem, unitOptions,shopOptions,date } =
     props;
   const [form] = Form.useForm();
   const [formLayout, setFormLayout] = useState("inline");
@@ -12,13 +13,7 @@ const InputItem = (props) => {
   const [currentItemQuantity, setCurrentItemQuantity] = useState();
   const [currentItemUnit, setCurrentItemUnit] = useState();
   const [currentItemShop, setCurrentItemShop] = useState();
-  const [currentFullItem, setCurrentFullItem] = useState({
-    name: "",
-    quantity: "",
-    unit: "",
-    shop: "",
-    price: "",
-  });
+
   //handle functions when values changes in form's areas
   const handleNameChange = (e) => { 
     setCurrentItemName(e.target.value);
@@ -43,9 +38,12 @@ const InputItem = (props) => {
       quantity: currentItemQuantity,
       unit: currentItemUnit,
       shop: currentItemShop,
-      price:"",
-    }
+      price: "",
+      date: date,
+      bought: false,
+    };
     addItem(newItem);
+    console.log(newItem);
   }
   
   
