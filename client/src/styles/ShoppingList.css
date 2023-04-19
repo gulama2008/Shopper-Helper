@@ -3,7 +3,7 @@
     height: 65px;
 }
 
-.title-col{
+.title-col, .content-col,.content-col-name{
     display: flex;
     align-items: center;
 }
@@ -12,7 +12,24 @@
     font-size: 15px;
 }
 
-.title-divider{
+.title-divider,.content-divider{
     height: 25px;
     margin-right: 20px;
+}
+
+.content-row{
+    height: 65px;
+}
+
+.content-row:hover{
+    background-color: rgba(245, 245, 255, 255);
+}
+
+.content-divider{
+    opacity: 0;
+}
+
+.delete-icon{
+    cursor: pointer;
+    margin-left: 20px;
 }

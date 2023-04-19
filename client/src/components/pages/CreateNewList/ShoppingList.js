@@ -1,38 +1,67 @@
 import React, { useState } from "react";
 // import { Space, Table, Button } from "antd";
-import { Col, Divider, Row } from "antd";
-import { Space, Typography } from "antd";
+import { Col, Divider, Row, InputNumber, Select, Typography,Button } from "antd";
+import { DeleteOutlined,CloseOutlined} from "@ant-design/icons";
 import "../../../styles/ShoppingList.css";
 const { Text, Link } = Typography;
 
 // const { Column, ColumnGroup } = Table;
 
 const ShoppingList = (props) => {
-  const items = props.items;
-  console.log(items);
-  return (
-    // <Table
-    //   dataSource={items}>
-    //   <Column title="Item" dataIndex="name" key="name" />
+  const { items,updateItem,unit,shops } = props;
+  // const [quantity, setQuantity] = useState();
 
-    //   <Column
-    //     title="Quantity"
-    //     dataIndex="quantity"
-    //     key="quantity"
-    //   />
-    //   <Column title="Unit" dataIndex="unit" key="unit" />
-    //   <Column title="Shop Name" dataIndex="shop" key="shop" />
-    //   <Column
-    //     title="Action"
-    //     key="action"
-    //     render={(_, record) => (
-    //       <Space size="middle">
-    //         <Button type="primary">Bought!</Button>
-    //         <a>Delete</a>
-    //       </Space>
-    //     )}
-    //   />
-    // </Table>
+  const handleQuantityChange = (index) => { 
+    return (e) => { 
+      const newItemList = items.map((item,itemIndex) => { 
+        if (itemIndex === index) {
+          item.quantity = e;
+          return item;
+        } else {
+          return item;
+        }
+      })
+      updateItem(newItemList); 
+      
+      }
+    }
+  
+  const handleUnitChange = (index) => {
+    return (e) => {
+      const newItemList = items.map((item, itemIndex) => {
+        if (itemIndex === index) {
+          item.unit = e;
+          return item;
+        } else {
+          return item;
+        }
+      });
+      updateItem(newItemList);
+    };
+  };
+
+  const handleShopChange = (index) => {
+    return (e) => {
+      const newItemList = items.map((item, itemIndex) => {
+        if (itemIndex === index) {
+          item.shop = e;
+          return item;
+        } else {
+          return item;
+        }
+      });
+      updateItem(newItemList);
+    };
+  };
+
+  const handleDeleteButton = (index) => {
+    const newItemList = items.filter((item, itemIndex) => {
+      return itemIndex!==index
+    });
+    updateItem(newItemList);
+  }
+  
+  return (
     <div>
       <div>
         <Row
@@ -44,7 +73,7 @@ const ShoppingList = (props) => {
             lg: 32,
           }}
         >
-          <Col className="gutter-row title-col" span={5}>
+          <Col className="gutter-row title-col" span={3}>
             <div className="">
               <Text strong className="title-text">
                 Item
@@ -68,7 +97,7 @@ const ShoppingList = (props) => {
               </Text>
             </div>
           </Col>
-          <Col className="gutter-row title-col" span={6}>
+          <Col className="gutter-row title-col" span={5}>
             <Divider type="vertical" className="title-divider" />
             <div>
               <Text strong className="title-text">
@@ -87,10 +116,11 @@ const ShoppingList = (props) => {
         </Row>
       </div>
       <div>
-        {items.map((item) => { 
+        {items.map((item,index) => { 
           return (
             <Row
-              className="title-row"
+              key={item.id}
+              className="content-row"
               gutter={{
                 xs: 8,
                 sm: 16,
@@ -98,44 +128,51 @@ const ShoppingList = (props) => {
                 lg: 32,
               }}
             >
-              <Col className="gutter-row title-col" span={5}>
-                <div className="">
-                  <Text strong className="title-text">
-                    Item
-                  </Text>
-                </div>
+              <Col className="gutter-row content-col-name" span={3}>
+                <div className="">{item.name}</div>
               </Col>
 
-              <Col className="gutter-row title-col" span={3}>
-                <Divider type="vertical" className="title-divider" />
+              <Col className="gutter-row content-col" span={3}>
+                <Divider type="vertical" className="content-divider" />
                 <div>
-                  <Text strong className="title-text">
-                    Quantity
-                  </Text>
+                  <InputNumber
+                    min={1}
+                    value={item.quantity}
+                    onChange={handleQuantityChange(index)}
+                  />
                 </div>
               </Col>
-              <Col className="gutter-row title-col" span={3}>
-                <Divider type="vertical" className="title-divider" />
+              <Col className="gutter-row content-col" span={3}>
+                <Divider type="vertical" className="content-divider" />
                 <div>
-                  <Text strong className="title-text">
-                    Unit
-                  </Text>
+                  <Select
+                    defaultValue={item.unit}
+                    style={{
+                      width: 80,
+                    }}
+                    onChange={handleUnitChange(index)}
+                    options={unit}
+                  />
                 </div>
               </Col>
-              <Col className="gutter-row title-col" span={6}>
-                <Divider type="vertical" className="title-divider" />
+              <Col className="gutter-row content-col" span={5}>
+                <Divider type="vertical" className="content-divider" />
                 <div>
-                  <Text strong className="title-text">
-                    Shop
-                  </Text>
+                  <Select
+                    defaultValue={item.shop}
+                    style={{
+                      width: 150,
+                    }}
+                    onChange={handleShopChange(index)}
+                    options={shops}
+                  />
                 </div>
               </Col>
-              <Col className="gutter-row title-col" span={6}>
-                <Divider type="vertical" className="title-divider" />
+              <Col className="gutter-row content-col" span={6}>
+                <Divider type="vertical" className="content-divider" />
                 <div>
-                  <Text strong className="title-text">
-                    Action
-                  </Text>
+                  <Button type="primary">Bought</Button>
+                  <CloseOutlined className="delete-icon" onClick={() => { handleDeleteButton(index)}} />
                 </div>
               </Col>
             </Row>
