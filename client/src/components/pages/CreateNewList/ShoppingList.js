@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import { Space, Table, Button } from "antd";
 import {
   Col,
   Divider,
@@ -9,32 +8,48 @@ import {
   Typography,
   Button,
   Input,
+  DatePicker,
 } from "antd";
-import { DeleteOutlined,CloseOutlined} from "@ant-design/icons";
+import { CloseOutlined} from "@ant-design/icons";
 import "../../../styles/ShoppingList.css";
-const { Text, Link } = Typography;
-
-// const { Column, ColumnGroup } = Table;
+import dayjs from "dayjs";
+import customParseFormat from "dayjs/plugin/customParseFormat";
+dayjs.extend(customParseFormat);
+const { RangePicker } = DatePicker;
+const dateFormat = "DD/MM/YYYY";
+const weekFormat = "DD/MM";
+const monthFormat = "MM/YYYY";
+const { Text} = Typography;
+const dateFormatList = ["DD/MM/YYYY", "DD/MM/YY", "DD-MM-YYYY", "DD-MM-YY"];
 
 const ShoppingList = (props) => {
-  const { items,updateItem,unit,shops } = props;
-  // const [quantity, setQuantity] = useState();
+  const { items, updateItem, unit, shops } = props;
 
-  const handleQuantityChange = (index) => { 
-    return (e) => { 
-      const newItemList = items.map((item,itemIndex) => { 
+  //change the date of each item in the state into the date on the date-picker
+  const handleDateChange = (date, dateString) => {
+    const newItemList = items.map((item) => {
+      item.date = dateString;
+      return item;
+    });
+    updateItem(newItemList);
+  };
+
+  //change the quantity of each item in the state into the quantity entered in the input box
+  const handleQuantityChange = (index) => {
+    return (e) => {
+      const newItemList = items.map((item, itemIndex) => {
         if (itemIndex === index) {
           item.quantity = e;
           return item;
         } else {
           return item;
         }
-      })
-      updateItem(newItemList); 
-      
-      }
-    }
-  
+      });
+      updateItem(newItemList);
+    };
+  };
+
+  //change the unit of each item in the state into the unit chosen from the select box
   const handleUnitChange = (index) => {
     return (e) => {
       const newItemList = items.map((item, itemIndex) => {
@@ -49,6 +64,7 @@ const ShoppingList = (props) => {
     };
   };
 
+  //change the shop of each item in the state into the shop chosen from the select box
   const handleShopChange = (index) => {
     return (e) => {
       const newItemList = items.map((item, itemIndex) => {
@@ -63,6 +79,7 @@ const ShoppingList = (props) => {
     };
   };
 
+  //change the price of each item in the state into the price entered in the input box
   const handlePriceChange = (index) => {
     return (e) => {
       const newItemList = items.map((item, itemIndex) => {
@@ -77,7 +94,8 @@ const ShoppingList = (props) => {
     };
   };
 
-  const handleBoughtButton = (index) => { 
+  //change the status of each item in the state into bought or pending when clicking the button
+  const handleStatusButton = (index) => {
     const newItemList = items.map((item, itemIndex) => {
       if (itemIndex === index) {
         item.bought = !item.bought;
@@ -87,16 +105,25 @@ const ShoppingList = (props) => {
       }
     });
     updateItem(newItemList);
-  }
+  };
+
+  //delete the item from the state when click the delete icon
   const handleDeleteButton = (index) => {
     const newItemList = items.filter((item, itemIndex) => {
-      return itemIndex!==index
+      return itemIndex !== index;
     });
     updateItem(newItemList);
-  }
-  
+  };
+
   return (
     <div>
+      <div className="date-picker">
+        <DatePicker
+          defaultValue={dayjs()}
+          format={dateFormatList}
+          onChange={handleDateChange}
+        />
+      </div>
       <div>
         <Row
           className="title-row"
@@ -236,10 +263,10 @@ const ShoppingList = (props) => {
                 <Divider type="vertical" className="content-divider" />
                 <div>
                   <Button
-                    className="bought-button"
+                    className="status-button"
                     type="primary"
                     onClick={() => {
-                      handleBoughtButton(index);
+                      handleStatusButton(index);
                     }}
                     style={
                       item.bought
@@ -253,7 +280,7 @@ const ShoppingList = (props) => {
                           }
                     }
                   >
-                    { item.bought?"Bought":"Pending"}
+                    {item.bought ? "Bought" : "Pending"}
                   </Button>
                   <CloseOutlined
                     className="delete-icon"

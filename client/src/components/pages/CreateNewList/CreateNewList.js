@@ -11,6 +11,7 @@ export default function AddNewList() {
   const test = [
     {
       id: 1,
+      date: "",
       name: "Apple",
       quantity: 2,
       unit: "kg",
@@ -20,6 +21,7 @@ export default function AddNewList() {
     },
     {
       id: 2,
+      date: "",
       name: "Milk",
       quantity: 2,
       unit: "bottle",
@@ -29,6 +31,7 @@ export default function AddNewList() {
     },
     {
       id: 3,
+      date: "",
       name: "Egg",
       quantity: 1,
       unit: "box",
@@ -38,6 +41,7 @@ export default function AddNewList() {
     },
     {
       id: 4,
+      date: "",
       name: "Tomato",
       quantity: 3,
       unit: "kg",
@@ -47,6 +51,7 @@ export default function AddNewList() {
     },
     {
       id: 5,
+      date: "",
       name: "Soap",
       quantity: 5,
       unit: "box",
