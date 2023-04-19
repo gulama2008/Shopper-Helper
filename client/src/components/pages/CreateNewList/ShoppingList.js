@@ -1,6 +1,15 @@
 import React, { useState } from "react";
 // import { Space, Table, Button } from "antd";
-import { Col, Divider, Row, InputNumber, Select, Typography,Button } from "antd";
+import {
+  Col,
+  Divider,
+  Row,
+  InputNumber,
+  Select,
+  Typography,
+  Button,
+  Input,
+} from "antd";
 import { DeleteOutlined,CloseOutlined} from "@ant-design/icons";
 import "../../../styles/ShoppingList.css";
 const { Text, Link } = Typography;
@@ -54,6 +63,31 @@ const ShoppingList = (props) => {
     };
   };
 
+  const handlePriceChange = (index) => {
+    return (e) => {
+      const newItemList = items.map((item, itemIndex) => {
+        if (itemIndex === index) {
+          item.price = e.target.value;
+          return item;
+        } else {
+          return item;
+        }
+      });
+      updateItem(newItemList);
+    };
+  };
+
+  const handleBoughtButton = (index) => { 
+    const newItemList = items.map((item, itemIndex) => {
+      if (itemIndex === index) {
+        item.bought = !item.bought;
+        return item;
+      } else {
+        return item;
+      }
+    });
+    updateItem(newItemList);
+  }
   const handleDeleteButton = (index) => {
     const newItemList = items.filter((item, itemIndex) => {
       return itemIndex!==index
@@ -97,7 +131,7 @@ const ShoppingList = (props) => {
               </Text>
             </div>
           </Col>
-          <Col className="gutter-row title-col" span={5}>
+          <Col className="gutter-row title-col" span={4}>
             <Divider type="vertical" className="title-divider" />
             <div>
               <Text strong className="title-text">
@@ -105,7 +139,23 @@ const ShoppingList = (props) => {
               </Text>
             </div>
           </Col>
-          <Col className="gutter-row title-col" span={6}>
+          <Col className="gutter-row title-col" span={3}>
+            <Divider type="vertical" className="title-divider" />
+            <div>
+              <Text strong className="title-text">
+                Unit Price
+              </Text>
+            </div>
+          </Col>
+          <Col className="gutter-row title-col" span={3}>
+            <Divider type="vertical" className="title-divider" />
+            <div>
+              <Text strong className="title-text">
+                Total Price
+              </Text>
+            </div>
+          </Col>
+          <Col className="gutter-row title-col" span={4}>
             <Divider type="vertical" className="title-divider" />
             <div>
               <Text strong className="title-text">
@@ -116,7 +166,7 @@ const ShoppingList = (props) => {
         </Row>
       </div>
       <div>
-        {items.map((item,index) => { 
+        {items.map((item, index) => {
           return (
             <Row
               key={item.id}
@@ -155,24 +205,62 @@ const ShoppingList = (props) => {
                   />
                 </div>
               </Col>
-              <Col className="gutter-row content-col" span={5}>
+              <Col className="gutter-row content-col" span={4}>
                 <Divider type="vertical" className="content-divider" />
                 <div>
                   <Select
                     defaultValue={item.shop}
                     style={{
-                      width: 150,
+                      width: 120,
                     }}
                     onChange={handleShopChange(index)}
                     options={shops}
                   />
                 </div>
               </Col>
-              <Col className="gutter-row content-col" span={6}>
+              <Col className="gutter-row content-col" span={3}>
                 <Divider type="vertical" className="content-divider" />
                 <div>
-                  <Button type="primary">Bought</Button>
-                  <CloseOutlined className="delete-icon" onClick={() => { handleDeleteButton(index)}} />
+                  <Input
+                    value={item.price}
+                    onChange={handlePriceChange(index)}
+                  />
+                </div>
+              </Col>
+              <Col className="gutter-row content-col-name" span={3}>
+                <Divider type="vertical" className="content-divider" />
+                <div className="">{item.quantity * item.price}</div>
+              </Col>
+
+              <Col className="gutter-row content-col" span={4}>
+                <Divider type="vertical" className="content-divider" />
+                <div>
+                  <Button
+                    className="bought-button"
+                    type="primary"
+                    onClick={() => {
+                      handleBoughtButton(index);
+                    }}
+                    style={
+                      item.bought
+                        ? {
+                            backgroundColor: "rgba(245,245,245,255)",
+                            color: "rgba(184,184,184,255)",
+                          }
+                        : {
+                            backgroundColor: "rgba(23,119,255,255)",
+                            color: "rgba(254,254,255,255)",
+                          }
+                    }
+                  >
+                    { item.bought?"Bought":"Pending"}
+                  </Button>
+                  <CloseOutlined
+                    className="delete-icon"
+                    onClick={() => {
+                      handleDeleteButton(index);
+                    }}
+                  />
                 </div>
               </Col>
             </Row>

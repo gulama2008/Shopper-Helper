@@ -29,6 +29,10 @@
     opacity: 0;
 }
 
+.bought-button{
+    width: 80px;
+}
+
 .delete-icon{
     cursor: pointer;
     margin-left: 20px;

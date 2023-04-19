@@ -15,6 +15,8 @@ export default function AddNewList() {
       quantity: 2,
       unit: "kg",
       shop: "Woolworths",
+      price: "",
+      bought: false,
     },
     {
       id: 2,
@@ -22,6 +24,8 @@ export default function AddNewList() {
       quantity: 2,
       unit: "bottle",
       shop: "Coles",
+      price: "",
+      bought: false,
     },
     {
       id: 3,
@@ -29,6 +33,8 @@ export default function AddNewList() {
       quantity: 1,
       unit: "box",
       shop: "Aldi",
+      price: "",
+      bought: false,
     },
     {
       id: 4,
@@ -36,6 +42,8 @@ export default function AddNewList() {
       quantity: 3,
       unit: "kg",
       shop: "Woolworths",
+      price: "",
+      bought: false,
     },
     {
       id: 5,
@@ -43,6 +51,8 @@ export default function AddNewList() {
       quantity: 5,
       unit: "box",
       shop: "Big W",
+      price: "",
+      bought: false,
     },
   ];
   const [items, setItems] = useState(test);
