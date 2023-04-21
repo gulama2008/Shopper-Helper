@@ -11,14 +11,8 @@ const listSchema = new Schema(
       type: Number,
       min: 0,
     },
-    unit: {
-      type: Schema.Types.ObjectId,
-      ref: "unit",
-    },
-    shop: {
-      type: Schema.Types.ObjectId,
-      ref: "shop",
-    },
+    unit: String,
+    shop: String,
     price: {
       type: Number,
       min: 0,
@@ -30,6 +24,10 @@ const listSchema = new Schema(
     date: {
       type: Date,
       default: Date.now,
+    },
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: "user",
     },
   },
   {

@@ -1,0 +1,29 @@
+[
+  {
+    "name": "apple",
+    "quantity": 2,
+    "unit": "kg",
+    "shop":"Woolworths",
+    "price":3.5,
+    "bought":true,
+    "user":"644286c044adbf2aadd76b4d"
+  },
+  {
+    "name": "grape",
+    "quantity": 1,
+    "unit": "kg",
+    "shop":"Woolworths",
+    "price":8.99,
+    "bought":true,
+    "user":"644286c044adbf2aadd76b4d"
+  },
+  {
+    "name": "egg",
+    "quantity": 1,
+    "unit": "box",
+    "shop":"Coles",
+    "price":4.5,
+    "bought":true,
+    "user":"644286c044adbf2aadd76b53"
+  }
+]

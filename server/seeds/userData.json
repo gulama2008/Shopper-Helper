@@ -1,0 +1,104 @@
+[
+  {
+    "username": "test1",
+    "email": "test1@test.com",
+    "password": "test1",
+    "items":[
+        {
+            "name":"apple",
+            "quantity":2,
+            "unit":"kg",
+            "shop":"Woolworths",
+            "price":2.99
+        },
+        {
+            "name":"milk",
+            "quantity":1,
+            "unit":"bottle",
+            "shop":"Coles",
+            "price":3.5
+        }
+    ],
+    "shops":[
+        {
+            "name":"Woolworths"
+        },
+        {
+            "name":"Coles"
+        },
+        {
+            "name":"Aldi"
+        }
+    ],
+    "lists":[]
+  },
+  {
+    "username": "test2",
+    "email": "test2@test.com",
+    "password": "test2",
+    "items":[
+        {
+            "name":"egg",
+            "quantity":2,
+            "unit":"box",
+            "shop":"Woolworths",
+            "price":4.5
+        },
+        {
+            "name":"tomato",
+            "quantity":3,
+            "unit":"kg",
+            "shop":"Harris Farm",
+            "price":5.99
+        }
+    ],
+    "shops":[
+        {
+            "name":"Woolworths"
+        },
+        {
+            "name":"Coles"
+        },
+        {
+            "name":"Harris Farm"
+        }
+    ],
+    "lists":[]
+  },
+  {
+    "username": "test3",
+    "email": "test3@test.com",
+    "password": "test3",
+    "items":[
+        {
+            "name":"flour",
+            "quantity":2,
+            "unit":"pack",
+            "shop":"Woolworths",
+            "price":2.5
+        },
+        {
+            "name":"soy sauce",
+            "quantity":1,
+            "unit":"bottle",
+            "shop":"Tongli",
+            "price":4.5
+        }
+    ],
+    "shops":[
+        {
+            "name":"Woolworths"
+        },
+        {
+            "name":"Coles"
+        },
+        {
+            "name":"Harris Farm"
+        },
+        {
+            "name":"Tongli"
+        }
+    ],
+    "lists":[]
+  }
+]
