@@ -1,0 +1,23 @@
+[
+  {
+    "name": "apple",
+    "quantity":3,
+    "unit": "64420d6f693d8b8754533092",
+    "shop": "64420d6f693d8b875453308a",
+    "price":2.99
+  },
+  {
+    "name": "milk",
+    "quantity":1,
+    "unit": "64420d6f693d8b8754533094",
+    "shop": "64420d6f693d8b875453308b",
+    "price":3.5
+  },
+  {
+    "name": "egg",
+    "quantity":2,
+    "unit": "64420d6f693d8b8754533093",
+    "shop": "64420d6f693d8b875453308c",
+    "price":3.5
+  }
+]

@@ -1,13 +1,23 @@
 const db = require('../config/connection');
-const { Tech } = require('../models');
+// const { Unit, Shop } = require('../models');
+const { Item } = require("../models");
 
-const techData = require('./techData.json');
+const itemData = require('./itemData.json');
+// const shopData = require('./shopData.json');
+// const unitData = require('./unitData.json');
 
 db.once('open', async () => {
-  await Tech.deleteMany({});
+  // clean database
+  await Item.deleteMany({});
+  // await Shop.deleteMany({});
+  // await Unit.deleteMany({});
 
-  const technologies = await Tech.insertMany(techData);
+  // bulk create each model
+  // const shops = await Shop.insertMany(shopData);
+  // const units = await Unit.insertMany(unitData);
+  const items = await Item.insertMany(itemData);
 
-  console.log('Technologies seeded!');
+  
+  console.log('all done!');
   process.exit(0);
 });
