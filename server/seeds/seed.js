@@ -6,15 +6,20 @@ const listData = require('./listData.json');
 
 db.once('open', async () => {
   // clean database
-  // await User.deleteMany({});
-  // await List.deleteMany({});
+  await List.deleteMany({});
+  await User.deleteMany({});
 
   // bulk create each model
-  // const shops = await Shop.insertMany(shopData);
-  // const units = await Unit.insertMany(unitData);
-  // const users = await User.insertMany(userData);
   const lists = await List.insertMany(listData);
-  
+  const users = await User.insertMany(userData);
+
+  for (newList of lists) {
+    // randomly add each class to a school
+    const tempUser = users[Math.floor(Math.random() * users.length)];
+    tempUser.lists.push(newList._id);
+    await tempUser.save();
+  }
+
   console.log('all done!');
   process.exit(0);
 });

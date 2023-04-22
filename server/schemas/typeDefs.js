@@ -7,20 +7,8 @@ const typeDefs = gql`
     email: String
     password: String
     items: [Item]!
-  }
-
-  type Item {
-    _id: ID
-    name: String
-    quantity: Number
-    unit: Unit
-    shop: Shop
-    price: Number
-  }
-
-  type Unit {
-    _id: ID
-    name: String
+    shops: [Shop]!
+    lists: [List]!
   }
 
   type Shop {
@@ -28,22 +16,38 @@ const typeDefs = gql`
     name: String
   }
 
-  type Auth {
-    token: ID!
-    user: User
+  type Item {
+    _id: ID
+    name: String
+    quantity:Float
+    unit:String
+    shop:String
+    price:Float
   }
+
+  type List {
+    _id: ID
+    name: String
+    quantity:Float
+    unit:String
+    shop:String
+    price:Float
+    date:String
+  }
+  # type Auth {
+  #   token: ID!
+  #   user: User
+  # }
 
   type Query {
     users: [User]
     user(username: String!): User
-    items(username:String!): [Item]
-    item(itemId: ID!): Item
-    shops: [Shop]
-    shop(shopId: ID!): Shop
-    units: [Unit]
-    unit(unitId: ID!): Unit
-    lists(username:String!): [List]
-    list(listId: ID!): List
+    # items(username: String!): [Item]
+    # item(itemId: ID!): Item
+    # shops: [Shop]
+    # shop(shopId: ID!): Shop
+    # lists(username: String!): [List]
+    # list(listId: ID!): List
   }
 
   # type Mutation {

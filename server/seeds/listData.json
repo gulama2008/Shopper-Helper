@@ -5,8 +5,7 @@
     "unit": "kg",
     "shop":"Woolworths",
     "price":3.5,
-    "bought":true,
-    "user":"644286c044adbf2aadd76b4d"
+    "bought":true
   },
   {
     "name": "grape",
@@ -14,8 +13,7 @@
     "unit": "kg",
     "shop":"Woolworths",
     "price":8.99,
-    "bought":true,
-    "user":"644286c044adbf2aadd76b4d"
+    "bought":true
   },
   {
     "name": "egg",
@@ -23,7 +21,6 @@
     "unit": "box",
     "shop":"Coles",
     "price":4.5,
-    "bought":true,
-    "user":"644286c044adbf2aadd76b53"
+    "bought":true
   }
 ]
