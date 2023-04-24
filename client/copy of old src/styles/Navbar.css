@@ -1,0 +1,39 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+.navbar-container{
+    background-color: rgba(0, 22, 40, 255);
+    height: 100%;
+    /* height: 1000px; */
+}
+
+.navbar{
+    list-style-type: none;
+}
+
+.navbar-item{
+    height: 80px;
+    font-size: 20px;
+    
+    line-height: 80px;
+    padding-left: 30px;
+}
+
+.navbar-item:hover {
+    background-color: rgb(70, 70, 214);
+}
+
+.navbar-item:hover *{
+    color: white;
+}
+
+.navbar-anchor{
+    display: block;
+    color: rgba(140, 150, 159, 255);
+}
+
+.navbar-item-title{
+    margin-left: 10px;
+}

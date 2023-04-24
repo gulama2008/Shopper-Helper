@@ -9,10 +9,10 @@ import { setContext } from "@apollo/client/link/context";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import "./styles/App.css";
-import Header from "./components/MainContainer/Header/Header";
-import Login from "./pages/Login";
-import Signup from "./pages/Signup";
-import MainContainer from "./pages/MainContainer";
+import Header from "./components/Header";
+import Login from "./components/pages/Login";
+import Register from "./components/pages/Register";
+import MainContainer from "./components/MainContainer";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -39,23 +39,15 @@ function App() {
   const [currentPage, setCurrentPage] = useState("CreateNewList");
   const handlePageChange = (page) => setCurrentPage(page);
   return (
-    <ApolloProvider client={client}>
-      <Router>
-        <Routes>
-          <Route
-            path="/*"
-            element={
-              <MainContainer
-                currentPage={currentPage}
-                handlePageChange={handlePageChange}
-              />
-            }
-          ></Route>
-          <Route path="/login" element={<Login />}></Route>
-          <Route path="/signup" element={<Signup />}></Route>
-        </Routes>
-      </Router>
-    </ApolloProvider>
+    <div className="app-container">
+      <Header currentPage={currentPage} handlePageChange={handlePageChange} />
+      <MainContainer
+        currentPage={currentPage}
+        handlePageChange={handlePageChange}
+      />
+      {/* <Login/> */}
+      {/* <Register/> */}
+    </div>
   );
 }
 

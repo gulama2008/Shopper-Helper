@@ -2,7 +2,7 @@
   {
     "username": "test1",
     "email": "test1@test.com",
-    "password": "test1",
+    "password": "$2a$10$lMuiyRi6lPJTZhB6c4Yfg.lpR0TH3NF.f4kH52.lpnQ1xYcGCGmki",
     "items":[
         {
             "name":"apple",
@@ -35,7 +35,7 @@
   {
     "username": "test2",
     "email": "test2@test.com",
-    "password": "test2",
+    "password": "$2a$10$r/wC/nXf8y6ITZr0DOr7y.s1NmgYjU6XWCqphIPwdbrvoPLfGGGue",
     "items":[
         {
             "name":"egg",
@@ -68,7 +68,7 @@
   {
     "username": "test3",
     "email": "test3@test.com",
-    "password": "test3",
+    "password": "$2a$10$iYlWm0Bzb7jkYg/YSokbjerKeILKaPGEX2okmwls0PkhHiFAIPYb2",
     "items":[
         {
             "name":"flour",

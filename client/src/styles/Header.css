@@ -1,4 +1,29 @@
 .header-container{
     height: 70px;
     background-color: black;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
+}
+
+.logo-container{
+    display: flex;
+    align-items: center;
+    height: 100%;
+    margin-left: 20px;
+}
+
+.logo{
+    height: 100%;
+}
+.app-name{
+    color: white;
+}
+
+.user-container{
+    color: white;
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
 }
