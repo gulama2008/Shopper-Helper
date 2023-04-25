@@ -9,7 +9,7 @@ import "../styles/MainContainer.css";
 import Header from "../components/MainContainer/Header/Header";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useQuery } from "@apollo/client";
-import { QUERY_ME, QUERY_USER,QUERY_TEST} from "../utils/queries";
+import { QUERY_ME, QUERY_USER, QUERY_TEST } from "../utils/queries";
 import Auth from "../utils/auth";
 
 export default function MainContainer(props) {
@@ -17,20 +17,29 @@ export default function MainContainer(props) {
   const { currentPage, handlePageChange } = props;
   const user = Auth.getProfile();
   const [userData, setUserdata] = useState(user.data);
+  
   console.log(userData.username);
   // const { loading, error,data } = useQuery(QUERY_TEST);
-  const { loading, data } = useQuery(QUERY_USER,
-    {variables:"test1"}
-  );
-  // const profile = data?.user || {};
-  // console.log(data);
-  // const items = data.user.items;
+  const { loading, data } = useQuery(QUERY_USER, {
+    variables: { username: userData.username },
+  });
+  const profile = data?.user || {};
+  console.log("Data");
+  console.log(profile);
+  const userItems = profile.items;
+  console.log("items");
+  console.log(userItems);
   // const [userItems, setUserItems] = useState(items);
+  // console.log(userItems);
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
+  
   return (
     // <Router>
     <div>
-      <Header userData={ userData} />
+      <Header userData={userData} />
       <Row className="main-container">
         <Col span={5}>
           {/* keep passing currentpage props and handlepagechange method to the child element */}
@@ -43,7 +52,7 @@ export default function MainContainer(props) {
         {/* Here we are calling the renderPage method which will return a component  */}
         <Col span={19}>
           <Routes>
-            <Route path="/" element={<CreateNewList  />}></Route>
+            <Route path="/" element={<CreateNewList userItems={ userItems} />}></Route>
             <Route path="historical-list" element={<HistoricalList />}></Route>
             <Route path="/statistics" element={<Statistics />}></Route>
             <Route path="/settings" element={<Settings />}></Route>

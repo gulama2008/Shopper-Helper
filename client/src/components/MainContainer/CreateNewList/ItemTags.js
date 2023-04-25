@@ -4,51 +4,14 @@ import { useState } from "react";
 import "../../../styles/ItemTags.css"
 
 function ItemTags(props) {
-  const { items,addItem,date}=props
-  const tagArray = [
-    {
-      id: 1,
-      name: "Apple",
-      quantity: 3,
-      unit: "kg",
-      shop: "Woolworths",
-      price: "",
-      bought:false
-    },
-    {
-      id: 2,
-      name: "Milk",
-      quantity: 1,
-      unit: "bottle",
-      shop: "Coles",
-      price: 3.5,
-      bought:false,
-    },
-    {
-      id: 3,
-      name: "Egg",
-      quantity: 2,
-      unit: "box",
-      shop: "Aldi",
-      price: 4.5,
-      bought:false
-    },
-    {
-      id: 4,
-      name: "Tomato",
-      quantity: 3,
-      unit: "kg",
-      shop: "Woolworths",
-      price: "",
-      bought:false
-    },
-  ];
-  const [tags, setTags] = useState(tagArray);
+  const { items,addItem,userItems,date}=props
+  const [tags, setTags] = useState(userItems);
 
   const handleTagClick = (e) => { 
     const item = tags.find((tag) => tag.name === e.target.innerText)
-    item.date = date;
-    addItem(item);
+    const newItem = {...item,date:date}    
+    // item.date = date;
+    addItem(newItem);
   } 
 
   return (
