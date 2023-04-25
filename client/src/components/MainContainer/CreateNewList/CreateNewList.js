@@ -7,6 +7,7 @@ import { DatePicker, Typography } from "antd";
 import "../../../styles/AddNewList.css";
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
+import { genTypeStyle } from "antd/es/alert/style";
 dayjs.extend(customParseFormat);
 const { RangePicker } = DatePicker;
 const dateFormat = "DD/MM/YYYY";
@@ -15,7 +16,9 @@ const monthFormat = "MM/YYYY";
 const { Text } = Typography;
 const dateFormatList = ["DD/MM/YYYY", "DD/MM/YY", "DD-MM-YYYY", "DD-MM-YY"];
 
-export default function AddNewList() {
+export default function AddNewList(props) {
+  // const { userItems } = props;
+  // console.log(userItems);
   const test = [
     {
       id: 1,

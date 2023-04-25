@@ -8,29 +8,24 @@ import { Col, Row, Statistic } from "antd";
 import "../styles/MainContainer.css";
 import Header from "../components/MainContainer/Header/Header";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useQuery } from "@apollo/client";
+import { QUERY_ME, QUERY_USER,QUERY_TEST} from "../utils/queries";
 import Auth from "../utils/auth";
 
 export default function MainContainer(props) {
   // get the props passing from component App
   const { currentPage, handlePageChange } = props;
-  // This method is checking to see what the value of `currentPage` is. Depending on the value of currentPage, we return the corresponding component to render.
-  // const renderPage = () => {
-  //   console.log(123);
-  //   if (currentPage === "CreateNewList") {
-  //     console.log(456);
-  //     return <Route path="/new-list" element={<CreateNewList />}></Route>;
-  //   }
-  //   if (currentPage === "HistoricalList") {
-  //     return <Route path="/historical-list" element={<HistoricalList />}></Route>;
-  //   }
-  //   if (currentPage === "Statistics") {
-  //     return <Route path="/statistics" element={<Statistic />}></Route>;
-  //   }
-  //   return <Route path="/statistics" element={<Statistic />}></Route>;
-  // };
   const user = Auth.getProfile();
   const [userData, setUserdata] = useState(user.data);
-  console.log(userData);
+  console.log(userData.username);
+  // const { loading, error,data } = useQuery(QUERY_TEST);
+  const { loading, data } = useQuery(QUERY_USER,
+    {variables:"test1"}
+  );
+  // const profile = data?.user || {};
+  // console.log(data);
+  // const items = data.user.items;
+  // const [userItems, setUserItems] = useState(items);
 
   return (
     // <Router>
@@ -48,7 +43,7 @@ export default function MainContainer(props) {
         {/* Here we are calling the renderPage method which will return a component  */}
         <Col span={19}>
           <Routes>
-            <Route path="/" element={<CreateNewList />}></Route>
+            <Route path="/" element={<CreateNewList  />}></Route>
             <Route path="historical-list" element={<HistoricalList />}></Route>
             <Route path="/statistics" element={<Statistics />}></Route>
             <Route path="/settings" element={<Settings />}></Route>

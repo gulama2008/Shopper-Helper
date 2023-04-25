@@ -4,7 +4,7 @@ import { UserOutlined } from "@ant-design/icons";
 import { Avatar } from "antd";
 import { Button, Dropdown, Space } from "antd";
 import "../../../styles/Header.css";
-import logo from "../../../images/logo.jpeg"
+import logo from "../../../images/logo.png"
 import { Link } from "react-router-dom";
 
 export default function Header(props) {

@@ -1,11 +1,33 @@
 import { gql } from '@apollo/client';
 
-export const QUERY_PROFILES = gql`
-  query allProfiles {
-    profiles {
+export const QUERY_USER = gql`
+  query user($username: String!) {
+    user(username: $username) {
       _id
-      name
-      skills
+      username
+      email
+      password
+      items {
+        _id
+        name
+        quantity
+        unit
+        shop
+        price
+      }
+      shops {
+        _id
+        name
+      }
+      lists {
+        _id
+        name
+        quantity
+        unit
+        shop
+        price
+        date
+      }
     }
   }
 `;
@@ -21,11 +43,30 @@ export const QUERY_SINGLE_PROFILE = gql`
 `;
 
 export const QUERY_ME = gql`
-  query me {
+  query Me {
     me {
       _id
-      name
-      skills
+      username
+      email
+      password
+      items {
+        price
+        shop
+        unit
+        quantity
+        name
+        _id
+      }
+      shops {
+        name
+        _id
+      }
     }
-  }
-`;
+  }`
+  ;
+
+  export const QUERY_TEST = gql`
+    query Query {
+      test
+    }
+  `;
