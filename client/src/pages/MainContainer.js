@@ -16,6 +16,7 @@ export default function MainContainer(props) {
   // get the props passing from component App
   const { currentPage, handlePageChange } = props;
   const user = Auth.getProfile();
+  console.log(user);
   const [userData, setUserdata] = useState(user.data);
   
   console.log(userData.username);
