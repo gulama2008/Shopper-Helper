@@ -3,7 +3,7 @@ import React from "react";
 import { useState } from "react";
 
 const InputItem = (props) => {
-  const { items, addItem, unitOptions,shopOptions,date } =
+  const { items, addItem, unitOptions,shopOptions,userShops,date } =
     props;
   const [form] = Form.useForm();
   const [formLayout, setFormLayout] = useState("inline");
@@ -13,6 +13,7 @@ const InputItem = (props) => {
   const [currentItemQuantity, setCurrentItemQuantity] = useState();
   const [currentItemUnit, setCurrentItemUnit] = useState();
   const [currentItemShop, setCurrentItemShop] = useState();
+
 
   //handle functions when values changes in form's areas
   const handleNameChange = (e) => { 
@@ -28,9 +29,6 @@ const InputItem = (props) => {
     setCurrentItemShop(value);
   };
 
-  //set state for a collection of all values from the form areas
-  // const [itemObj, setItemObj] = useState();
-
   const handleAddButtonClick = (e) => { 
     e.preventDefault();
     const newItem = {
@@ -38,7 +36,7 @@ const InputItem = (props) => {
       quantity: currentItemQuantity,
       unit: currentItemUnit,
       shop: currentItemShop,
-      price: "",
+      price: 0,
       date: date,
       bought: false,
     };

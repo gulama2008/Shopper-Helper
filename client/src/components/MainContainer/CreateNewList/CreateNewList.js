@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import InputItem from "./InputItem";
 import ItemTags from "./ItemTags";
 import ShoppingList from "./ShoppingList";
@@ -17,7 +17,7 @@ const { Text } = Typography;
 const dateFormatList = ["DD/MM/YYYY", "DD/MM/YY", "DD-MM-YYYY", "DD-MM-YY"];
 
 export default function CreateNewList(props) {
-  const { userItems } = props;
+  const { userItems,userShops } = props;
   console.log(userItems);
   const test = [
     {
@@ -87,23 +87,31 @@ export default function CreateNewList(props) {
     },
   ]);
   const [shopOptions, setShopOptions] = useState([
-    {
-      value: "Woolworths",
-      label: "Woolworths",
-    },
-    {
-      value: "Coles",
-      label: "Coles",
-    },
-    {
-      value: "Aldi",
-      label: "Aldi",
-    },
-    {
-      value: "Big W",
-      label: "Big W",
-    },
+    // {
+    //   value: "Woolworths",
+    //   label: "Woolworths",
+    // },
+    // {
+    //   value: "Coles",
+    //   label: "Coles",
+    // },
+    // {
+    //   value: "Aldi",
+    //   label: "Aldi",
+    // },
+    // {
+    //   value: "Big W",
+    //   label: "Big W",
+    // },
   ]);
+
+  useEffect(() => {
+    const shops = userShops.map((shop) => { 
+      return {value:shop.name,label:shop.name}
+    })
+    setShopOptions(shops)
+  }, []);
+
   const addItem = (item) => {
     const newItemList = [...items, item];
     setItems(newItemList);
@@ -134,11 +142,17 @@ export default function CreateNewList(props) {
           unitOptions={unitOptions}
           shopOptions={shopOptions}
           date={date}
+          userShops={userShops}
         />
         <Text strong className="choose-item-text">
           Or choose one item from the following tags
         </Text>
-        <ItemTags items={items} addItem={addItem} userItems={ userItems} date={date} />
+        <ItemTags
+          items={items}
+          addItem={addItem}
+          userItems={userItems}
+          date={date}
+        />
       </div>
       <Divider />
       <div className="date-picker">
@@ -151,10 +165,11 @@ export default function CreateNewList(props) {
       <div>
         <ShoppingList
           items={items}
-          deleteItems={ deleteItems}
+          deleteItems={deleteItems}
           updateItem={updateItem}
           unitOptions={unitOptions}
           shopOptions={shopOptions}
+          userShops={userShops}
           date={date}
         />
       </div>

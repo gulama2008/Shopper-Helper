@@ -15,7 +15,6 @@ export const QUERY_USER = gql`
         price
       }
       shops {
-        _id
         name
       }
       lists {

@@ -29,8 +29,10 @@ export default function MainContainer(props) {
   console.log(profile);
   const userItems = profile.items;
   const userLists = profile.lists;
+  const userShops = profile.shops;
   console.log("items");
   console.log(userItems);
+  console.log(userShops);
   // const [userItems, setUserItems] = useState(profile);
   if (loading) {
     return <div>Loading...</div>;
@@ -54,7 +56,7 @@ export default function MainContainer(props) {
           <Routes>
             <Route
               path="/"
-              element={<CreateNewList userItems={userItems} />}
+              element={<CreateNewList userItems={userItems} userShops={ userShops} />}
             ></Route>
             <Route
               path="historical-list"
