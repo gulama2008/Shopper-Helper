@@ -8,7 +8,6 @@ export const QUERY_USER = gql`
       email
       password
       items {
-        _id
         name
         quantity
         unit

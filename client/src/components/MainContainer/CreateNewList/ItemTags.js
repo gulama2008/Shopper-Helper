@@ -9,7 +9,7 @@ function ItemTags(props) {
 console.log(tags);
   const handleTagClick = (e) => { 
     const item = tags.find((tag) => tag.name === e.target.innerText)
-    const newItem = {...item,date:date}    
+    const newItem = {...item,date:date,bought:false}    
     // item.date = date;
     addItem(newItem);
   } 
