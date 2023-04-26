@@ -9,6 +9,7 @@ const typeDefs = gql`
     shop: String
     price: Float
     date: String
+    bought: Boolean
   }
   type User {
     _id: ID
@@ -42,6 +43,7 @@ const typeDefs = gql`
     shop: String
     price: Float
     date: String
+    bought: Boolean
   }
 
   type Auth {

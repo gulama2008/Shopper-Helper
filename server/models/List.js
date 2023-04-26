@@ -23,9 +23,9 @@ const listSchema = new Schema(
       default: false,
     },
     date: {
-      type: Date,
+      type: String,
       default: Date.now,
-      get: (timestamp) => dateFormat(timestamp),
+      // get: (timestamp) => dateFormat(timestamp),
     },
   },
   {

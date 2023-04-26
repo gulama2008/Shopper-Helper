@@ -31,12 +31,10 @@ export default function MainContainer(props) {
   const userLists = profile.lists;
   console.log("items");
   console.log(userItems);
-  // const [userItems, setUserItems] = useState(items);
-  // console.log(userItems);
+  // const [userItems, setUserItems] = useState(profile);
   if (loading) {
     return <div>Loading...</div>;
   }
-
   
   return (
     // <Router>

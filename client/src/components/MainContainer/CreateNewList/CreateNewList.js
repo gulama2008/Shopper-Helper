@@ -21,53 +21,48 @@ export default function CreateNewList(props) {
   console.log(userItems);
   const test = [
     {
-      id: 1,
-      date: "",
+      date: "26/04/2023",
       name: "Apple",
       quantity: 2,
       unit: "kg",
       shop: "Woolworths",
-      price: "",
+      price: 0,
       bought: false,
     },
     {
-      id: 2,
-      date: "",
+      date: "26/04/2023",
       name: "Milk",
       quantity: 2,
       unit: "bottle",
       shop: "Coles",
-      price: "",
+      price: 0,
       bought: false,
     },
     {
-      id: 3,
-      date: "",
+      date: "26/04/2023",
       name: "Egg",
       quantity: 1,
       unit: "box",
       shop: "Aldi",
-      price: "",
+      price: 0,
       bought: false,
     },
     {
-      id: 4,
-      date: "",
+      date: "26/04/2023",
       name: "Tomato",
       quantity: 3,
       unit: "kg",
       shop: "Woolworths",
-      price: "",
+      price: 0,
       bought: false,
     },
     {
-      id: 5,
-      date: "",
+      date: "26/04/2023",
       name: "Soap",
       quantity: 5,
       unit: "box",
       shop: "Big W",
-      price: "",
+      price: 0,
       bought: false,
     },
   ];
@@ -117,6 +112,10 @@ export default function CreateNewList(props) {
     setItems(newItemList);
   };
 
+  const deleteItems = () => { 
+    setItems([]);
+  }
+
   const handleDateChange = (date, dateString) => {
     setDate(dateString);
     const newItemList = items.map((item) => {
@@ -152,6 +151,7 @@ export default function CreateNewList(props) {
       <div>
         <ShoppingList
           items={items}
+          deleteItems={ deleteItems}
           updateItem={updateItem}
           unitOptions={unitOptions}
           shopOptions={shopOptions}

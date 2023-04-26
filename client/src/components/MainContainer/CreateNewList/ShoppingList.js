@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { useMutation } from "@apollo/client";
+import { ADD_LIST } from "../../../utils/mutations";
+import Auth from "../../../utils/auth";
 import {
   Col,
   Divider,
@@ -8,23 +11,23 @@ import {
   Typography,
   Button,
   Input,
-  DatePicker,
+  // DatePicker,
 } from "antd";
 import { CloseOutlined} from "@ant-design/icons";
 import "../../../styles/ShoppingList.css";
-import dayjs from "dayjs";
-import customParseFormat from "dayjs/plugin/customParseFormat";
-dayjs.extend(customParseFormat);
-const { RangePicker } = DatePicker;
-const dateFormat = "DD/MM/YYYY";
-const weekFormat = "DD/MM";
-const monthFormat = "MM/YYYY";
+// import dayjs from "dayjs";
+// import customParseFormat from "dayjs/plugin/customParseFormat";
+// dayjs.extend(customParseFormat);
+// const { RangePicker } = DatePicker;
+// const dateFormat = "DD/MM/YYYY";
+// const weekFormat = "DD/MM";
+// const monthFormat = "MM/YYYY";
 const { Text} = Typography;
-const dateFormatList = ["DD/MM/YYYY", "DD/MM/YY", "DD-MM-YYYY", "DD-MM-YY"];
+// const dateFormatList = ["DD/MM/YYYY", "DD/MM/YY", "DD-MM-YYYY", "DD-MM-YY"];
 
 const ShoppingList = (props) => {
-  const { items, updateItem, unitOptions, shopOptions,date } = props;
-const [size, setSize] = useState("large"); 
+  const { items, deleteItems,updateItem, unitOptions, shopOptions,date } = props;
+  const [size, setSize] = useState("large"); 
   //change the date of each item in the state into the date on the date-picker
   // const handleDateChange = (date, dateString) => {
   //   const newItemList = items.map((item) => {
@@ -33,6 +36,9 @@ const [size, setSize] = useState("large");
   //   });
   //   updateItem(newItemList);
   // };
+
+  const [addList, { error, data }] = useMutation(ADD_LIST);
+
 
   //change the quantity of each item in the state into the quantity entered in the input box
   const handleQuantityChange = (index) => {
@@ -84,7 +90,7 @@ const [size, setSize] = useState("large");
     return (e) => {
       const newItemList = items.map((item, itemIndex) => {
         if (itemIndex === index) {
-          item.price = e.target.value;
+          item.price = e;
           return item;
         } else {
           return item;
@@ -115,9 +121,24 @@ const [size, setSize] = useState("large");
     updateItem(newItemList);
   };
 
-  const handleSubmitButton = () => { 
-    
-  }
+  const handleSubmitButton = async (event) => {
+    event.preventDefault();
+    console.log(items);
+    const username = Auth.getProfile().data.username;
+    console.log(username);
+    try {
+      const { data } = await addList({
+        variables: {
+          username: username,
+          lists:items
+        },
+      });
+console.log(222);
+      deleteItems();
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   return (
     <div>
@@ -245,7 +266,7 @@ const [size, setSize] = useState("large");
               <Col className="gutter-row content-col" span={3}>
                 <Divider type="vertical" className="content-divider" />
                 <div>
-                  <Input
+                  <InputNumber
                     value={item.price}
                     onChange={handlePriceChange(index)}
                   />

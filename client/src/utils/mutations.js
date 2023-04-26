@@ -35,6 +35,19 @@ export const ADD_USER = gql`
   }
 `;
 
+export const ADD_LIST = gql`
+  mutation AddList($username: String!, $lists: [ListData!]!) {
+    addList(username: $username, lists: $lists) {
+      _id
+      username
+      email
+      lists {
+        _id
+      }
+    }
+  }
+`;
+
 export const REMOVE_SKILL = gql`
   mutation removeSkill($skill: String!) {
     removeSkill(skill: $skill) {
