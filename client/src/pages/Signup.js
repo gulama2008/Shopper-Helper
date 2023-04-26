@@ -1,3 +1,8 @@
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { useMutation } from "@apollo/client";
+import { ADD_USER } from "../utils/mutations";
+import Auth from "../utils/auth";
 import {
   AutoComplete,
   Button,
@@ -9,9 +14,8 @@ import {
   InputNumber,
   Row,
   Select,
-} from 'antd';
-import { useState } from 'react';
-import "../styles/Register.css"
+} from "antd";
+import "../styles/Register.css";
 
 const formItemLayout = {
   labelCol: {
@@ -45,15 +49,72 @@ const tailFormItemLayout = {
 };
 const Signup = () => {
   const [form] = Form.useForm();
-  const onFinish = (values) => {
-    console.log('Received values of form: ', values);
-  };
-  
-  const [autoCompleteResult, setAutoCompleteResult] = useState([]);
-  
-  const validatePassword = (password) => { 
+  const [formState, setFormState] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
+  const [addUser, { error, data }] = useMutation(ADD_USER);
 
-  }
+  const handleUsernameChange = (event) => {
+    const value = event.target.value;
+    setFormState({
+      ...formState,
+      username: value,
+    });
+    console.log(formState);
+  };
+  const handlePasswordChange = (event) => {
+    const value = event.target.value;
+    setFormState({
+      ...formState,
+      password: value,
+    });
+    console.log(formState);
+  };
+  const handleEmailChange = (event) => {
+    const value = event.target.value;
+    setFormState({
+      ...formState,
+      email: value,
+    });
+    console.log(formState);
+  };
+
+  const handleButtonClick = async (event) => {
+    event.preventDefault();
+    console.log(formState);
+    try {
+      const { data } = await addUser({
+        variables: { ...formState },
+      });
+      console.log(data);
+
+      Auth.login(data.addUser.token);
+    } catch (e) {
+      console.error(e);
+    }
+
+    // clear form values
+    setFormState({
+      username: "",
+      password: "",
+    });
+  };
+  // const handleChange = (event) => {
+  //   const { name, value } = event.target;
+  //   setFormState({
+  //     ...formState,
+  //     [name]: value,
+  //   });
+  // };
+
+  const onFinish = (values) => {
+    console.log("Received values of form: ", values);
+  };
+
+  // const [autoCompleteResult, setAutoCompleteResult] = useState([]);
+  // const validatePassword = (password) => {};
   return (
     <div className="register-container">
       <Form
@@ -68,6 +129,25 @@ const Signup = () => {
         scrollToFirstError
       >
         <Form.Item
+          name="username"
+          label="Username"
+          tooltip="What do you want others to call you?"
+          rules={[
+            {
+              required: true,
+              message: "Please input your username!",
+              whitespace: true,
+            },
+            // {
+            //   unique: true,
+            //   message: "This username already exist!",
+            //   whitespace: true,
+            // },
+          ]}
+        >
+          <Input onChange={handleUsernameChange} />
+        </Form.Item>
+        <Form.Item
           name="email"
           label="E-mail"
           rules={[
@@ -81,7 +161,7 @@ const Signup = () => {
             },
           ]}
         >
-          <Input />
+          <Input onChange={handleEmailChange} />
         </Form.Item>
 
         <Form.Item
@@ -93,13 +173,13 @@ const Signup = () => {
               message: "Please input your password!",
             },
             {
-              min: 8,
+              min: 3,
               message: "Must be at least 8 characters!",
             },
           ]}
           hasFeedback
         >
-          <Input.Password />
+          <Input.Password onChange={handlePasswordChange} />
         </Form.Item>
 
         <Form.Item
@@ -127,25 +207,11 @@ const Signup = () => {
           <Input.Password />
         </Form.Item>
 
-        <Form.Item
-          name="nickname"
-          label="Nickname"
-          tooltip="What do you want others to call you?"
-          rules={[
-            {
-              required: true,
-              message: "Please input your nickname!",
-              whitespace: true,
-            },
-          ]}
-        >
-          <Input />
-        </Form.Item>
-
         <Form.Item {...tailFormItemLayout}>
-          <Button type="primary" htmlType="submit">
+          <Button type="primary" htmlType="submit" onClick={handleButtonClick}>
             Register
           </Button>
+          Or <Link to={"/login"}>Login now!</Link>
         </Form.Item>
       </Form>
     </div>

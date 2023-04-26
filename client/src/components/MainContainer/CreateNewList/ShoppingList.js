@@ -24,7 +24,7 @@ const dateFormatList = ["DD/MM/YYYY", "DD/MM/YY", "DD-MM-YYYY", "DD-MM-YY"];
 
 const ShoppingList = (props) => {
   const { items, updateItem, unitOptions, shopOptions,date } = props;
-
+const [size, setSize] = useState("large"); 
   //change the date of each item in the state into the date on the date-picker
   // const handleDateChange = (date, dateString) => {
   //   const newItemList = items.map((item) => {
@@ -115,9 +115,12 @@ const ShoppingList = (props) => {
     updateItem(newItemList);
   };
 
+  const handleSubmitButton = () => { 
+    
+  }
+
   return (
     <div>
-      
       <div>
         <Row
           className="title-row"
@@ -287,6 +290,11 @@ const ShoppingList = (props) => {
             </Row>
           );
         })}
+      </div>
+      <div className="submit-btn-container">
+        <Button type="primary" size={size} onClick={handleSubmitButton}>
+          Submit
+        </Button>
       </div>
     </div>
   );

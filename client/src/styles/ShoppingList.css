@@ -41,3 +41,9 @@
     cursor: pointer;
     margin-left: 20px;
 }
+
+.submit-btn-container{
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}

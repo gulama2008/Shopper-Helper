@@ -27,6 +27,7 @@ export default function MainContainer(props) {
   console.log("Data");
   console.log(profile);
   const userItems = profile.items;
+  const userLists = profile.lists;
   console.log("items");
   console.log(userItems);
   // const [userItems, setUserItems] = useState(items);
@@ -52,8 +53,14 @@ export default function MainContainer(props) {
         {/* Here we are calling the renderPage method which will return a component  */}
         <Col span={19}>
           <Routes>
-            <Route path="/" element={<CreateNewList userItems={ userItems} />}></Route>
-            <Route path="historical-list" element={<HistoricalList />}></Route>
+            <Route
+              path="/"
+              element={<CreateNewList userItems={userItems} />}
+            ></Route>
+            <Route
+              path="historical-list"
+              element={<HistoricalList userLists={userLists} />}
+            ></Route>
             <Route path="/statistics" element={<Statistics />}></Route>
             <Route path="/settings" element={<Settings />}></Route>
           </Routes>
