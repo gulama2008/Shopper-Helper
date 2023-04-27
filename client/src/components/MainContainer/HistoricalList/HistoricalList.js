@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Collapse } from "antd";
+import { Button, Collapse } from "antd";
 import { Table, Typography } from "antd";
 import { DatePicker, Space, Input } from "antd";
+import { SearchOutlined } from '@ant-design/icons';
+import dayjs from "dayjs";
+import customParseFormat from "dayjs/plugin/customParseFormat";
+dayjs.extend(customParseFormat);
 const { Text } = Typography;
 const { RangePicker } = DatePicker;
 const { Search } = Input;
@@ -34,10 +38,9 @@ const columns = [
 const { Panel } = Collapse;
 
 export default function HistoricalList(props) {
-  const { userLists} = props;
-  console.log(userLists);
-  const onSearch = (value) => console.log(value);
+  const { userLists } = props;
 
+  //change userLists into new array of objs with different property date and lists
   const groups = userLists.reduce((groups, list) => {
     const date = list.date;
     if (!groups[date]) {
@@ -52,6 +55,28 @@ export default function HistoricalList(props) {
       lists: groups[date],
     };
   });
+
+  const [resultList, setResultList] = useState([]);
+  const [ dateRange, setDateRange ] = useState([]);
+  console.log(userLists);
+
+  const handleDateRangeChange = (date,dateString) => { 
+    setDateRange([dateString[0], dateString[1]]);
+  }
+  const handleSearchButtonClick = (e) => { 
+    e.preventDefault();
+    const resultArray = groupArrays.filter((element) => { 
+      console.log(element.date);
+      const elementDate = dayjs(element.date,"DD-MM-YYYY");
+      const dateRangeStart = dayjs(dateRange[0], "DD-MM-YYYY");
+      const dateRangeFinish = dayjs(dateRange[1], "DD-MM-YYYY");
+      return elementDate >= dateRangeStart && elementDate <= dateRangeFinish;
+    })
+    console.log(resultArray);
+    setResultList(resultArray);
+  }
+  console.log(dateRange);
+  
   console.log(groupArrays);
 
   return (
@@ -59,17 +84,13 @@ export default function HistoricalList(props) {
       <div>
         <Space direction="vertical" size={12}>
           <span>Time Range</span>
-          <RangePicker />
-          <Search
-            placeholder="input search text"
-            onSearch={onSearch}
-            style={{
-              width: 200,
-            }}
-          />
+          <RangePicker format="DD/MM/YYYY" onChange={handleDateRangeChange} />
+          <Button type="primary" icon={<SearchOutlined />} onClick={ handleSearchButtonClick}>
+            Search
+          </Button>
         </Space>
       </div>
-      {groupArrays.map((e) => {
+      {resultList.map((e) => {
         return (
           <div>
             <Collapse defaultActiveKey={""}>
