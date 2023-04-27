@@ -10,6 +10,7 @@ const typeDefs = gql`
     price: Float
     date: String
     bought: Boolean
+    totalPrice:Float
   }
   type User {
     _id: ID

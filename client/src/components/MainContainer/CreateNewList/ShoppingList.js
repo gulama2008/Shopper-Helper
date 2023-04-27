@@ -11,35 +11,19 @@ import {
   Typography,
   Button,
   Input,
-  // DatePicker,
+  Empty,
 } from "antd";
 import { CloseOutlined} from "@ant-design/icons";
 import "../../../styles/ShoppingList.css";
-// import dayjs from "dayjs";
-// import customParseFormat from "dayjs/plugin/customParseFormat";
-// dayjs.extend(customParseFormat);
-// const { RangePicker } = DatePicker;
-// const dateFormat = "DD/MM/YYYY";
-// const weekFormat = "DD/MM";
-// const monthFormat = "MM/YYYY";
+
 const { Text} = Typography;
-// const dateFormatList = ["DD/MM/YYYY", "DD/MM/YY", "DD-MM-YYYY", "DD-MM-YY"];
 
 const ShoppingList = (props) => {
-  const { items, deleteItems,updateItem, unitOptions, shopOptions,date } = props;
+  const { items, deleteItems,updateItem, unitOptions, shopOptions,date,clickSubmit,handleClickSubmit } = props;
   const [size, setSize] = useState("large"); 
-  //change the date of each item in the state into the date on the date-picker
-  // const handleDateChange = (date, dateString) => {
-  //   const newItemList = items.map((item) => {
-  //     item.date = dateString;
-  //     return item;
-  //   });
-  //   updateItem(newItemList);
-  // };
-
   const [addList, { error, data }] = useMutation(ADD_LIST);
 
-
+  console.log(clickSubmit);
   //change the quantity of each item in the state into the quantity entered in the input box
   const handleQuantityChange = (index) => {
     return (e) => {
@@ -67,6 +51,7 @@ const ShoppingList = (props) => {
         }
       });
       updateItem(newItemList);
+      
     };
   };
 
@@ -135,6 +120,8 @@ const ShoppingList = (props) => {
       });
 console.log(222);
       deleteItems();
+      window.location.reload();
+      // handleClickSubmit();
     } catch (err) {
       console.error(err);
     }
@@ -210,113 +197,119 @@ console.log(222);
           </Col>
         </Row>
       </div>
-      <div>
-        {items.map((item, index) => {
-          return (
-            <Row
-              key={item.id}
-              className="content-row"
-              gutter={{
-                xs: 8,
-                sm: 16,
-                md: 24,
-                lg: 32,
-              }}
-            >
-              <Col className="gutter-row content-col-name" span={3}>
-                <div className="">{item.name}</div>
-              </Col>
+      {items.length ? (
+        <>
+          <div>
+            {items.map((item, index) => {
+              return (
+                <Row
+                  key={item.id}
+                  className="content-row"
+                  gutter={{
+                    xs: 8,
+                    sm: 16,
+                    md: 24,
+                    lg: 32,
+                  }}
+                >
+                  <Col className="gutter-row content-col-name" span={3}>
+                    <div className="">{item.name}</div>
+                  </Col>
 
-              <Col className="gutter-row content-col" span={3}>
-                <Divider type="vertical" className="content-divider" />
-                <div>
-                  <InputNumber
-                    min={1}
-                    value={item.quantity}
-                    onChange={handleQuantityChange(index)}
-                  />
-                </div>
-              </Col>
-              <Col className="gutter-row content-col" span={3}>
-                <Divider type="vertical" className="content-divider" />
-                <div>
-                  <Select
-                    defaultValue={item.unit}
-                    style={{
-                      width: 80,
-                    }}
-                    onChange={handleUnitChange(index)}
-                    options={unitOptions}
-                  />
-                </div>
-              </Col>
-              <Col className="gutter-row content-col" span={4}>
-                <Divider type="vertical" className="content-divider" />
-                <div>
-                  <Select
-                    defaultValue={item.shop}
-                    style={{
-                      width: 120,
-                    }}
-                    onChange={handleShopChange(index)}
-                    options={shopOptions}
-                  />
-                </div>
-              </Col>
-              <Col className="gutter-row content-col" span={3}>
-                <Divider type="vertical" className="content-divider" />
-                <div>
-                  <InputNumber
-                    value={item.price}
-                    onChange={handlePriceChange(index)}
-                  />
-                </div>
-              </Col>
-              <Col className="gutter-row content-col-name" span={3}>
-                <Divider type="vertical" className="content-divider" />
-                <div className="">{item.quantity * item.price}</div>
-              </Col>
+                  <Col className="gutter-row content-col" span={3}>
+                    <Divider type="vertical" className="content-divider" />
+                    <div>
+                      <InputNumber
+                        min={1}
+                        value={item.quantity}
+                        onChange={handleQuantityChange(index)}
+                      />
+                    </div>
+                  </Col>
+                  <Col className="gutter-row content-col" span={3}>
+                    <Divider type="vertical" className="content-divider" />
+                    <div>
+                      <Select
+                        defaultValue={item.unit}
+                        style={{
+                          width: 80,
+                        }}
+                        onChange={handleUnitChange(index)}
+                        options={unitOptions}
+                      />
+                    </div>
+                  </Col>
+                  <Col className="gutter-row content-col" span={4}>
+                    <Divider type="vertical" className="content-divider" />
+                    <div>
+                      <Select
+                        defaultValue={item.shop}
+                        style={{
+                          width: 120,
+                        }}
+                        onChange={handleShopChange(index)}
+                        options={shopOptions}
+                      />
+                    </div>
+                  </Col>
+                  <Col className="gutter-row content-col" span={3}>
+                    <Divider type="vertical" className="content-divider" />
+                    <div>
+                      <InputNumber
+                        value={item.price}
+                        onChange={handlePriceChange(index)}
+                      />
+                    </div>
+                  </Col>
+                  <Col className="gutter-row content-col-name" span={3}>
+                    <Divider type="vertical" className="content-divider" />
+                    <div className="">{item.quantity * item.price}</div>
+                  </Col>
 
-              <Col className="gutter-row content-col" span={4}>
-                <Divider type="vertical" className="content-divider" />
-                <div>
-                  <Button
-                    className="status-button"
-                    type="primary"
-                    onClick={() => {
-                      handleStatusButton(index);
-                    }}
-                    style={
-                      item.bought
-                        ? {
-                            backgroundColor: "rgba(245,245,245,255)",
-                            color: "rgba(184,184,184,255)",
-                          }
-                        : {
-                            backgroundColor: "rgba(23,119,255,255)",
-                            color: "rgba(254,254,255,255)",
-                          }
-                    }
-                  >
-                    {item.bought ? "Bought" : "Pending"}
-                  </Button>
-                  <CloseOutlined
-                    className="delete-icon"
-                    onClick={() => {
-                      handleDeleteButton(index);
-                    }}
-                  />
-                </div>
-              </Col>
-            </Row>
-          );
-        })}
-      </div>
-      <div className="submit-btn-container">
-        <Button type="primary" size={size} onClick={handleSubmitButton}>
-          Submit
-        </Button>
-      </div>
+                  <Col className="gutter-row content-col" span={4}>
+                    <Divider type="vertical" className="content-divider" />
+                    <div>
+                      <Button
+                        className="status-button"
+                        type="primary"
+                        onClick={() => {
+                          handleStatusButton(index);
+                        }}
+                        style={
+                          item.bought
+                            ? {
+                                backgroundColor: "rgba(245,245,245,255)",
+                                color: "rgba(184,184,184,255)",
+                              }
+                            : {
+                                backgroundColor: "rgba(23,119,255,255)",
+                                color: "rgba(254,254,255,255)",
+                              }
+                        }
+                      >
+                        {item.bought ? "Bought" : "Pending"}
+                      </Button>
+                      <CloseOutlined
+                        className="delete-icon"
+                        onClick={() => {
+                          handleDeleteButton(index);
+                        }}
+                      />
+                    </div>
+                  </Col>
+                </Row>
+              );
+            })}
+          </div>
+          <div className="submit-btn-container">
+            <Button type="primary" size={size} onClick={handleSubmitButton}>
+              Submit
+            </Button>
+          </div>
+        </>
+      ) : (
+        <Empty className="empty-list" description={false} />
+      )}
     </div>
   );
 };

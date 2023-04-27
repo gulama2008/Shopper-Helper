@@ -2,7 +2,7 @@ import React, { useState,useEffect } from "react";
 import InputItem from "./InputItem";
 import ItemTags from "./ItemTags";
 import ShoppingList from "./ShoppingList";
-import { Divider } from "antd";
+import { Divider, Empty } from "antd";
 import { DatePicker, Typography } from "antd";
 import "../../../styles/AddNewList.css";
 import dayjs from "dayjs";
@@ -17,7 +17,7 @@ const { Text } = Typography;
 const dateFormatList = ["DD/MM/YYYY", "DD/MM/YY", "DD-MM-YYYY", "DD-MM-YY"];
 
 export default function CreateNewList(props) {
-  const { userItems,userShops } = props;
+  const { userItems,userShops,clickSubmit,handleClickSubmit } = props;
   console.log(userItems);
   const test = [
     {
@@ -171,6 +171,8 @@ export default function CreateNewList(props) {
           shopOptions={shopOptions}
           userShops={userShops}
           date={date}
+          clickSubmit={clickSubmit}
+          handleClickSubmit={handleClickSubmit}
         />
       </div>
     </div>

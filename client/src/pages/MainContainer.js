@@ -4,7 +4,7 @@ import CreateNewList from "../components/MainContainer/CreateNewList/CreateNewLi
 import HistoricalList from "../components/MainContainer/HistoricalList/HistoricalList";
 import Statistics from "../components/MainContainer/Statistics/Statistics";
 import Settings from "../components/MainContainer/Settings/Settings";
-import { Col, Row, Statistic } from "antd";
+import { Col, Row } from "antd";
 import "../styles/MainContainer.css";
 import Header from "../components/MainContainer/Header/Header";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -18,7 +18,7 @@ export default function MainContainer(props) {
   const user = Auth.getProfile();
   console.log(user);
   const [userData, setUserdata] = useState(user.data);
-  
+  const [clickSubmit, setClickSubmit] = useState(true);
   console.log(userData.username);
   // const { loading, error,data } = useQuery(QUERY_TEST);
   const { loading, data } = useQuery(QUERY_USER, {
@@ -33,7 +33,12 @@ export default function MainContainer(props) {
   console.log("items");
   console.log(userItems);
   console.log(userShops);
-  // const [userItems, setUserItems] = useState(profile);
+  
+  const handleClickSubmit = () => { 
+    const currentStatus = clickSubmit;
+    currentStatus = !currentStatus;
+    setClickSubmit(currentStatus);
+  }
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -56,7 +61,14 @@ export default function MainContainer(props) {
           <Routes>
             <Route
               path="/"
-              element={<CreateNewList userItems={userItems} userShops={ userShops} />}
+              element={
+                <CreateNewList
+                  userItems={userItems}
+                  userShops={userShops}
+                  clickSubmit={clickSubmit}
+                  handleClickSubmit={ handleClickSubmit}
+                />
+              }
             ></Route>
             <Route
               path="historical-list"
