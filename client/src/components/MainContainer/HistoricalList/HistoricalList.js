@@ -63,6 +63,12 @@ export default function HistoricalList(props) {
   const handleDateRangeChange = (date,dateString) => { 
     setDateRange([dateString[0], dateString[1]]);
   }
+
+  const handleShowAllButtonClick = (e) => { 
+    e.preventDefault(e);
+    setResultList(groupArrays);
+  }
+
   const handleSearchButtonClick = (e) => { 
     e.preventDefault();
     const resultArray = groupArrays.filter((element) => { 
@@ -83,9 +89,14 @@ export default function HistoricalList(props) {
     <div>
       <div>
         <Space direction="vertical" size={12}>
+          <Button type="primary" onClick={handleShowAllButtonClick}>Show All Lists</Button>
           <span>Time Range</span>
           <RangePicker format="DD/MM/YYYY" onChange={handleDateRangeChange} />
-          <Button type="primary" icon={<SearchOutlined />} onClick={ handleSearchButtonClick}>
+          <Button
+            type="primary"
+            icon={<SearchOutlined />}
+            onClick={handleSearchButtonClick}
+          >
             Search
           </Button>
         </Space>
