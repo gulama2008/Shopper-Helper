@@ -5,7 +5,8 @@
     "unit": "kg",
     "shop":"Woolworths",
     "price":3.5,
-    "bought":true
+    "bought":true,
+    "date":"10/04/2023"
   },
   {
     "name": "grape",
@@ -13,7 +14,8 @@
     "unit": "kg",
     "shop":"Woolworths",
     "price":8.99,
-    "bought":true
+    "bought":true,
+    "date":"11/04/2023"
   },
   {
     "name": "egg",
@@ -21,6 +23,7 @@
     "unit": "box",
     "shop":"Coles",
     "price":4.5,
-    "bought":true
+    "bought":true,
+    "date":"12/04/2023"
   }
 ]

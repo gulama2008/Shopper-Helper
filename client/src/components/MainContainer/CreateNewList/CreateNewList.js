@@ -66,7 +66,7 @@ export default function CreateNewList(props) {
       bought: false,
     },
   ];
-  const [items, setItems] = useState(test);
+  const [items, setItems] = useState([]);
   const [date, setDate] = useState(dayjs().format("DD/MM/YYYY"));
   const [unitOptions, setUnitOptions] = useState([
     {
@@ -86,24 +86,7 @@ export default function CreateNewList(props) {
       label: "bag",
     },
   ]);
-  const [shopOptions, setShopOptions] = useState([
-    // {
-    //   value: "Woolworths",
-    //   label: "Woolworths",
-    // },
-    // {
-    //   value: "Coles",
-    //   label: "Coles",
-    // },
-    // {
-    //   value: "Aldi",
-    //   label: "Aldi",
-    // },
-    // {
-    //   value: "Big W",
-    //   label: "Big W",
-    // },
-  ]);
+  const [shopOptions, setShopOptions] = useState([]);
 
   useEffect(() => {
     const shops = userShops.map((shop) => { 
