@@ -1,222 +1,28 @@
-import {
-  Form,
-  Button,InputNumber,
-  Popconfirm,
-  Table,
-  Typography,
-  Input,
-  Select,
-} from "antd";
-import { useState } from "react";
+import Item from "antd/es/list/Item";
+import React, { useState, useEffect } from "react";
+import Items from "./Items";
+import Shops from "./Shops";
+import { Tabs } from "antd";
 
-const EditableCell = ({
-  editing,
-  dataIndex,
-  title,
-  inputType,
-  record,
-  index,
-  children,
-  ...restProps
-}) => {
-  const inputNode = (inputType === "number" ? <InputNumber /> : (inputType === "text" ? <Input /> : <Select />));
-  return (
-    <td {...restProps}>
-      {editing ? (
-        <Form.Item
-          name={dataIndex}
-          style={{
-            margin: 0,
-          }}
-          rules={[
-            {
-              required: true,
-              message: `Please Input ${title}!`,
-            },
-          ]}
-        >
-          {inputNode}
-        </Form.Item>
-      ) : (
-        children
-      )}
-    </td>
-  );
-};
-const Settings = (props) => {
-  const { userItems } = props;
-  console.log(userItems);
-  const [form] = Form.useForm();
-  const [dataSource, setDataSource] = useState(userItems);
-  const [count, setCount] = useState(2);
-  const [data, setData] = useState(userItems);
-  const [editingKey, setEditingKey] = useState("");
-  const isEditing = (record) => record.key === editingKey;
-  const edit = (record) => {
-    form.setFieldsValue({
-      name: "",
-      quantity: "",
-      unit: "",
-      shop: "",
-      price:"",
-      ...record,
-    });
-    setEditingKey(record.key);
+const Settings = (props) => { 
+  const { userItems, userShops } = props
+  console.log(userItems,userShops);
+  const onChange = (key) => {
+    console.log(key);
   };
-  const cancel = () => {
-    setEditingKey("");
-  };
-  const save = async (key) => {
-    try {
-      const row = await form.validateFields();
-      const newData = [...data];
-      const index = newData.findIndex((item) => key === item.key);
-      if (index > -1) {
-        const item = newData[index];
-        newData.splice(index, 1, {
-          ...item,
-          ...row,
-        });
-        setData(newData);
-        setEditingKey("");
-      } else {
-        newData.push(row);
-        setData(newData);
-        setEditingKey("");
-      }
-    } catch (errInfo) {
-      console.log("Validate Failed:", errInfo);
-    }
-  };
-  const columns = [
+  const items = [
     {
-      title: "name",
-      dataIndex: "name",
-      width: "20%",
-      editable: true,
+      key: "1",
+      label: `Preset Items`,
+      children: <Items userItems={ userItems} />,
     },
     {
-      title: "quantity",
-      dataIndex: "quantity",
-      width: "5%",
-      editable: true,
-    },
-    {
-      title: "unit",
-      dataIndex: "unit",
-      width: "5%",
-      editable: true,
-    },
-    {
-      title: "shop",
-      dataIndex: "shop",
-      width: "15%",
-      editable: true,
-    },
-    {
-      title: "price",
-      dataIndex: "price",
-      width: "5%",
-      editable: true,
-    },
-    {
-      title: "operation",
-      dataIndex: "operation",
-      width: "15%",
-      render: (_, record) => {
-        const editable = isEditing(record);
-        return (
-          <>
-            {editable ? (
-              <span>
-                <Typography.Link
-                  onClick={() => save(record.key)}
-                  style={{
-                    marginRight: 8,
-                  }}
-                >
-                  Save
-                </Typography.Link>
-                <Popconfirm title="Sure to cancel?" onConfirm={cancel}>
-                  <a>Cancel</a>
-                </Popconfirm>
-              </span>
-            ) : (
-              <Typography.Link
-                disabled={editingKey !== ""}
-                onClick={() => edit(record)}
-              >
-                Edit
-              </Typography.Link>
-            )}
-            <a
-              style={{
-                marginLeft: 8,
-              }}
-            >
-              Delete
-            </a>
-          </>
-        );
-      },
+      key: "2",
+      label: `Preset Shops`,
+      children: <Shops userShops={userShops} />,
     },
   ];
-  const mergedColumns = columns.map((col) => {
-    if (!col.editable) {
-      return col;
-    }
-    return {
-      ...col,
-      onCell: (record) => ({
-        record,
-        inputType:
-          col.dataIndex === "quantity"
-            ? "number"
-            : col.dataIndex === "price"
-            ? "number"
-              : col.dataIndex === "name" ? "text" : "select",
-        dataIndex: col.dataIndex,
-        title: col.title,
-        editing: isEditing(record),
-      }),
-    };
-  });
-  const handleAdd = () => {
-    const newData = {
-      key: count,
-      name: `Edward King ${count}`,
-      age: "32",
-      address: `London, Park Lane no. ${count}`,
-    };
-    setDataSource([...dataSource, newData]);
-    setCount(count + 1);
-  };
-  return (
-    <Form form={form} component={false}>
-      <Button
-        onClick={handleAdd}
-        type="primary"
-        style={{
-          marginBottom: 16,
-        }}
-      >
-        Add a row
-      </Button>
-      <Table
-        components={{
-          body: {
-            cell: EditableCell,
-          },
-        }}
-        bordered
-        dataSource={data}
-        columns={mergedColumns}
-        rowClassName="editable-row"
-        pagination={{
-          onChange: cancel,
-        }}
-      />
-    </Form>
-  );
-};
+  return <Tabs  items={items} onChange={onChange} />;
+}
+
 export default Settings;

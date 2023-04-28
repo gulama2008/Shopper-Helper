@@ -58,7 +58,7 @@ export default function MainContainer(props) {
 
         {/* Here we are calling the renderPage method which will return a component  */}
         <Col span={19}>
-          <Routes>
+          <Routes >
             <Route
               path="/"
               element={
@@ -77,7 +77,7 @@ export default function MainContainer(props) {
             <Route path="/statistics" element={<Statistics />}></Route>
             <Route
               path="/settings"
-              element={<Settings userItems={userItems} />}
+              element={<Settings userItems={userItems} userShops={ userShops} />}
             ></Route>
           </Routes>
         </Col>

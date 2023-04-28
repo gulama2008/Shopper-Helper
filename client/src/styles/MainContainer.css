@@ -1,3 +1,7 @@
 .main-container{
     height: 800px;
 }
+
+.content-area{
+    margin: 50px;
+}
