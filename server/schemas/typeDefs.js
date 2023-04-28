@@ -47,6 +47,10 @@ const typeDefs = gql`
     bought: Boolean
   }
 
+  input ShopData{
+    name:String
+  }
+
   type Auth {
     token: ID!
     user: User
@@ -63,7 +67,7 @@ const typeDefs = gql`
     addUser(username: String!, email: String!, password: String!): Auth
     login(username: String!, password: String!): Auth
     addList(username: String!, lists: [ListData!]!): User
-    # updateItem(username:String!,):Item
+    # updateShop(_id:String, input:ShopData):User
   }
 `;
 

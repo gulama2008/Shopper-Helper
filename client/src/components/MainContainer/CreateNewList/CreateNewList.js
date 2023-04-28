@@ -85,6 +85,14 @@ export default function CreateNewList(props) {
       value: "bag",
       label: "bag",
     },
+    {
+      value: "piece",
+      label: "piece",
+    },
+    {
+      value: "unit",
+      label: "unit",
+    },
   ]);
   const [shopOptions, setShopOptions] = useState([]);
 

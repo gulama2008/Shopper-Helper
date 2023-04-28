@@ -3,6 +3,7 @@ import { Button, Collapse } from "antd";
 import { Table, Typography } from "antd";
 import { DatePicker, Space, Input } from "antd";
 import { SearchOutlined } from '@ant-design/icons';
+import { groupingLists } from "../../../utils/functions";
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 dayjs.extend(customParseFormat);
@@ -41,20 +42,7 @@ export default function HistoricalList(props) {
   const { userLists } = props;
 
   //change userLists into new array of objs with different property date and lists
-  const groups = userLists.reduce((groups, list) => {
-    const date = list.date;
-    if (!groups[date]) {
-      groups[date] = [];
-    }
-    groups[date].push(list);
-    return groups;
-  }, {});
-  const groupArrays = Object.keys(groups).map((date) => {
-    return {
-      date,
-      lists: groups[date],
-    };
-  });
+  const groupArrays = groupingLists(userLists);
 
   const [resultList, setResultList] = useState([]);
   const [ dateRange, setDateRange ] = useState([]);

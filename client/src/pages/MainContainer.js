@@ -74,7 +74,7 @@ export default function MainContainer(props) {
               path="historical-list"
               element={<HistoricalList userLists={userLists} />}
             ></Route>
-            <Route path="/statistics" element={<Statistics />}></Route>
+            <Route path="/statistics" element={<Statistics userLists={ userLists} />}></Route>
             <Route
               path="/settings"
               element={<Settings userItems={userItems} userShops={ userShops} />}
