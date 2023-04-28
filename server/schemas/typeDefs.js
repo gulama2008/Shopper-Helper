@@ -63,6 +63,7 @@ const typeDefs = gql`
     addUser(username: String!, email: String!, password: String!): Auth
     login(username: String!, password: String!): Auth
     addList(username: String!, lists: [ListData!]!): User
+    # updateItem(username:String!,):Item
   }
 `;
 

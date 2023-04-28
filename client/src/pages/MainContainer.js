@@ -66,7 +66,7 @@ export default function MainContainer(props) {
                   userItems={userItems}
                   userShops={userShops}
                   clickSubmit={clickSubmit}
-                  handleClickSubmit={ handleClickSubmit}
+                  handleClickSubmit={handleClickSubmit}
                 />
               }
             ></Route>
@@ -75,7 +75,10 @@ export default function MainContainer(props) {
               element={<HistoricalList userLists={userLists} />}
             ></Route>
             <Route path="/statistics" element={<Statistics />}></Route>
-            <Route path="/settings" element={<Settings />}></Route>
+            <Route
+              path="/settings"
+              element={<Settings userItems={userItems} />}
+            ></Route>
           </Routes>
         </Col>
       </Row>

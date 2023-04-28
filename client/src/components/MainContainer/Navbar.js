@@ -23,7 +23,6 @@ export default function Navbar(props) {
   return (
     <div className="navbar-container">
       <ul className="navbar">
-        
         <li
           className="navbar-item"
           onClick={() => {
@@ -35,7 +34,7 @@ export default function Navbar(props) {
           onMouseLeave={handleMouseLeave}
           style={{
             backgroundColor:
-              currentPage === "CreateNewList"
+              window.location.pathname === "/"
                 ? "rgb(40, 40, 93)"
                 : mouseEnter === "CreateNewList"
                 ? "rgb(70, 70, 214)"
@@ -47,7 +46,7 @@ export default function Navbar(props) {
             className="navbar-anchor"
             style={{
               color:
-                currentPage === "CreateNewList"
+                window.location.pathname === "/"
                   ? "white"
                   : "rgba(140, 150, 159, 255)",
             }}
@@ -67,7 +66,7 @@ export default function Navbar(props) {
           onMouseLeave={handleMouseLeave}
           style={{
             backgroundColor:
-              currentPage === "HistoricalList"
+              window.location.pathname === "/historical-list"
                 ? "rgb(40, 40, 93)"
                 : mouseEnter === "HistoricalList"
                 ? "rgb(70, 70, 214)"
@@ -79,7 +78,7 @@ export default function Navbar(props) {
             className="navbar-anchor"
             style={{
               color:
-                currentPage === "HistoricalList"
+                window.location.pathname === "/historical-list"
                   ? "white"
                   : "rgba(140, 150, 159, 255)",
             }}
@@ -99,7 +98,7 @@ export default function Navbar(props) {
           onMouseLeave={handleMouseLeave}
           style={{
             backgroundColor:
-              currentPage === "Statistics"
+              window.location.pathname === "/statistics"
                 ? "rgb(40, 40, 93)"
                 : mouseEnter === "Statistics"
                 ? "rgb(70, 70, 214)"
@@ -111,7 +110,7 @@ export default function Navbar(props) {
             className="navbar-anchor"
             style={{
               color:
-                currentPage === "Statistics"
+                window.location.pathname === "/statistics"
                   ? "white"
                   : "rgba(140, 150, 159, 255)",
             }}
@@ -131,7 +130,7 @@ export default function Navbar(props) {
           onMouseLeave={handleMouseLeave}
           style={{
             backgroundColor:
-              currentPage === "Settings"
+              window.location.pathname === "/settings"
                 ? "rgb(40, 40, 93)"
                 : mouseEnter === "Settings"
                 ? "rgb(70, 70, 214)"
@@ -143,7 +142,7 @@ export default function Navbar(props) {
             className="navbar-anchor"
             style={{
               color:
-                currentPage === "Settings"
+                window.location.pathname === "/settings"
                   ? "white"
                   : "rgba(140, 150, 159, 255)",
             }}
