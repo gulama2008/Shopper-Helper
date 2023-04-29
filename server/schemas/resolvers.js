@@ -1,5 +1,5 @@
 const { AuthenticationError } = require("apollo-server-express");
-const { User, List} = require("../models");
+const { User, List } = require("../models");
 const { signToken } = require("../utils/auth");
 
 const resolvers = {
@@ -45,52 +45,76 @@ const resolvers = {
 
       return { token, user };
     },
-    
     addList: async (parent, { username, lists }, context) => {
-      if (context.user) {
-        const list = await List.insertMany(lists);
-        const listIds = list.map((e) => {
-          return e._id;
-        });
-        const updatedUser = await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { username: username },
-          { $addToSet: { lists: { $each: listIds } } },
-          {
-            new: true,
-          }
-        );
+      // if (context.user) {
+      const list = await List.insertMany(lists);
+      const listIds = list.map((e) => {
+        return e._id;
+      });
+      const updatedUser = await User.findOneAndUpdate(
+        // { _id: context.user._id },
+        { username: username },
+        { $addToSet: { lists: { $each: listIds } } },
+        {
+          new: true,
+        }
+      );
 
-        return updatedUser;
-      }
-      throw new AuthenticationError("You need to be logged in!");
+      return updatedUser;
+      // }
+      // throw new AuthenticationError("You need to be logged in!");
     },
 
-    // updateShop: async (parent, {  _id, input }, context) => { 
-    //   const user = await User.findOne({ username });
-    //   const shop = user.shops.findIndex((e) => {
-    //     e._id = shopId;
-    //   });
-    //   shop.name = input;
-    //   const updatedUser = await user.save();
-    //   return updatedUser;
+    // addComment: async (parent, { thoughtId, commentText }, context) => {
     //   if (context.user) {
-    //     const updatedUser = await User.findOneAndUpdate(
+    //     return Thought.findOneAndUpdate(
+    //       { _id: thoughtId },
     //       {
-    //         //  _id: context.user._id ,
-    //         // shops._id:_id
+    //         $addToSet: {
+    //           comments: { commentText, commentAuthor: context.user.username },
+    //         },
     //       },
-    //       { $Set: { input} },
     //       {
     //         new: true,
+    //         runValidators: true,
     //       }
     //     );
-    //     return updatedUser;
     //   }
     //   throw new AuthenticationError("You need to be logged in!");
     // },
+    //   removeThought: async (parent, { thoughtId }, context) => {
+    //     if (context.user) {
+    //       const thought = await Thought.findOneAndDelete({
+    //         _id: thoughtId,
+    //         thoughtAuthor: context.user.username,
+    //       });
 
-    
+    //       await User.findOneAndUpdate(
+    //         { _id: context.user._id },
+    //         { $pull: { thoughts: thought._id } }
+    //       );
+
+    //       return thought;
+    //     }
+    //     throw new AuthenticationError("You need to be logged in!");
+    //   },
+    //   removeComment: async (parent, { thoughtId, commentId }, context) => {
+    //     if (context.user) {
+    //       return Thought.findOneAndUpdate(
+    //         { _id: thoughtId },
+    //         {
+    //           $pull: {
+    //             comments: {
+    //               _id: commentId,
+    //               commentAuthor: context.user.username,
+    //             },
+    //           },
+    //         },
+    //         { new: true }
+    //       );
+    //     }
+    //     throw new AuthenticationError("You need to be logged in!");
+    //   },
   },
 };
 
