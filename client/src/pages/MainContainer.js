@@ -4,15 +4,19 @@ import CreateNewList from "../components/MainContainer/CreateNewList/CreateNewLi
 import HistoricalList from "../components/MainContainer/HistoricalList/HistoricalList";
 import Statistics from "../components/MainContainer/Statistics/Statistics";
 import Settings from "../components/MainContainer/Settings/Settings";
-import { Col, Row } from "antd";
+import { Col, Layout, Row, theme } from "antd";
+
 import "../styles/MainContainer.css";
 import Header from "../components/MainContainer/Header/Header";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { QUERY_ME, QUERY_USER, QUERY_TEST } from "../utils/queries";
 import Auth from "../utils/auth";
-
+const { Content } = Layout;
 export default function MainContainer(props) {
+  const {
+    token: { colorBgContainer },
+  } = theme.useToken();
   // get the props passing from component App
   const { currentPage, handlePageChange } = props;
   const user = Auth.getProfile();
@@ -58,28 +62,48 @@ export default function MainContainer(props) {
 
         {/* Here we are calling the renderPage method which will return a component  */}
         <Col span={19}>
-          <Routes >
-            <Route
-              path="/"
-              element={
-                <CreateNewList
-                  userItems={userItems}
-                  userShops={userShops}
-                  clickSubmit={clickSubmit}
-                  handleClickSubmit={handleClickSubmit}
-                />
-              }
-            ></Route>
-            <Route
-              path="historical-list"
-              element={<HistoricalList userLists={userLists} />}
-            ></Route>
-            <Route path="/statistics" element={<Statistics userLists={ userLists} />}></Route>
-            <Route
-              path="/settings"
-              element={<Settings userItems={userItems} userShops={ userShops} />}
-            ></Route>
-          </Routes>
+          <Layout
+            style={{
+              padding: "24px",
+            }}
+          >
+            <Content
+              style={{
+                padding: 24,
+                margin: 0,
+                minHeight: 800,
+                background: colorBgContainer,
+              }}
+            >
+              <Routes>
+                <Route
+                  path="/"
+                  element={
+                    <CreateNewList
+                      userItems={userItems}
+                      userShops={userShops}
+                      clickSubmit={clickSubmit}
+                      handleClickSubmit={handleClickSubmit}
+                    />
+                  }
+                ></Route>
+                <Route
+                  path="historical-list"
+                  element={<HistoricalList userLists={userLists} />}
+                ></Route>
+                <Route
+                  path="/statistics"
+                  element={<Statistics userLists={userLists} />}
+                ></Route>
+                <Route
+                  path="/settings"
+                  element={
+                    <Settings userItems={userItems} userShops={userShops} />
+                  }
+                ></Route>
+              </Routes>
+            </Content>
+          </Layout>
         </Col>
       </Row>
     </div>

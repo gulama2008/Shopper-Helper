@@ -62,7 +62,6 @@ const Items = (props) => {
   const [form] = Form.useForm();
   const [dataSource, setDataSource] = useState(userItems);
   const [count, setCount] = useState(2);
-  const [data, setData] = useState(userItems);
   const [editingKey, setEditingKey] = useState("");
   const isEditing = (record) => record.name === editingKey;
   const edit = (record) => {
@@ -82,25 +81,30 @@ const Items = (props) => {
   const save = async (key) => {
     try {
       const row = await form.validateFields();
-      const newData = [...data];
-      const index = newData.findIndex((item) => key === item.name);
+      const newData = [...dataSource];
+      const index = newData.findIndex((item) => item.name === key);
       if (index > -1) {
         const item = newData[index];
         newData.splice(index, 1, {
           ...item,
           ...row,
         });
-        setData(newData);
+        setDataSource(newData);
         setEditingKey("");
       } else {
         newData.push(row);
-        setData(newData);
+        setDataSource(newData);
         setEditingKey("");
       }
     } catch (errInfo) {
       console.log("Validate Failed:", errInfo);
     }
   };
+    
+    const handleDelete = (name) => {
+      const newData = dataSource.filter((item) => item.name !== name);
+      setDataSource(newData);
+    };
   const columns = [
     {
       title: "name",
@@ -162,10 +166,11 @@ const Items = (props) => {
                 Edit
               </Typography.Link>
             )}
-            <a
-              style={{
-                marginLeft: 8,
-              }}
+                <a
+                    style={{
+                        marginLeft: 8,
+                    }}
+                    onClick={() => { handleDelete(record.name)}}
             >
               Delete
             </a>
@@ -198,10 +203,12 @@ const Items = (props) => {
   });
   const handleAdd = () => {
     const newData = {
-      key: count,
-      name: `Edward King ${count}`,
-      age: "32",
-      address: `London, Park Lane no. ${count}`,
+    //   key: count,
+      name: "",
+      quantity: "",
+        unit: "",
+        shop: "",
+      price:""
     };
     setDataSource([...dataSource, newData]);
     setCount(count + 1);
@@ -224,7 +231,7 @@ const Items = (props) => {
           },
         }}
         bordered
-        dataSource={data}
+        dataSource={dataSource}
         columns={mergedColumns}
         rowClassName="editable-row"
         pagination={{
