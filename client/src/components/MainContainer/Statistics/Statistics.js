@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
-import { Radio } from "antd";
+import { Radio, Divider } from "antd";
 import { useState } from "react";
+import "../../../styles/Statistics.css"
 import {
   LineChart,
   Line,
@@ -13,120 +14,147 @@ import {
 } from "recharts";
 import { BarChart, Bar, Cell, PieChart, Pie } from "recharts";
 
-import { groupingLists, summaryExpense,sortingLists } from "../../../utils/functions";
+import {
+  groupingListsByDate,
+  groupingListsByMonth,summaryExpense,
+  sortingLists,
+} from "../../../utils/functions";
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 dayjs.extend(customParseFormat);
+
 export default function Statistics(props) {
   const { userLists } = props;
-  const groupedLists = groupingLists(userLists);
-  const expenseSummaryLists = summaryExpense(groupedLists);
-  const sortedExpenseSummaryLists = sortingLists(expenseSummaryLists);
-  const data = expenseSummaryLists;
-  const [value, setValue] = useState(1);
-  const [resultData, setResultData] = useState("");
-  const onChange = (e) => {
+  console.log(userLists);
+  const groupedListsByDate = groupingListsByDate(userLists);
+  const groupedListsByMonth = groupingListsByMonth(userLists);
+  console.log(groupedListsByDate);
+  console.log(groupedListsByMonth);
+  const dailyExpenseLists = summaryExpense(groupedListsByDate);
+  const monthlyExpenseLists = summaryExpense(groupedListsByMonth);
+  console.log(monthlyExpenseLists);
+  const [valueDaily, setValueDaily] = useState(1);
+  const [valueMonthly, setValueMonthly] = useState(1);
+  const [resultDataDaily, setResultDataDaily] = useState("");
+  const [resultDataMonthly, setResultDataMonthly] = useState("");
+
+  const handleChangeDaily = (e) => {
     console.log("radio checked", e.target.value);
-    setValue(e.target.value);
+    setValueDaily(e.target.value);
+  };
+
+  const handleChangeMonthly = (e) => {
+    console.log("radio checked", e.target.value);
+    setValueMonthly(e.target.value);
   };
 
   useEffect(() => {
-    if (value === 1) {
+    if (valueDaily === 1) {
       const date3m = dayjs().subtract(3, "month");
-      const resultData = data.filter((e) => { 
+      const resultDataDaily = dailyExpenseLists.filter((e) => {
         return dayjs(e.date, "DD-MM-YYYY") >= date3m;
-      })
-      setResultData(resultData);
-    } else if (value === 2) {
-      const date6m = dayjs().subtract(6, "month");
-      const resultData = data.filter((e) => {
-        return dayjs(e.date, "DD-MM-YYYY") > date6m;
       });
-      setResultData(resultData);
-    } else { 
-      setResultData(data);
+      // const resultDataMonthly = monthlyExpenseLists.filter((e) => {
+      //   console.log(e);
+      //   console.log(e.date);
+      //   console.log(dayjs(e.date, "MM-YYYY") >= date3m);
+      //   return dayjs(e.date, "DD-MM-YYYY") >= date3m;
+      // });
+      // console.log(resultDataDaily);
+      // console.log(resultDataMonthly);
+      setResultDataDaily(resultDataDaily);
+      // setResultDataMonthly(resultDataMonthly);
+    } else if (valueDaily === 2) {
+      const date6m = dayjs().subtract(6, "month");
+      const resultDataDaily = dailyExpenseLists.filter((e) => {
+        return dayjs(e.date, "DD-MM-YYYY") >= date6m;
+      });
+      // const resultDataMonthly = monthlyExpenseLists.filter((e) => {
+      //   return dayjs(e.date, "DD-MM-YYYY") > date6m;
+      // });
+      setResultDataDaily(resultDataDaily);
+      // setResultDataMonthly(resultDataMonthly);
+    } else {
+      setResultDataDaily(dailyExpenseLists);
+      // setResultDataMonthly(monthlyExpenseLists);
     }
-  }, [value]);
+  }, [valueDaily]);
 
-  const innerdata = [
-    { name: "C1", value: 100 },
-    { name: "C2", value: 20 },
-    { name: "C3", value: 300 },
-    { name: "C4", value: 90 },
-  ];
+  useEffect(() => {
+    if (valueMonthly === 1) {
+      const date3m = dayjs().subtract(6, "month");
+      const resultDataMonthly = monthlyExpenseLists.filter((e) => {
+        console.log(e);
+        console.log(e.date);
+        console.log(dayjs(e.date, "MM-YYYY") >= date3m);
+        return dayjs(e.date, "MM-YYYY") >= date3m;
+      });
+      console.log(resultDataMonthly);
+      setResultDataMonthly(resultDataMonthly);
+    } else if (valueMonthly === 2) {
+      const date6m = dayjs().subtract(12, "month");
+      const resultDataMonthly = monthlyExpenseLists.filter((e) => {
+        return dayjs(e.date, "MM-YYYY") >= date6m;
+      });
+      setResultDataMonthly(resultDataMonthly);
+    } else {
+      setResultDataMonthly(monthlyExpenseLists);
+    }
+  }, [valueMonthly]);
 
-  const outerdata = [
-    { name: "P1", value: 10 },
-    { name: "P2", value: 100 },
-    { name: "P3", value: 20 },
-    { name: "P4", value: 30 },
-    { name: "P5", value: 90 },
-  ];
-
-const test = [
-  {
-    name: "A",
-    c1: 3000,
-    c2: 2400,
-    c2: 1400,
-  },
-  {
-    name: "B",
-    c1: 2000,
-    c2: 1000,
-    c3: 2210,
-  },
-  {
-    name: "C",
-    c1: 1400,
-    c2: 10100,
-    c3: 1290,
-  },
-  {
-    name: "D",
-    c1: 3120,
-    c2: 4400,
-    c3: 1000,
-  },
-];
   return (
     <>
-      <div>
-        <Radio.Group onChange={onChange} value={value}>
+      <div className="daily-total">
+        <Divider orientation="left">Daily Shopping Expenses</Divider>
+        {/* <div>Daily Shopping Expenses</div> */}
+        <Radio.Group
+          onChange={handleChangeDaily}
+          value={valueDaily}
+          className="date-range-radio"
+        >
           <Radio value={1}>Last 3 months</Radio>
           <Radio value={2}>Last 6 months</Radio>
           <Radio value={3}>All</Radio>
         </Radio.Group>
         <LineChart
-            width={500}
-            height={300}
-            data={resultData}
-            margin={{
-              top: 5,
-              right: 30,
-              left: 20,
-              bottom: 5,
-            }}
-          >
-            <CartesianGrid strokeDasharray="4" />
-            <XAxis dataKey="date" />
-            <YAxis />
-            <Tooltip />
-            <Legend />
-            <Line
-              type="monotone"
-              dataKey="totalExpense"
-              stroke="#8884d8"
-              activeDot={{ r: 8 }}
-            />
-            <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
-    </LineChart>
-      </div>
-      <div>
-        <LineChart
           width={500}
           height={300}
-          data={test}
+          data={resultDataDaily}
+          margin={{
+            top: 5,
+            right: 30,
+            left: 20,
+            bottom: 5,
+          }}
+        >
+          <CartesianGrid strokeDasharray="4" />
+          <XAxis dataKey="date" />
+          <YAxis />
+          <Tooltip />
+          <Legend />
+          <Line
+            type="monotone"
+            dataKey="totalExpense"
+            stroke="#8884d8"
+            activeDot={{ r: 8 }}
+          />
+        </LineChart>
+      </div>
+      <Divider orientation="left">Total Shopping Expenses By Month</Divider>
+      <div>
+        <Radio.Group
+          onChange={handleChangeMonthly}
+          value={valueMonthly}
+          className="date-range-radio"
+        >
+          <Radio value={1}>Last 6 months</Radio>
+          <Radio value={2}>Last 12 months</Radio>
+          <Radio value={3}>All</Radio>
+        </Radio.Group>
+        <BarChart
+          width={500}
+          height={300}
+          data={resultDataMonthly}
           margin={{
             top: 5,
             right: 30,
@@ -135,25 +163,13 @@ const test = [
           }}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
+          <XAxis dataKey="date" />
           <YAxis />
           <Tooltip />
           <Legend />
-          <Line
-            type="monotone"
-            dataKey="c1"
-            stroke="red"
-            activeDot={{ r: 12 }}
-          />
-          <Line type="monotone" dataKey="c2" stroke="green" />
-        </LineChart>
+          <Bar dataKey="totalExpense" fill="#8884d8" />
+        </BarChart>
       </div>
-      {/* <>
-        
-        <ResponsiveContainer width="60%" height="40%">
-          
-        </ResponsiveContainer> */}
-      {/* </> */}
     </>
   );
 }

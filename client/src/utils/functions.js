@@ -2,7 +2,7 @@ import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 dayjs.extend(customParseFormat);
 
-export const groupingLists = (lists) => {
+export const groupingListsByDate = (lists) => {
   const groups = lists.reduce((groups, list) => {
     const date = list.date;
     if (!groups[date]) {
@@ -17,8 +17,32 @@ export const groupingLists = (lists) => {
       lists: groups[date],
     };
   });
+    groupedLists.sort((a, b) => {
+      return dayjs(a.date, "DD-MM-YYYY") - dayjs(b.date, "DD-MM-YYYY");
+    });
   return groupedLists;
 };
+
+export const groupingListsByMonth = (lists) => { 
+    const groups = lists.reduce((groups, list) => {
+      const date = dayjs(list.date, "DD-MM-YYYY").format("MM-YYYY");
+      if (!groups[date]) {
+        groups[date] = [];
+      }
+      groups[date].push(list);
+      return groups;
+    }, {});
+    const groupedLists = Object.keys(groups).map((date) => {
+      return {
+        date,
+        lists: groups[date],
+      };
+    });
+    groupedLists.sort((a, b) => {
+      return dayjs(a.date, "MM-YYYY") - dayjs(b.date, "MM-YYYY");
+    });
+    return groupedLists;
+}
 
 export const summaryExpense = (groupedLists) => {
   const expenseSummaryLists = groupedLists.map((e) => {
@@ -31,8 +55,9 @@ export const summaryExpense = (groupedLists) => {
       },
       0
     );
-    e.totalExpense = totalExpensePerDay;
-    return e;
+      const newElement = {...e,totalExpense:totalExpensePerDay}
+    // e.totalExpense = totalExpensePerDay;
+    return newElement;
   });
   return expenseSummaryLists;
 };
