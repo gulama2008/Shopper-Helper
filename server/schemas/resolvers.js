@@ -71,6 +71,7 @@ const resolvers = {
       // const listIds = list.map((e) => {
       //   return e._id;
       // });
+
       const updatedUser = await User.findOneAndUpdate(
         // { _id: context.user._id },
         { username: username },
@@ -91,6 +92,15 @@ const resolvers = {
       // const listIds = list.map((e) => {
       //   return e._id;
       // });
+      items.sort(function (a, b) {
+        if (a.name < b.name) {
+          return -1;
+        }
+        if (a.name > b.name) {
+          return 1;
+        }
+        return 0;
+      });
       const updatedUser = await User.findOneAndUpdate(
         // { _id: context.user._id },
         { username: username },

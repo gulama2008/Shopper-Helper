@@ -57,7 +57,8 @@ const EditableCell = ({
   );
 };
 const Items = (props) => {
-  const { userItems, userShops } = props;
+    const { userItems, userShops } = props;
+    
   console.log(userItems);
   console.log(userShops);
   const [UpdateItems, { error, data }] = useMutation(UPDATE_ITEMS);
@@ -195,9 +196,8 @@ const Items = (props) => {
             ? "number"
             : col.dataIndex === "price"
             ? "number"
-            : col.dataIndex === "name"
-            ? "text"
-            : "select",
+            : "text",
+           
         dataIndex: col.dataIndex,
         title: col.title,
         editing: isEditing(record),

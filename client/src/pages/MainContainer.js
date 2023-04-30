@@ -32,6 +32,8 @@ export default function MainContainer(props) {
   console.log("Data");
   console.log(profile);
   const userItems = profile.items;
+  console.log(userItems);
+  
   const userLists = profile.lists;
   const userShops = profile.shops;
   console.log("items");
