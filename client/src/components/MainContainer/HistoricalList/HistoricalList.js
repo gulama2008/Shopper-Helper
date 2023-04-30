@@ -79,16 +79,28 @@ export default function HistoricalList(props) {
     <div>
       <div>
         <Space direction="vertical" size={12}>
-          <Button type="primary" onClick={handleShowAllButtonClick}>Show All Lists</Button>
-          <span>Time Range</span>
-          <RangePicker format="DD/MM/YYYY" onChange={handleDateRangeChange} />
-          <Button
-            type="primary"
-            icon={<SearchOutlined />}
-            onClick={handleSearchButtonClick}
-          >
-            Search
+          <Button type="primary" onClick={handleShowAllButtonClick}>
+            Show All Lists
           </Button>
+
+          <div style={{ marginBottom: "20px" }}>
+            <div style={{ display: "inline-block"}}>
+              Or choose from the Date Range:
+            </div>
+            <RangePicker
+              format="DD/MM/YYYY"
+              onChange={handleDateRangeChange}
+              style={{ display: "inline-flex",marginLeft:"20px" }}
+            />
+            <Button
+              type="primary"
+              icon={<SearchOutlined />}
+              onClick={handleSearchButtonClick}
+              style={{ display: "inline-block", marginLeft: "20px" }}
+            >
+              Search
+            </Button>
+          </div>
         </Space>
       </div>
       {resultList.map((e) => {
