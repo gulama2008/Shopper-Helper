@@ -1,15 +1,5 @@
 import { gql } from '@apollo/client';
 
-export const ADD_SKILL = gql`
-  mutation addSkill($profileId: ID!, $skill: String!) {
-    addSkill(profileId: $profileId, skill: $skill) {
-      _id
-      name
-      skills
-    }
-  }
-`;
-
 export const LOGIN_USER = gql`
   mutation Login($username: String!, $password: String!) {
     login(username: $username, password: $password) {
@@ -48,12 +38,19 @@ export const ADD_LIST = gql`
   }
 `;
 
-export const REMOVE_SKILL = gql`
-  mutation removeSkill($skill: String!) {
-    removeSkill(skill: $skill) {
+export const UPDATE_ITEMS = gql`
+  mutation UpdateItems($username: String!, $items: [ItemData!]!) {
+    updateItems(username: $username, items: $items) {
       _id
-      name
-      skills
+      username
+      items {
+        name
+        quantity
+        unit
+        shop
+        price
+        _id
+      }
     }
   }
 `;

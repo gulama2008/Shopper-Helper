@@ -12,7 +12,9 @@ import {
 import { PlusOutlined } from "@ant-design/icons";
 import { Space, Tag, Tooltip, theme } from "antd";
 import { useEffect, useRef, useState } from "react";
-
+import { useMutation } from "@apollo/client";
+import { UPDATE_ITEMS } from "../../../utils/mutations";
+import Auth from "../../../utils/auth";
 const EditableCell = ({
   editing,
   dataIndex,
@@ -58,7 +60,8 @@ const Items = (props) => {
   const { userItems, userShops } = props;
   console.log(userItems);
   console.log(userShops);
-
+  const [UpdateItems, { error, data }] = useMutation(UPDATE_ITEMS);
+    
   const [form] = Form.useForm();
   const [dataSource, setDataSource] = useState(userItems);
   const [count, setCount] = useState(2);
@@ -213,6 +216,23 @@ const Items = (props) => {
     setDataSource([...dataSource, newData]);
     // setCount(count + 1);
   };
+    
+    const handleSubmitChanges = async(e) => { 
+        e.preventDefault();
+        const username = Auth.getProfile().data.username;
+        try {
+      const { data } = await UpdateItems({
+        variables: {
+          username: username,
+          items: dataSource,
+        },
+      });
+      window.location.reload();
+    } catch (err) {
+      console.error(err);
+    }
+    }
+
   return (
     <Form form={form} component={false}>
       <Button
@@ -238,7 +258,7 @@ const Items = (props) => {
           onChange: cancel,
         }}
       />
-      <Button type="primary">Submit Changes</Button>
+      <Button type="primary" onClick={handleSubmitChanges}>Submit Changes</Button>
     </Form>
   );
 };

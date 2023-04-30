@@ -118,7 +118,6 @@ const ShoppingList = (props) => {
           lists:items
         },
       });
-console.log(222);
       deleteItems();
       window.location.reload();
       // handleClickSubmit();
