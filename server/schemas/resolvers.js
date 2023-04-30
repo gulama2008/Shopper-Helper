@@ -65,6 +65,46 @@ const resolvers = {
       // throw new AuthenticationError("You need to be logged in!");
     },
 
+    updateShops: async (parent, { username, shops }, context) => {
+      // if (context.user) {
+      // const list = await List.insertMany(lists);
+      // const listIds = list.map((e) => {
+      //   return e._id;
+      // });
+      const updatedUser = await User.findOneAndUpdate(
+        // { _id: context.user._id },
+        { username: username },
+        { $set: { shops: shops } },
+        {
+          new: true,
+        }
+      );
+
+      return updatedUser;
+      // }
+      // throw new AuthenticationError("You need to be logged in!");
+    },
+
+    updateItems: async (parent, { username, items }, context) => {
+      // if (context.user) {
+      // const list = await List.insertMany(lists);
+      // const listIds = list.map((e) => {
+      //   return e._id;
+      // });
+      const updatedUser = await User.findOneAndUpdate(
+        // { _id: context.user._id },
+        { username: username },
+        { $set: { items: items } },
+        {
+          new: true,
+        }
+      );
+
+      return updatedUser;
+      // }
+      // throw new AuthenticationError("You need to be logged in!");
+    },
+
     // addComment: async (parent, { thoughtId, commentText }, context) => {
     //   if (context.user) {
     //     return Thought.findOneAndUpdate(

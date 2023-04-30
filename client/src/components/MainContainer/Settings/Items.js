@@ -211,7 +211,7 @@ const Items = (props) => {
       price:""
     };
     setDataSource([...dataSource, newData]);
-    setCount(count + 1);
+    // setCount(count + 1);
   };
   return (
     <Form form={form} component={false}>
@@ -238,6 +238,7 @@ const Items = (props) => {
           onChange: cancel,
         }}
       />
+      <Button type="primary">Submit Changes</Button>
     </Form>
   );
 };

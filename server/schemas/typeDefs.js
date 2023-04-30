@@ -10,7 +10,7 @@ const typeDefs = gql`
     price: Float
     date: String
     bought: Boolean
-    totalPrice:Float
+    totalPrice: Float
   }
   type User {
     _id: ID
@@ -47,8 +47,16 @@ const typeDefs = gql`
     bought: Boolean
   }
 
-  input ShopData{
-    name:String
+  input ShopData {
+    name: String!
+  }
+
+  input ItemData {
+    name: String!
+    quantity: Float
+    unit: String
+    shop: String
+    price: Float
   }
 
   type Auth {
@@ -67,7 +75,8 @@ const typeDefs = gql`
     addUser(username: String!, email: String!, password: String!): Auth
     login(username: String!, password: String!): Auth
     addList(username: String!, lists: [ListData!]!): User
-    # updateShop(_id:String, input:ShopData):User
+    updateShops(username: String!, shops: [ShopData!]!): User
+    updateItems(username: String!, items: [ItemData!]!): User
   }
 `;
 
