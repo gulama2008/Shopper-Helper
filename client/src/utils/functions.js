@@ -17,9 +17,9 @@ export const groupingListsByDate = (lists) => {
       lists: groups[date],
     };
   });
-    groupedLists.sort((a, b) => {
-      return dayjs(a.date, "DD-MM-YYYY") - dayjs(b.date, "DD-MM-YYYY");
-    });
+    // groupedLists.sort((a, b) => {
+    //   return dayjs(a.date, "DD-MM-YYYY") - dayjs(b.date, "DD-MM-YYYY");
+    // });
   return groupedLists;
 };
 
@@ -62,10 +62,17 @@ export const summaryExpense = (groupedLists) => {
   return expenseSummaryLists;
 };
 
-export const sortingLists = (groupedLists) => {
+export const sortingListsAscending = (groupedLists) => {
     
     groupedLists.sort((a,b) => { 
         return dayjs(a.date,"DD-MM-YYYY") - dayjs(b.date,"DD-MM-YYYY");
     })
     return groupedLists;
+};
+
+export const sortingListsDescending = (groupedLists) => {
+  groupedLists.sort((a, b) => {
+    return dayjs(b.date, "DD-MM-YYYY") - dayjs(a.date, "DD-MM-YYYY");
+  });
+  return groupedLists;
 };

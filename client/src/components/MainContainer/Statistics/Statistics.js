@@ -16,8 +16,9 @@ import { BarChart, Bar, Cell, PieChart, Pie } from "recharts";
 
 import {
   groupingListsByDate,
-  groupingListsByMonth,summaryExpense,
-  sortingLists,
+  groupingListsByMonth,
+  summaryExpense,
+  sortingListsAscending,
 } from "../../../utils/functions";
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
@@ -27,6 +28,7 @@ export default function Statistics(props) {
   const { userLists } = props;
   console.log(userLists);
   const groupedListsByDate = groupingListsByDate(userLists);
+  sortingListsAscending(groupedListsByDate);
   const groupedListsByMonth = groupingListsByMonth(userLists);
   console.log(groupedListsByDate);
   console.log(groupedListsByMonth);
