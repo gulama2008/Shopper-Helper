@@ -1,4 +1,4 @@
-import { Space, Tag } from "antd";
+import { Button, Space, Tag } from "antd";
 import React from "react";
 import { useState } from "react";
 import "../../../styles/ItemTags.css"
@@ -17,7 +17,7 @@ console.log(tags);
   return (
     <Space size={[0, 8]} wrap>
       { tags.length?(tags.map((tag) => { 
-        return <Tag className="item-tag" key={tag.id} onClick={handleTagClick}>{ tag.name}</Tag>
+        return <Button className="item-tag" key={tag.id} onClick={handleTagClick} style={{marginLeft:"10px"}}>{ tag.name}</Button>
       })):(<div>No pre-set items</div>)}
       
   </Space>)

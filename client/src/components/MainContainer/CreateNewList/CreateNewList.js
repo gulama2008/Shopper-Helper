@@ -137,7 +137,7 @@ export default function CreateNewList(props) {
           userShops={userShops}
         />
         <Text strong className="choose-item-text">
-          Or choose one item from the following tags
+          Or choose pre-set items by clicking the following buttons
         </Text>
         <ItemTags
           items={items}

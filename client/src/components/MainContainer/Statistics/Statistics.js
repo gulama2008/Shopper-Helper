@@ -56,29 +56,17 @@ export default function Statistics(props) {
       const resultDataDaily = dailyExpenseLists.filter((e) => {
         return dayjs(e.date, "DD-MM-YYYY") >= date3m;
       });
-      // const resultDataMonthly = monthlyExpenseLists.filter((e) => {
-      //   console.log(e);
-      //   console.log(e.date);
-      //   console.log(dayjs(e.date, "MM-YYYY") >= date3m);
-      //   return dayjs(e.date, "DD-MM-YYYY") >= date3m;
-      // });
-      // console.log(resultDataDaily);
-      // console.log(resultDataMonthly);
+      
       setResultDataDaily(resultDataDaily);
-      // setResultDataMonthly(resultDataMonthly);
     } else if (valueDaily === 2) {
       const date6m = dayjs().subtract(6, "month");
       const resultDataDaily = dailyExpenseLists.filter((e) => {
         return dayjs(e.date, "DD-MM-YYYY") >= date6m;
       });
-      // const resultDataMonthly = monthlyExpenseLists.filter((e) => {
-      //   return dayjs(e.date, "DD-MM-YYYY") > date6m;
-      // });
+      
       setResultDataDaily(resultDataDaily);
-      // setResultDataMonthly(resultDataMonthly);
     } else {
       setResultDataDaily(dailyExpenseLists);
-      // setResultDataMonthly(monthlyExpenseLists);
     }
   }, [valueDaily]);
 

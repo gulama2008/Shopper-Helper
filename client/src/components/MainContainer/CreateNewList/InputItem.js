@@ -93,7 +93,7 @@ const InputItem = (props) => {
     >
       <Form.Item
         label="Item"
-        name="quantity"
+        name="Item"
         rules={[
           {
             required: true,
@@ -109,7 +109,7 @@ const InputItem = (props) => {
         />
       </Form.Item>
       <Form.Item
-        name="quantity"
+        name="Quantity"
         label="Quantity"
         rules={[
           {
