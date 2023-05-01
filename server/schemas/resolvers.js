@@ -74,7 +74,10 @@ const resolvers = {
 
       const updatedUser = await User.findOneAndUpdate(
         // { _id: context.user._id },
-        { username: username },
+        {
+          username: username,
+
+        },
         { $set: { shops: shops } },
         {
           new: true,
@@ -103,7 +106,9 @@ const resolvers = {
       });
       const updatedUser = await User.findOneAndUpdate(
         // { _id: context.user._id },
-        { username: username },
+        {
+          username: username,
+        },
         { $set: { items: items } },
         {
           new: true,

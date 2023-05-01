@@ -278,7 +278,7 @@ const ShoppingList = (props) => {
                   </Col>
                   <Col className="gutter-row content-col-name" span={3}>
                     <Divider type="vertical" className="content-divider" />
-                    <div className="">{item.quantity * item.price}</div>
+                    <div className="">{item.quantity?((item.quantity * item.price).toFixed(2)):0}</div>
                   </Col>
 
                   <Col className="gutter-row content-col" span={5}>

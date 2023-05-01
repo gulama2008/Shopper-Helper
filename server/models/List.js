@@ -11,6 +11,7 @@ const listSchema = new Schema(
       type: Number,
       min: 0,
       default: 0,
+      required: true,
     },
     unit: String,
     shop: String,
@@ -41,7 +42,7 @@ listSchema
   .virtual("totalPrice")
   // Getter
   .get(function () {
-    return this.quantity*this.price;
+    return (this.quantity*this.price).toFixed(2);
   })
 
 const List = model("list", listSchema);
