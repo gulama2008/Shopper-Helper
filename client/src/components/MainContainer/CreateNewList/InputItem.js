@@ -26,17 +26,10 @@ const [options, setOptions] = useState(shopOptions);
     !searchText
       ? []
       : [mockVal(searchText), mockVal(searchText, 2), mockVal(searchText, 3)];
-
-  const onChange = (data) => {
-    setCurrentItemShop(data);
-  };
-  const onSelect = (data) => {
-    setCurrentItemShop(data)
-  };
-
+  
   //handle functions when values changes in form's areas
   const handleNameChange = (e) => { 
-    setCurrentItemName(e.target.value);
+    setCurrentItemName(e.target.value.toLowerCase());
   }
   const handleQuantityChange = (value) => {
     setCurrentItemQuantity(value);
@@ -45,7 +38,7 @@ const [options, setOptions] = useState(shopOptions);
     setCurrentItemUnit(value);
   };
   const handleShopChange = (value) => {
-    setCurrentItemShop(value);
+    setCurrentItemShop(value.toLowerCase());
   };
 
   const handleAddButtonClick = (e) => { 
@@ -107,9 +100,9 @@ const [options, setOptions] = useState(shopOptions);
           style={{
             width: 200,
           }}
-          onSelect={onSelect}
+          onSelect={handleShopChange}
           onSearch={(text) => setOptions(getPanelValue(text))}
-          onChange={onChange}
+          onChange={handleShopChange}
           placeholder="control mode"
         />
       </Form.Item>

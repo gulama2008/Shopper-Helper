@@ -12,16 +12,21 @@ import {
   Button,
   Input,
   Empty,
+  AutoComplete,
 } from "antd";
 import { CloseOutlined} from "@ant-design/icons";
 import "../../../styles/ShoppingList.css";
-
+const mockVal = (str, repeat = 1) => ({
+  value: str.repeat(repeat),
+});
 const { Text} = Typography;
 
 const ShoppingList = (props) => {
   const { items, deleteItems,updateItem, unitOptions, shopOptions,date,clickSubmit,handleClickSubmit } = props;
   const [size, setSize] = useState("large"); 
   const [addList, { error, data }] = useMutation(ADD_LIST);
+  const [options, setOptions] = useState(shopOptions);
+  
 
   console.log(clickSubmit);
   //change the quantity of each item in the state into the quantity entered in the input box
@@ -54,6 +59,11 @@ const ShoppingList = (props) => {
       
     };
   };
+
+  const getPanelValue = (searchText) =>
+    !searchText
+      ? []
+      : [mockVal(searchText), mockVal(searchText, 2), mockVal(searchText, 3)];
 
   //change the shop of each item in the state into the shop chosen from the select box
   const handleShopChange = (index) => {
@@ -138,7 +148,7 @@ const ShoppingList = (props) => {
             lg: 32,
           }}
         >
-          <Col className="gutter-row title-col" span={3}>
+          <Col className="gutter-row title-col" span={2}>
             <div className="">
               <Text strong className="title-text">
                 Item
@@ -186,7 +196,7 @@ const ShoppingList = (props) => {
               </Text>
             </div>
           </Col>
-          <Col className="gutter-row title-col" span={4}>
+          <Col className="gutter-row title-col" span={5}>
             <Divider type="vertical" className="title-divider" />
             <div>
               <Text strong className="title-text">
@@ -211,7 +221,7 @@ const ShoppingList = (props) => {
                     lg: 32,
                   }}
                 >
-                  <Col className="gutter-row content-col-name" span={3}>
+                  <Col className="gutter-row content-col-name" span={2}>
                     <div className="">{item.name}</div>
                   </Col>
 
@@ -228,26 +238,32 @@ const ShoppingList = (props) => {
                   <Col className="gutter-row content-col" span={3}>
                     <Divider type="vertical" className="content-divider" />
                     <div>
-                      <Select
+                      <AutoComplete
                         defaultValue={item.unit}
+                        options={unitOptions}
                         style={{
                           width: 80,
                         }}
+                        onSelect={handleUnitChange(index)}
+                        onSearch={(text) => setOptions(getPanelValue(text))}
                         onChange={handleUnitChange(index)}
-                        options={unitOptions}
+                        placeholder="control mode"
                       />
                     </div>
                   </Col>
                   <Col className="gutter-row content-col" span={4}>
                     <Divider type="vertical" className="content-divider" />
                     <div>
-                      <Select
+                      <AutoComplete
                         defaultValue={item.shop}
+                        options={shopOptions}
                         style={{
                           width: 120,
                         }}
+                        onSelect={handleShopChange(index)}
+                        onSearch={(text) => setOptions(getPanelValue(text))}
                         onChange={handleShopChange(index)}
-                        options={shopOptions}
+                        placeholder="control mode"
                       />
                     </div>
                   </Col>
@@ -265,7 +281,7 @@ const ShoppingList = (props) => {
                     <div className="">{item.quantity * item.price}</div>
                   </Col>
 
-                  <Col className="gutter-row content-col" span={4}>
+                  <Col className="gutter-row content-col" span={5}>
                     <Divider type="vertical" className="content-divider" />
                     <div>
                       <Button

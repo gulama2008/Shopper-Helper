@@ -41,7 +41,7 @@ const [UpdateShops, { error, data }] = useMutation(UPDATE_SHOPS);
   };
   const handleInputConfirm = () => {
     if (inputValue && tags.indexOf(inputValue) === -1) {
-      setTags([...tags, inputValue]);
+      setTags([...tags, inputValue.toLocaleLowerCase()]);
     }
     setInputVisible(false);
     setInputValue("");
