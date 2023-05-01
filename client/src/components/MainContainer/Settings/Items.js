@@ -217,7 +217,7 @@ const Items = (props) => {
     // setCount(count + 1);
   };
     
-    const handleSubmitChanges = async(e) => { 
+    const handleSaveChanges = async(e) => { 
         e.preventDefault();
         const username = Auth.getProfile().data.username;
         try {
@@ -258,7 +258,7 @@ const Items = (props) => {
           onChange: cancel,
         }}
       />
-      <Button type="primary" onClick={handleSubmitChanges}>Submit Changes</Button>
+      <Button type="primary" onClick={handleSaveChanges}>Save Changes</Button>
     </Form>
   );
 };

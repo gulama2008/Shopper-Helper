@@ -38,6 +38,16 @@ export const ADD_LIST = gql`
   }
 `;
 
+export const UPDATE_SHOPS = gql`
+  mutation UpdateShops($username: String!, $shops: [String!]!) {
+    updateShops(username: $username, shops: $shops) {
+      _id
+      username
+      shops
+    }
+  }
+`;
+
 export const UPDATE_ITEMS = gql`
   mutation UpdateItems($username: String!, $items: [ItemData!]!) {
     updateItems(username: $username, items: $items) {

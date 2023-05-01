@@ -1,16 +1,19 @@
 import { PlusOutlined } from "@ant-design/icons";
 import { Input, Space, Tag, Tooltip, theme,Button } from "antd";
 import { useEffect, useRef, useState } from "react";
+import Auth from "../../../utils/auth";
+import { useMutation } from "@apollo/client";
+import { UPDATE_SHOPS } from "../../../utils/mutations";
 const Shops = (props) => {
   const { userShops } = props;
   console.log(userShops);
-  const shopNamesArray = userShops.map((shop) => {
-    return shop.name;
-  });
-  console.log(shopNamesArray);
-
+  // const shopNamesArray = userShops.map((shop) => {
+  //   return shop.name;
+  // });
+  // console.log(shopNamesArray);
+const [UpdateShops, { error, data }] = useMutation(UPDATE_SHOPS);
   const { token } = theme.useToken();
-  const [tags, setTags] = useState(shopNamesArray);
+  const [tags, setTags] = useState(userShops);
   const [inputVisible, setInputVisible] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [editInputIndex, setEditInputIndex] = useState(-1);
@@ -62,8 +65,21 @@ const Shops = (props) => {
     borderStyle: "dashed",
   };
 
-  const handleSaveChangeButtonClick = () => { 
-    
+  const handleSaveChanges = async(e) => { 
+     e.preventDefault();
+        const username = Auth.getProfile().data.username;
+    try {
+          console.log(tags);
+      const { data } = await UpdateShops({
+        variables: {
+          username: username,
+          shops: tags,
+        },
+      });
+      window.location.reload();
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   return (
@@ -132,7 +148,7 @@ const Shops = (props) => {
           <PlusOutlined /> New Shop
         </Tag>
       )}
-      <Button type="primary" onClick={handleSaveChangeButtonClick}>Save Changes</Button>
+      <Button type="primary" onClick={handleSaveChanges}>Save Changes</Button>
     </Space>
   );
 };

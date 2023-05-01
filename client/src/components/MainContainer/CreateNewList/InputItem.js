@@ -1,19 +1,38 @@
-import { Button, Form, Input, Select, InputNumber } from "antd";
+import { Button, Form, Input, Select, InputNumber, AutoComplete } from "antd";
 import React from "react";
 import { useState } from "react";
+
+const mockVal = (str, repeat = 1) => ({
+  value: str.repeat(repeat),
+});
 
 const InputItem = (props) => {
   const { items, addItem, unitOptions,shopOptions,userShops,date } =
     props;
+  console.log(shopOptions);
+  console.log(userShops);
   const [form] = Form.useForm();
   const [formLayout, setFormLayout] = useState("inline");
+const [options, setOptions] = useState(shopOptions);
 
+  
   //set states for the current values in all form's areas
   const [currentItemName, setCurrentItemName] = useState();
   const [currentItemQuantity, setCurrentItemQuantity] = useState();
   const [currentItemUnit, setCurrentItemUnit] = useState();
   const [currentItemShop, setCurrentItemShop] = useState();
 
+  const getPanelValue = (searchText) =>
+    !searchText
+      ? []
+      : [mockVal(searchText), mockVal(searchText, 2), mockVal(searchText, 3)];
+
+  const onChange = (data) => {
+    setCurrentItemShop(data);
+  };
+  const onSelect = (data) => {
+    setCurrentItemShop(data)
+  };
 
   //handle functions when values changes in form's areas
   const handleNameChange = (e) => { 
@@ -82,12 +101,16 @@ const InputItem = (props) => {
         />
       </Form.Item>
       <Form.Item label="Shop">
-        <Select
-          style={{
-            width: 120,
-          }}
-          onChange={handleShopChange}
+        <AutoComplete
+          // value={value}
           options={shopOptions}
+          style={{
+            width: 200,
+          }}
+          onSelect={onSelect}
+          onSearch={(text) => setOptions(getPanelValue(text))}
+          onChange={onChange}
+          placeholder="control mode"
         />
       </Form.Item>
       <Form.Item>

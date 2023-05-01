@@ -20,15 +20,11 @@
         }
     ],
     "shops":[
-        {
-            "name":"Woolworths"
-        },
-        {
-            "name":"Coles"
-        },
-        {
-            "name":"Aldi"
-        }
+        "Woolworths",
+        "Coles",
+        "Big W",
+        "Aldi",
+        "Tongli"
     ],
     "lists":[]
   },
@@ -53,15 +49,11 @@
         }
     ],
     "shops":[
-        {
-            "name":"Woolworths"
-        },
-        {
-            "name":"Coles"
-        },
-        {
-            "name":"Harris Farm"
-        }
+        "Woolworths",
+        "Coles",
+        "Big W",
+        "Aldi",
+        "Tongli"
     ],
     "lists":[]
   },
@@ -86,18 +78,11 @@
         }
     ],
     "shops":[
-        {
-            "name":"Woolworths"
-        },
-        {
-            "name":"Coles"
-        },
-        {
-            "name":"Big W"
-        },
-        {
-            "name":"Tongli"
-        }
+        "Woolworths",
+        "Coles",
+        "Big W",
+        "Aldi",
+        "Tongli"
     ],
     "lists":[]
   }

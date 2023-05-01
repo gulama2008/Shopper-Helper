@@ -98,7 +98,8 @@ export default function CreateNewList(props) {
 
   useEffect(() => {
     const shops = userShops.map((shop) => { 
-      return {value:shop.name,label:shop.name}
+      console.log(shop);
+      return {label:shop,value:shop}
     })
     setShopOptions(shops)
   }, []);

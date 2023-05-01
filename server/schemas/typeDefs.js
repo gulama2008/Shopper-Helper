@@ -18,14 +18,10 @@ const typeDefs = gql`
     email: String
     password: String
     items: [Item]!
-    shops: [Shop]!
+    shops: [String]!
     lists: [List]!
   }
 
-  type Shop {
-    _id: ID
-    name: String
-  }
 
   type Item {
     _id: ID
@@ -47,9 +43,6 @@ const typeDefs = gql`
     bought: Boolean
   }
 
-  input ShopData {
-    name: String!
-  }
 
   input ItemData {
     name: String!
@@ -75,7 +68,7 @@ const typeDefs = gql`
     addUser(username: String!, email: String!, password: String!): Auth
     login(username: String!, password: String!): Auth
     addList(username: String!, lists: [ListData!]!): User
-    updateShops(username: String!, shops: [ShopData!]!): User
+    updateShops(username: String!, shops: [String!]!): User
     updateItems(username: String!, items: [ItemData!]!): User
   }
 `;

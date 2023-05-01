@@ -2,13 +2,13 @@ const { Schema, model } = require("mongoose");
 const bcrypt = require("bcrypt");
 
 // the shopSchema defines the shape for shop subdocument
-const shopSchema = new Schema({
-  name: {
-    type: String,
-    required: true,
-    default: "Others",
-  },
-});
+// const shopSchema = new Schema({
+//   name: {
+//     type: String,
+//     required: true,
+//     default: "Others",
+//   },
+// });
 
 // the itemSchema defines the shape for pre-set item subdocument
 const itemSchema = new Schema(
@@ -50,7 +50,7 @@ const userSchema = new Schema(
       minlength: 3,
     },
     items: [itemSchema],
-    shops: [shopSchema],
+    shops: [String],
     lists: [
       {
         type: Schema.Types.ObjectId,
