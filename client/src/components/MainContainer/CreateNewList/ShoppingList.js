@@ -22,7 +22,7 @@ const mockVal = (str, repeat = 1) => ({
 const { Text} = Typography;
 
 const ShoppingList = (props) => {
-  const { items, deleteItems,updateItem, unitOptions, shopOptions,date,clickSubmit,handleClickSubmit } = props;
+  const { items, deleteItems,updateItem, unitOptions, shopOptions,date,clickSubmit,handleClickSubmit,refetch } = props;
   const [size, setSize] = useState("large"); 
   const [addList, { error, data }] = useMutation(ADD_LIST);
   const [options, setOptions] = useState(shopOptions);
@@ -129,7 +129,8 @@ const ShoppingList = (props) => {
         },
       });
       deleteItems();
-      window.location.reload();
+      // window.location.reload();
+      refetch()
       // handleClickSubmit();
     } catch (err) {
       console.error(err);

@@ -89,6 +89,7 @@ export default function MainContainer(props) {
                       userShops={userShops}
                       clickSubmit={clickSubmit}
                       handleClickSubmit={handleClickSubmit}
+                      refetch={refetch}
                     />
                   }
                 ></Route>
@@ -106,7 +107,7 @@ export default function MainContainer(props) {
                     <Settings
                       userItems={userItems}
                       userShops={userShops}
-                      refetch={ refetch}
+                      refetch={refetch}
                     />
                   }
                 ></Route>

@@ -17,55 +17,9 @@ const { Text } = Typography;
 const dateFormatList = ["DD/MM/YYYY", "DD/MM/YY", "DD-MM-YYYY", "DD-MM-YY"];
 
 export default function CreateNewList(props) {
-  const { userItems,userShops,clickSubmit,handleClickSubmit,recordChange,handleRecordChange } = props;
+  const { userItems,userShops,clickSubmit,handleClickSubmit,recordChange,handleRecordChange,refetch } = props;
   console.log(userItems);
-  const test = [
-    {
-      date: "26/04/2023",
-      name: "Apple",
-      quantity: 2,
-      unit: "kg",
-      shop: "Woolworths",
-      price: 0,
-      bought: false,
-    },
-    {
-      date: "26/04/2023",
-      name: "Milk",
-      quantity: 2,
-      unit: "bottle",
-      shop: "Coles",
-      price: 0,
-      bought: false,
-    },
-    {
-      date: "26/04/2023",
-      name: "Egg",
-      quantity: 1,
-      unit: "box",
-      shop: "Aldi",
-      price: 0,
-      bought: false,
-    },
-    {
-      date: "26/04/2023",
-      name: "Tomato",
-      quantity: 3,
-      unit: "kg",
-      shop: "Woolworths",
-      price: 0,
-      bought: false,
-    },
-    {
-      date: "26/04/2023",
-      name: "Soap",
-      quantity: 5,
-      unit: "box",
-      shop: "Big W",
-      price: 0,
-      bought: false,
-    },
-  ];
+  
   const [items, setItems] = useState([]);
   const [date, setDate] = useState(dayjs().format("DD/MM/YYYY"));
   const [unitOptions, setUnitOptions] = useState([
@@ -165,6 +119,7 @@ export default function CreateNewList(props) {
           date={date}
           clickSubmit={clickSubmit}
           handleClickSubmit={handleClickSubmit}
+          refetch={ refetch}
         />
       </div>
     </div>
