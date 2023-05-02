@@ -5,6 +5,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background-image: url(../images/background.jpg);
+    background-size: cover;
+}
+
+.login-form {
+    padding: 50px;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 
 .register{

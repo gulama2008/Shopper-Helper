@@ -17,15 +17,20 @@ const { Content } = Layout;
 
 
 export default function MainContainer(props) {
-  // if (!Auth.getProfile()) {
-  //   window.location.assign("/login");
-  // }
+  console.log(4)
+  console.log(Auth.getProfile());
+  if (!Auth.getProfile()) {
+    console.log(2);
+    window.location.href = "/login";
+  }
+  console.log(3)
 
   const {
     token: { colorBgContainer },
   } = theme.useToken();
   // get the props passing from component App
   const { currentPage, handlePageChange } = props;
+  console.log(1)
   const user = Auth.getProfile();
   console.log(user);
   const [userData, setUserdata] = useState(user.data);
