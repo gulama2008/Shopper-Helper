@@ -1,0 +1,21 @@
+.register-container{
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(../images/background.jpg);
+    background-size: cover;
+}
+
+.register-form{
+    padding: 50px;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.login-form-button {
+    width: 100%;
+}
+
+.login{
+    margin-top: 10px;
+}

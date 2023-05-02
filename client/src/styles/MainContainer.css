@@ -1,7 +1,11 @@
 .main-container{
-    height: 800px;
+    min-height: 100vh;
 }
 
 .content-area{
     margin: 50px;
+}
+
+.main-container section{
+    min-height: 100vh;
 }

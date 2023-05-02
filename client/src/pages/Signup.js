@@ -15,7 +15,7 @@ import {
   Row,
   Select,
 } from "antd";
-import "../styles/Register.css";
+import "../styles/Signup.css";
 
 const formItemLayout = {
   labelCol: {
@@ -208,10 +208,17 @@ const Signup = () => {
         </Form.Item>
 
         <Form.Item {...tailFormItemLayout}>
-          <Button type="primary" htmlType="submit" onClick={handleButtonClick}>
+          <Button
+            type="primary"
+            htmlType="submit"
+            className="login-form-button"
+            onClick={handleButtonClick}
+          >
             Register
           </Button>
-          Or <Link to={"/login"}>Login now!</Link>
+          <div className="login">
+            Or <Link to={"/login"}>Login now!</Link>
+          </div>
         </Form.Item>
       </Form>
     </div>

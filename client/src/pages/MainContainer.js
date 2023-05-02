@@ -14,7 +14,13 @@ import { QUERY_ME, QUERY_USER, QUERY_TEST } from "../utils/queries";
 import Auth from "../utils/auth";
 const { Content } = Layout;
 
+
+
 export default function MainContainer(props) {
+  // if (!Auth.getProfile()) {
+  //   window.location.assign("/login");
+  // }
+
   const {
     token: { colorBgContainer },
   } = theme.useToken();
@@ -27,7 +33,6 @@ export default function MainContainer(props) {
   
   const { loading, data,refetch } = useQuery(QUERY_USER, {
     variables: { username: userData.username },
-    // fetchPolicy: "network-only",
   });
   if (loading) {
     return <div>Loading...</div>;
@@ -54,7 +59,7 @@ export default function MainContainer(props) {
   
   return (
     // <Router>
-    <div>
+    <div className="main">
       <Header userData={userData} />
       <Row className="main-container">
         <Col span={5}>
@@ -76,7 +81,7 @@ export default function MainContainer(props) {
               style={{
                 padding: 24,
                 margin: 0,
-                minHeight: 800,
+                // minHeight: 800,
                 background: colorBgContainer,
               }}
             >
