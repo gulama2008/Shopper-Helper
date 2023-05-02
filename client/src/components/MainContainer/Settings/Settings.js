@@ -5,7 +5,7 @@ import Shops from "./Shops";
 import { Tabs } from "antd";
 
 const Settings = (props) => { 
-  const { userItems, userShops } = props
+  const { userItems, userShops,refetch } = props
   console.log(userItems,userShops);
   const onChange = (key) => {
     console.log(key);
@@ -14,12 +14,22 @@ const Settings = (props) => {
     {
       key: "1",
       label: `Preset Items`,
-      children: <Items userItems={ userItems} />,
+      children: (
+        <Items
+          userItems={userItems}
+          refetch={refetch}
+        />
+      ),
     },
     {
       key: "2",
       label: `Preset Shops`,
-      children: <Shops userShops={userShops} />,
+      children: (
+        <Shops
+          userShops={userShops}
+          refetch={refetch}
+        />
+      ),
     },
   ];
   return <Tabs  items={items} onChange={onChange} />;

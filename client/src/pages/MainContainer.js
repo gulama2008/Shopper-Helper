@@ -13,6 +13,7 @@ import { useQuery } from "@apollo/client";
 import { QUERY_ME, QUERY_USER, QUERY_TEST } from "../utils/queries";
 import Auth from "../utils/auth";
 const { Content } = Layout;
+
 export default function MainContainer(props) {
   const {
     token: { colorBgContainer },
@@ -23,11 +24,15 @@ export default function MainContainer(props) {
   console.log(user);
   const [userData, setUserdata] = useState(user.data);
   const [clickSubmit, setClickSubmit] = useState(true);
-  console.log(userData.username);
-  // const { loading, error,data } = useQuery(QUERY_TEST);
-  const { loading, data } = useQuery(QUERY_USER, {
+  
+  const { loading, data,refetch } = useQuery(QUERY_USER, {
     variables: { username: userData.username },
+    // fetchPolicy: "network-only",
   });
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   const profile = data?.user || {};
   console.log("Data");
   console.log(profile);
@@ -45,9 +50,7 @@ export default function MainContainer(props) {
     currentStatus = !currentStatus;
     setClickSubmit(currentStatus);
   }
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  
   
   return (
     // <Router>
@@ -100,7 +103,11 @@ export default function MainContainer(props) {
                 <Route
                   path="/settings"
                   element={
-                    <Settings userItems={userItems} userShops={userShops} />
+                    <Settings
+                      userItems={userItems}
+                      userShops={userShops}
+                      refetch={ refetch}
+                    />
                   }
                 ></Route>
               </Routes>

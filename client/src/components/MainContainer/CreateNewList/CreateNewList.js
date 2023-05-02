@@ -17,7 +17,7 @@ const { Text } = Typography;
 const dateFormatList = ["DD/MM/YYYY", "DD/MM/YY", "DD-MM-YYYY", "DD-MM-YY"];
 
 export default function CreateNewList(props) {
-  const { userItems,userShops,clickSubmit,handleClickSubmit } = props;
+  const { userItems,userShops,clickSubmit,handleClickSubmit,recordChange,handleRecordChange } = props;
   console.log(userItems);
   const test = [
     {
@@ -102,7 +102,7 @@ export default function CreateNewList(props) {
       return {label:shop,value:shop}
     })
     setShopOptions(shops)
-  }, []);
+  }, [recordChange]);
 
   const addItem = (item) => {
     const newItemList = [...items, item];

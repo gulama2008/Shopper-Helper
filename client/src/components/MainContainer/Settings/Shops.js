@@ -5,12 +5,8 @@ import Auth from "../../../utils/auth";
 import { useMutation } from "@apollo/client";
 import { UPDATE_SHOPS } from "../../../utils/mutations";
 const Shops = (props) => {
-  const { userShops } = props;
+  const { userShops, refetch } = props;
   console.log(userShops);
-  // const shopNamesArray = userShops.map((shop) => {
-  //   return shop.name;
-  // });
-  // console.log(shopNamesArray);
 const [UpdateShops, { error, data }] = useMutation(UPDATE_SHOPS);
   const { token } = theme.useToken();
   const [tags, setTags] = useState(userShops);
@@ -76,7 +72,7 @@ const [UpdateShops, { error, data }] = useMutation(UPDATE_SHOPS);
           shops: tags,
         },
       });
-      window.location.reload();
+      refetch();
     } catch (err) {
       console.error(err);
     }

@@ -57,7 +57,8 @@ const EditableCell = ({
   );
 };
 const Items = (props) => {
-    const { userItems, userShops } = props;
+    const { userItems, userShops, refetch } =
+      props;
     
   console.log(userItems);
   console.log(userShops);
@@ -227,7 +228,7 @@ const Items = (props) => {
           items: dataSource,
         },
       });
-      window.location.reload();
+          refetch();
     } catch (err) {
       console.error(err);
     }
