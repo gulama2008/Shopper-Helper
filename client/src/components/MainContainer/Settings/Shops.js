@@ -144,7 +144,7 @@ const [UpdateShops, { error, data }] = useMutation(UPDATE_SHOPS);
           <PlusOutlined /> New Shop
         </Tag>
       )}
-      <Button type="primary" onClick={handleSaveChanges}>Save Changes</Button>
+      <Button className="button" onClick={handleSaveChanges}>Save Changes</Button>
     </Space>
   );
 };

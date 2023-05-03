@@ -41,7 +41,7 @@ export default function Header(props) {
     <div className="header-container">
       <div className="logo-container">
         <img src={logo} className="logo"></img>
-        <span className="app-name">Shopper Helper</span>
+        <span className="app-name">ShopperHelper</span>
       </div>
       <div className="user-container">
         <span>Welcome back, { userData.username}</span>
@@ -51,7 +51,7 @@ export default function Header(props) {
           }}
           placement="bottomLeft"
         >
-          <Avatar size={64} icon={<UserOutlined />} />
+          <Avatar size={40} icon={<UserOutlined />} className="avatar" />
         </Dropdown>
       </div>
     </div>

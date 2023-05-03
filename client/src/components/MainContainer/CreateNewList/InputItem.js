@@ -9,6 +9,7 @@ import {
 } from "antd";
 import React from "react";
 import { useState } from "react";
+import "../../../styles/InputItem.css"
 
 const mockVal = (str, repeat = 1) => ({
   value: str.repeat(repeat),
@@ -152,7 +153,7 @@ const InputItem = (props) => {
         />
       </Form.Item>
       <Form.Item>
-        <Button type="primary" onClick={handleAddButtonClick}>
+        <Button  onClick={handleAddButtonClick} className="button">
           Add
         </Button>
         <Modal

@@ -6,3 +6,9 @@
 .item-tag{
     cursor: pointer;
 }
+
+.button{
+    background-color:rgb(28, 119, 177);
+    /* background-color: rgba(17, 67, 117, 255); */
+    color: white;
+}

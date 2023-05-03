@@ -279,7 +279,11 @@ const ShoppingList = (props) => {
                   </Col>
                   <Col className="gutter-row content-col-name" span={3}>
                     <Divider type="vertical" className="content-divider" />
-                    <div className="">{item.quantity?((item.quantity * item.price).toFixed(2)):0}</div>
+                    <div className="">
+                      {item.quantity
+                        ? (item.quantity * item.price).toFixed(2)
+                        : 0}
+                    </div>
                   </Col>
 
                   <Col className="gutter-row content-col" span={5}>
@@ -298,7 +302,7 @@ const ShoppingList = (props) => {
                                 color: "rgba(184,184,184,255)",
                               }
                             : {
-                                backgroundColor: "rgba(23,119,255,255)",
+                                backgroundColor: "rgb(28, 119, 177)",
                                 color: "rgba(254,254,255,255)",
                               }
                         }
@@ -318,7 +322,7 @@ const ShoppingList = (props) => {
             })}
           </div>
           <div className="submit-btn-container">
-            <Button type="primary" size={size} onClick={handleSubmitButton}>
+            <Button type="primary" size={size} onClick={handleSubmitButton} className="button">
               Submit
             </Button>
           </div>

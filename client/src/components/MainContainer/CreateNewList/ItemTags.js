@@ -17,7 +17,16 @@ console.log(tags);
   return (
     <Space size={[0, 8]} wrap>
       { tags.length?(tags.map((tag) => { 
-        return <Button className="item-tag" key={tag.id} onClick={handleTagClick} style={{marginLeft:"10px"}}>{ tag.name}</Button>
+        return (
+          <Button
+            className="item-tag"
+            key={tag.id}
+            onClick={handleTagClick}
+            style={{ marginLeft: "10px" }}
+          >
+            {tag.name}
+          </Button>
+        );
       })):(<div>No pre-set items</div>)}
       
   </Space>)

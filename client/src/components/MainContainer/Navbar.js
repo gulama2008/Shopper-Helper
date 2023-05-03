@@ -24,7 +24,7 @@ export default function Navbar(props) {
     <div className="navbar-container">
       <ul className="navbar">
         <li
-          className="navbar-item"
+          className="navbar-item first-item"
           onClick={() => {
             handlePageChange("CreateNewList");
           }}
@@ -35,10 +35,10 @@ export default function Navbar(props) {
           style={{
             backgroundColor:
               window.location.pathname === "/"
-                ? "rgb(40, 40, 93)"
+                ? "rgba(13,107,171,255)"
                 : mouseEnter === "CreateNewList"
-                ? "rgb(70, 70, 214)"
-                : "rgba(0, 22, 40, 255)",
+                ? "rgba(30,127,193,255)"
+                : "#21507e",
           }}
         >
           <Link
@@ -48,7 +48,7 @@ export default function Navbar(props) {
               color:
                 window.location.pathname === "/"
                   ? "white"
-                  : "rgba(140, 150, 159, 255)",
+                  : "rgba(204,222,231,255)",
             }}
           >
             <ProfileOutlined />
@@ -67,10 +67,10 @@ export default function Navbar(props) {
           style={{
             backgroundColor:
               window.location.pathname === "/historical-list"
-                ? "rgb(40, 40, 93)"
+                ? "rgba(13,107,171,255)"
                 : mouseEnter === "HistoricalList"
-                ? "rgb(70, 70, 214)"
-                : "rgba(0, 22, 40, 255)",
+                ? "rgba(30,127,193,255)"
+                : "#21507e",
           }}
         >
           <Link
@@ -80,7 +80,7 @@ export default function Navbar(props) {
               color:
                 window.location.pathname === "/historical-list"
                   ? "white"
-                  : "rgba(140, 150, 159, 255)",
+                  : "rgba(204,222,231,255)",
             }}
           >
             <FileSearchOutlined />
@@ -99,10 +99,10 @@ export default function Navbar(props) {
           style={{
             backgroundColor:
               window.location.pathname === "/statistics"
-                ? "rgb(40, 40, 93)"
+                ? "rgba(13,107,171,255)"
                 : mouseEnter === "Statistics"
-                ? "rgb(70, 70, 214)"
-                : "rgba(0, 22, 40, 255)",
+                ? "rgba(30,127,193,255)"
+                : "#21507e",
           }}
         >
           <Link
@@ -112,7 +112,7 @@ export default function Navbar(props) {
               color:
                 window.location.pathname === "/statistics"
                   ? "white"
-                  : "rgba(140, 150, 159, 255)",
+                  : "rgba(204,222,231,255)",
             }}
           >
             <BarChartOutlined />
@@ -131,10 +131,10 @@ export default function Navbar(props) {
           style={{
             backgroundColor:
               window.location.pathname === "/settings"
-                ? "rgb(40, 40, 93)"
+                ? "rgba(13,107,171,255)"
                 : mouseEnter === "Settings"
-                ? "rgb(70, 70, 214)"
-                : "rgba(0, 22, 40, 255)",
+                ? "rgba(30,127,193,255)"
+                : "#21507e",
           }}
         >
           <Link
@@ -144,7 +144,7 @@ export default function Navbar(props) {
               color:
                 window.location.pathname === "/settings"
                   ? "white"
-                  : "rgba(140, 150, 159, 255)",
+                  : "rgba(204,222,231,255)",
             }}
           >
             <SettingOutlined />

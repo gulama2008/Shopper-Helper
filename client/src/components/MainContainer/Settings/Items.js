@@ -238,7 +238,7 @@ const Items = (props) => {
     <Form form={form} component={false}>
       <Button
         onClick={handleAdd}
-        type="primary"
+        className="button"
         style={{
           marginBottom: 16,
         }}
@@ -259,7 +259,7 @@ const Items = (props) => {
           onChange: cancel,
         }}
       />
-      <Button type="primary" onClick={handleSaveChanges}>Save Changes</Button>
+      <Button className="button" onClick={handleSaveChanges}>Save Changes</Button>
     </Form>
   );
 };

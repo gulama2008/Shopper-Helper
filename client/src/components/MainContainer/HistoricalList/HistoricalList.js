@@ -79,7 +79,7 @@ export default function HistoricalList(props) {
     <div>
       <div>
         <Space direction="vertical" size={12}>
-          <Button type="primary" onClick={handleShowAllButtonClick}>
+          <Button className="button" onClick={handleShowAllButtonClick}>
             Show All Lists
           </Button>
 
@@ -93,7 +93,7 @@ export default function HistoricalList(props) {
               style={{ display: "inline-flex",marginLeft:"20px" }}
             />
             <Button
-              type="primary"
+              className="button"
               icon={<SearchOutlined />}
               onClick={handleSearchButtonClick}
               style={{ display: "inline-block", marginLeft: "20px" }}
