@@ -10,12 +10,18 @@
 .register-form{
     padding: 50px;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-}
-
-.login-form-button {
-    width: 100%;
+    background-color: white;
 }
 
 .login{
     margin-top: 10px;
+}
+
+.signup-form-button{
+    width: 100%;
+    background-color: rgba(11, 111, 165, 255);
+}
+
+.login-now{
+    color: rgba(11, 111, 165, 255);
 }

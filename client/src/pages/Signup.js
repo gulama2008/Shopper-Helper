@@ -128,6 +128,7 @@ const Signup = () => {
         }}
         scrollToFirstError
       >
+        <div className="login-title">Sign Up</div>
         <Form.Item
           name="username"
           label="Username"
@@ -207,17 +208,17 @@ const Signup = () => {
           <Input.Password />
         </Form.Item>
 
-        <Form.Item {...tailFormItemLayout}>
+        <Form.Item {...tailFormItemLayout} >
           <Button
             type="primary"
             htmlType="submit"
-            className="login-form-button"
+            className="signup-form-button"
             onClick={handleButtonClick}
           >
             Register
           </Button>
           <div className="login">
-            Or <Link to={"/login"}>Login now!</Link>
+            Or <Link to={"/login"} className="login-now">Login now!</Link>
           </div>
         </Form.Item>
       </Form>
