@@ -2,6 +2,9 @@
   "name": "apollo-school",
   "version": "1.0.0",
   "description": "",
+  "engines": {
+    "node": "19.8.1"
+  },
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -23,4 +26,5 @@
   "devDependencies": {
     "nodemon": "^2.0.3"
   }
+  
 }
