@@ -3,27 +3,235 @@
     "name": "apple",
     "quantity": 2,
     "unit": "kg",
-    "shop":"Woolworths",
+    "shop":"woolworths",
     "price":3.5,
     "bought":true,
-    "date":"10/04/2023"
+    "date":"01/04/2022"
   },
   {
-    "name": "grape",
-    "quantity": 1,
+    "name": "banana",
+    "quantity": 2,
     "unit": "kg",
-    "shop":"Woolworths",
-    "price":8.99,
+    "shop":"woolworths",
+    "price":2.8,
     "bought":true,
-    "date":"11/04/2023"
+    "date":"01/04/2022"
+  },
+  {
+    "name": "yoghurt",
+    "quantity": 3,
+    "unit": "kg",
+    "shop":"woolworths",
+    "price":6,
+    "bought":true,
+    "date":"10/05/2022"
+  },
+  {
+    "name": "banana",
+    "quantity": 2,
+    "unit": "kg",
+    "shop":"woolworths",
+    "price":2.8,
+    "bought":true,
+    "date":"10/05/2022"
+  },
+  {
+    "name": "apple",
+    "quantity": 2,
+    "unit": "kg",
+    "shop":"woolworths",
+    "price":3.5,
+    "bought":true,
+    "date":"15/06/2022"
+  },
+  {
+    "name": "milk",
+    "quantity": 2,
+    "unit": "bottle",
+    "shop":"woolworths",
+    "price":4,
+    "bought":true,
+    "date":"15/06/2022"
+  },
+  {
+    "name": "olive oil",
+    "quantity": 5,
+    "unit": "bottle",
+    "shop":"coles",
+    "price":10,
+    "bought":true,
+    "date":"23/08/2022"
+  },
+  {
+    "name": "laundry powder",
+    "quantity": 2,
+    "unit": "box",
+    "shop":"woolworths",
+    "price":11,
+    "bought":true,
+    "date":"08/09/2022"
+  },
+  {
+    "name": "shampoo",
+    "quantity": 2,
+    "unit": "bottle",
+    "shop":"woolworths",
+    "price":7,
+    "bought":true,
+    "date":"08/09/2022"
+  },
+  {
+    "name": "soap",
+    "quantity": 5,
+    "unit": "box",
+    "shop":"big w",
+    "price":5,
+    "bought":true,
+    "date":"18/11/2022"
+  },
+  {
+    "name": "nappy",
+    "quantity": 3,
+    "unit": "bag",
+    "shop":"big w",
+    "price":30,
+    "bought":true,
+    "date":"18/11/2022"
+  },
+  {
+    "name": "tomato",
+    "quantity": 4,
+    "unit": "kg",
+    "shop":"woolworths",
+    "price":4.99,
+    "bought":true,
+    "date":"20/12/2022"
+  },
+  {
+    "name": "cabbage",
+    "quantity": 1,
+    "unit": "unit",
+    "shop":"woolworths",
+    "price":3.5,
+    "bought":true,
+    "date":"20/12/2022"
+  },
+  {
+    "name": "potato",
+    "quantity": 1,
+    "unit": "bag",
+    "shop":"woolworths",
+    "price":15,
+    "bought":true,
+    "date":"20/12/2022"
   },
   {
     "name": "egg",
-    "quantity": 1,
+    "quantity": 2,
     "unit": "box",
-    "shop":"Coles",
+    "shop":"coles",
     "price":4.5,
     "bought":true,
-    "date":"12/04/2023"
+    "date":"12/01/2023"
+  },
+{
+    "name": "orange juice",
+    "quantity": 3,
+    "unit": "kg",
+    "shop":"woolworths",
+    "price":5,
+    "bought":true,
+    "date":"12/01/2023"
+  },
+  {
+    "name": "cookie",
+    "quantity": 3,
+    "unit": "pack",
+    "shop":"woolworths",
+    "price":3.5,
+    "bought":true,
+    "date":"12/01/2023"
+  },
+  {
+    "name": "milk",
+    "quantity": 2,
+    "unit": "bottle",
+    "shop":"woolworths",
+    "price":4,
+    "bought":true,
+    "date":"15/02/2023"
+  },
+  {
+    "name": "orange",
+    "quantity": 3,
+    "unit": "kg",
+    "shop":"woolworths",
+    "price":7,
+    "bought":true,
+    "date":"15/02/2023"
+  },
+  {
+    "name": "soy sauce",
+    "quantity": 1,
+    "unit": "bottle",
+    "shop":"tongli",
+    "price":10,
+    "bought":true,
+    "date":"10/03/2023"
+  },
+  {
+    "name": "broccoli",
+    "quantity": 1,
+    "unit": "kg",
+    "shop":"tongli",
+    "price":4.99,
+    "bought":true,
+    "date":"10/03/2023"
+  },
+  {
+    "name": "eggplant",
+    "quantity": 2,
+    "unit": "kg",
+    "shop":"woolworths",
+    "price":6.99,
+    "bought":true,
+    "date":"20/04/2023"
+  },
+  {
+    "name": "corn",
+    "quantity": 20,
+    "unit": "unit",
+    "shop":"woolworths",
+    "price":1.2,
+    "bought":true,
+    "date":"20/04/2023"
+  },
+  {
+    "name": "beef",
+    "quantity": 1,
+    "unit": "kg",
+    "shop":"tongli",
+    "price":21,
+    "bought":true,
+    "date":"02/05/2023"
+  },
+  {
+    "name": "toufu",
+    "quantity": 1,
+    "unit": "box",
+    "shop":"tongli",
+    "price":5.9,
+    "bought":true,
+    "date":"02/05/2023"
+  },
+  {
+    "name": "yoghurt",
+    "quantity": 2,
+    "unit": "pack",
+    "shop":"woolworths",
+    "price":6,
+    "bought":true,
+    "date":"02/05/2023"
   }
+  
 ]

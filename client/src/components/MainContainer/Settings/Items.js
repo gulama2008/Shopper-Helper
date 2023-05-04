@@ -157,7 +157,7 @@ const Items = (props) => {
                     marginRight: 8,
                   }}
                 >
-                  Save
+                  Finish
                 </Typography.Link>
                 <Popconfirm title="Sure to cancel?" onConfirm={cancel}>
                   <a>Cancel</a>
@@ -243,7 +243,7 @@ const Items = (props) => {
           marginBottom: 16,
         }}
       >
-        Add a row
+        Add new item
       </Button>
       <Table
         components={{

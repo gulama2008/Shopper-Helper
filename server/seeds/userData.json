@@ -8,82 +8,86 @@
             "name":"apple",
             "quantity":2,
             "unit":"kg",
-            "shop":"Woolworths",
-            "price":2.99
+            "shop":"woolworths",
+            "price":4.5
+        },
+        {
+            "name":"bread",
+            "quantity":1,
+            "unit":"bag",
+            "shop":"coles",
+            "price":5
+        },
+        {
+            "name":"cheese",
+            "quantity":2,
+            "unit":"box",
+            "shop":"coles",
+            "price":10.5
+        },
+        {
+            "name":"chicken",
+            "quantity":1,
+            "unit":"box",
+            "shop":"aldi",
+            "price":8
+        },
+        {
+            "name":"cookie",
+            "quantity":3,
+            "unit":"box",
+            "shop":"aldi",
+            "price":3.5
+        },
+        {
+            "name":"egg",
+            "quantity":2,
+            "unit":"box",
+            "shop":"woolworths",
+            "price":4.5
         },
         {
             "name":"milk",
             "quantity":1,
             "unit":"bottle",
-            "shop":"Coles",
+            "shop":"coles",
             "price":3.5
-        }
-    ],
-    "shops":[
-        "Woolworths",
-        "Coles",
-        "Big W",
-        "Aldi",
-        "Tongli"
-    ],
-    "lists":[]
-  },
-  {
-    "username": "test2",
-    "email": "test2@test.com",
-    "password": "$2a$10$r/wC/nXf8y6ITZr0DOr7y.s1NmgYjU6XWCqphIPwdbrvoPLfGGGue",
-    "items":[
-        {
-            "name":"egg",
-            "quantity":2,
-            "unit":"box",
-            "shop":"Woolworths",
-            "price":4.5
         },
         {
-            "name":"tomato",
-            "quantity":3,
-            "unit":"kg",
-            "shop":"Harris Farm",
-            "price":5.99
-        }
-    ],
-    "shops":[
-        "Woolworths",
-        "Coles",
-        "Big W",
-        "Aldi",
-        "Tongli"
-    ],
-    "lists":[]
-  },
-  {
-    "username": "test3",
-    "email": "test3@test.com",
-    "password": "$2a$10$iYlWm0Bzb7jkYg/YSokbjerKeILKaPGEX2okmwls0PkhHiFAIPYb2",
-    "items":[
-        {
-            "name":"flour",
+            "name":"paper towel",
             "quantity":2,
             "unit":"pack",
-            "shop":"Woolworths",
-            "price":2.5
+            "shop":"woolworths",
+            "price":4
         },
+        
+        
         {
-            "name":"soy sauce",
+            "name":"spinish",
             "quantity":1,
-            "unit":"bottle",
-            "shop":"Tongli",
-            "price":4.5
+            "unit":"bag",
+            "shop":"woolworths",
+            "price":5
+        },
+        
+        
+        {
+            "name":"yoghurt",
+            "quantity":3,
+            "unit":"pack",
+            "shop":"woolworths",
+            "price":6
         }
+        
     ],
     "shops":[
-        "Woolworths",
-        "Coles",
-        "Big W",
-        "Aldi",
-        "Tongli"
+        "woolworths",
+        "coles",
+        "big w",
+        "aldi",
+        "tongli"
     ],
     "lists":[]
   }
+  
 ]

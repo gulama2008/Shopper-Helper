@@ -114,7 +114,7 @@ const InputItem = (props) => {
         label="Quantity"
         rules={[
           {
-            required: true,
+            // required: true,
             // message: "Please input quantity!",
           },
         ]}
@@ -162,7 +162,7 @@ const InputItem = (props) => {
           onOk={handleOk}
           onCancel={handleCancel}
         >
-          <p>Item name and quantity are required!</p>
+          <p>Item name is required!</p>
         </Modal>
       </Form.Item>
     </Form>

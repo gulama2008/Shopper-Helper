@@ -15,23 +15,12 @@ export default function Header(props) {
   const items = [
     {
       key: "1",
-      label: (
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://www.antgroup.com"
-        >
-          Profile
-        </a>
-      ),
+      label: <Link to={"/settings"}>Settings</Link>,
     },
     {
       key: "2",
       label: (
-        <Link
-          to={"/login"}
-          onClick={ handleSignout}
-        >
+        <Link to={"/login"} onClick={handleSignout}>
           Sign out
         </Link>
       ),
