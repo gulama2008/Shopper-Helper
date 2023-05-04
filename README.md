@@ -2,7 +2,7 @@
   
 ## Description
 
-This application is a shopping assist tool designed for shoppers to easily createm their shopping list, viewing item status, tracking shopping history, set up their favourite/commonly bought items and shops, and checking the statistics for their shopping trends.
+Shopper-Helper is a shopping assist tool designed for shoppers to easily create their shopping list, viewing item status, tracking shopping history, set up their favourite/commonly bought items and shops, and checking the statistics for their shopping trends.
 
 ## Table of Contents
 
