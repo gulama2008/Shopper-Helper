@@ -59,6 +59,8 @@ const [UpdateShops, { error, data }] = useMutation(UPDATE_SHOPS);
   const tagPlusStyle = {
     background: token.colorBgContainer,
     borderStyle: "dashed",
+    height: "30px",
+    lineHeight: "25px",
   };
 
   const handleSaveChanges = async(e) => { 
@@ -103,6 +105,8 @@ const [UpdateShops, { error, data }] = useMutation(UPDATE_SHOPS);
               closable="true"
               style={{
                 userSelect: "none",
+                height: "30px",
+                lineHeight:"25px"
               }}
               onClose={() => handleClose(tag)}
             >
@@ -140,7 +144,7 @@ const [UpdateShops, { error, data }] = useMutation(UPDATE_SHOPS);
           onPressEnter={handleInputConfirm}
         />
       ) : (
-        <Tag style={tagPlusStyle} onClick={showInput}>
+        <Tag style={tagPlusStyle} onClick={showInput} className="shoptag">
           <PlusOutlined /> New Shop
         </Tag>
       )}

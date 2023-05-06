@@ -30,7 +30,7 @@ export default function Header(props) {
     <div className="header-container">
       <div className="logo-container">
         <img src={logo} className="logo"></img>
-        <span className="app-name">ShopperHelper</span>
+        <span className="app-name">Shopper-Helper</span>
       </div>
       <div className="user-container">
         <span>Welcome back, { userData.username}</span>

@@ -20,7 +20,11 @@
     margin-right: 10px;
 }
 .app-name{
-    color: rgba(215, 223, 231, 255);
+    /* color: rgba(215, 223, 231, 255); */
+    color: rgb(62, 134, 207);
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    font-size:larger;
 }
 
 .user-container{
