@@ -72,7 +72,7 @@ const InputItem = (props) => {
       date: date,
       bought: false,
     };
-    if (!newItem.name||!newItem.quantity) {
+    if (!newItem.name) {
       setIsModalOpen(true);
 
     } else { 
@@ -110,14 +110,14 @@ const InputItem = (props) => {
         />
       </Form.Item>
       <Form.Item
-        name="Quantity"
+        // name="Quantity"
         label="Quantity"
-        rules={[
-          {
-            // required: true,
-            // message: "Please input quantity!",
-          },
-        ]}
+        // rules={[
+        //   {
+        //     // required: true,
+        //     // message: "Please input quantity!",
+        //   },
+        // ]}
       >
         <InputNumber
           min={1}
