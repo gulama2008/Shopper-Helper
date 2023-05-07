@@ -21,7 +21,7 @@ export default function MainContainer(props) {
   console.log(Auth.getProfile());
   if (!Auth.getProfile()) {
     console.log(2);
-    window.location.href = "/login";
+    window.location.href = "./login";
   }
   console.log(3)
 
