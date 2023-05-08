@@ -7,6 +7,7 @@ import {
   Typography,
   Input,
   Select,
+  message,
 } from "antd";
 
 import { useState } from "react";
@@ -56,7 +57,8 @@ const EditableCell = ({
   );
 };
 const Items = (props) => {
-  const { userItems, userShops, refetch } = props;
+  
+  const { userItems, refetch } = props;
   const [UpdateItems, { error, data }] = useMutation(UPDATE_ITEMS);
     
   const [form] = Form.useForm();
@@ -211,6 +213,14 @@ const Items = (props) => {
     };
     setDataSource([...dataSource, newData]);
   };
+
+  const [messageApi, contextHolder] = message.useMessage();
+  const success = () => {
+    messageApi.open({
+      type: "success",
+      content: "Update saved!",
+    });
+  };
     
     const handleSaveChanges = async(e) => { 
         e.preventDefault();
@@ -222,14 +232,18 @@ const Items = (props) => {
           items: dataSource,
         },
       });
+          success();
           refetch();
     } catch (err) {
       console.error(err);
     }
     }
+  
+  
 
   return (
     <Form form={form} component={false}>
+      {contextHolder}
       <Button
         onClick={handleAdd}
         className="button"
@@ -253,7 +267,9 @@ const Items = (props) => {
           onChange: cancel,
         }}
       />
-      <Button className="button" onClick={handleSaveChanges}>Save Changes</Button>
+      <Button className="button" onClick={handleSaveChanges}>
+        Save Changes
+      </Button>
     </Form>
   );
 };

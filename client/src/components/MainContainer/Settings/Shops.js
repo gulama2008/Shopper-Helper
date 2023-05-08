@@ -1,5 +1,5 @@
 import { PlusOutlined } from "@ant-design/icons";
-import { Input, Space, Tag, Tooltip, theme,Button } from "antd";
+import { Input, Space, Tag, Tooltip, theme,Button,message } from "antd";
 import { useEffect, useRef, useState } from "react";
 import Auth from "../../../utils/auth";
 import { useMutation } from "@apollo/client";
@@ -30,7 +30,7 @@ const [UpdateShops, { error, data }] = useMutation(UPDATE_SHOPS);
     console.log(newTags);
     setTags(newTags);
   };
-  
+
   const showInput = () => {
     setInputVisible(true);
   };
@@ -65,6 +65,14 @@ const [UpdateShops, { error, data }] = useMutation(UPDATE_SHOPS);
     lineHeight: "25px",
   };
 
+  const [messageApi, contextHolder] = message.useMessage();
+  const success = () => {
+    messageApi.open({
+      type: "success",
+      content: "Update saved!",
+    });
+  };
+
   const handleSaveChanges = async(e) => { 
      e.preventDefault();
         const username = Auth.getProfile().data.username;
@@ -76,6 +84,7 @@ const [UpdateShops, { error, data }] = useMutation(UPDATE_SHOPS);
           shops: tags,
         },
       });
+      success();
       refetch();
     } catch (err) {
       console.error(err);
@@ -84,6 +93,7 @@ const [UpdateShops, { error, data }] = useMutation(UPDATE_SHOPS);
 
   return (
     <Space size={[0, 8]} wrap>
+      {contextHolder}
       <Space size={[0, 8]} wrap>
         {tags.map((tag, index) => {
           if (editInputIndex === index) {
