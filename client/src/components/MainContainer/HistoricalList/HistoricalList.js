@@ -120,7 +120,7 @@ export default function HistoricalList(props) {
                             Total
                           </Table.Summary.Cell>
                           <Table.Summary.Cell index={2}>
-                            <Text type="danger">{total}</Text>
+                            <Text type="danger">{total.toFixed(2)}</Text>
                           </Table.Summary.Cell>
                         </Table.Summary.Row>
                       </>
