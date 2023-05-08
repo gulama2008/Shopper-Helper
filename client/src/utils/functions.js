@@ -17,9 +17,6 @@ export const groupingListsByDate = (lists) => {
       lists: groups[date],
     };
   });
-    // groupedLists.sort((a, b) => {
-    //   return dayjs(a.date, "DD-MM-YYYY") - dayjs(b.date, "DD-MM-YYYY");
-    // });
   return groupedLists;
 };
 
@@ -56,14 +53,12 @@ export const summaryExpense = (groupedLists) => {
       0
     );
       const newElement = {...e,totalExpense:totalExpensePerDay}
-    // e.totalExpense = totalExpensePerDay;
     return newElement;
   });
   return expenseSummaryLists;
 };
 
 export const sortingListsAscending = (groupedLists) => {
-    
     groupedLists.sort((a,b) => { 
         return dayjs(a.date,"DD-MM-YYYY") - dayjs(b.date,"DD-MM-YYYY");
     })

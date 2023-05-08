@@ -3,18 +3,7 @@ import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../utils/mutations";
 import Auth from "../utils/auth";
-import {
-  AutoComplete,
-  Button,
-  Cascader,
-  Checkbox,
-  Col,
-  Form,
-  Input,
-  InputNumber,
-  Row,
-  Select,
-} from "antd";
+import {Button,Form,Input} from "antd";
 import "../styles/Signup.css";
 
 const formItemLayout = {
@@ -62,7 +51,6 @@ const Signup = () => {
       ...formState,
       username: value,
     });
-    console.log(formState);
   };
   const handlePasswordChange = (event) => {
     const value = event.target.value;
@@ -70,7 +58,6 @@ const Signup = () => {
       ...formState,
       password: value,
     });
-    console.log(formState);
   };
   const handleEmailChange = (event) => {
     const value = event.target.value;
@@ -78,18 +65,14 @@ const Signup = () => {
       ...formState,
       email: value,
     });
-    console.log(formState);
   };
 
   const handleButtonClick = async (event) => {
     event.preventDefault();
-    console.log(formState);
     try {
       const { data } = await addUser({
         variables: { ...formState },
       });
-      console.log(data);
-
       Auth.login(data.addUser.token);
     } catch (e) {
       console.error(e);
@@ -101,20 +84,11 @@ const Signup = () => {
       password: "",
     });
   };
-  // const handleChange = (event) => {
-  //   const { name, value } = event.target;
-  //   setFormState({
-  //     ...formState,
-  //     [name]: value,
-  //   });
-  // };
 
   const onFinish = (values) => {
     console.log("Received values of form: ", values);
   };
 
-  // const [autoCompleteResult, setAutoCompleteResult] = useState([]);
-  // const validatePassword = (password) => {};
   return (
     <div className="register-container">
       <Form
@@ -139,11 +113,6 @@ const Signup = () => {
               message: "Please input your username!",
               whitespace: true,
             },
-            // {
-            //   unique: true,
-            //   message: "This username already exist!",
-            //   whitespace: true,
-            // },
           ]}
         >
           <Input onChange={handleUsernameChange} />
@@ -164,7 +133,6 @@ const Signup = () => {
         >
           <Input onChange={handleEmailChange} />
         </Form.Item>
-
         <Form.Item
           name="password"
           label="Password"
@@ -182,7 +150,6 @@ const Signup = () => {
         >
           <Input.Password onChange={handlePasswordChange} />
         </Form.Item>
-
         <Form.Item
           name="confirm"
           label="Confirm Password"
@@ -207,7 +174,6 @@ const Signup = () => {
         >
           <Input.Password />
         </Form.Item>
-
         <Form.Item {...tailFormItemLayout} >
           <Button
             type="primary"
