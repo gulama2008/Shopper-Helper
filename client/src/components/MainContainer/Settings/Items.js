@@ -114,7 +114,7 @@ const Items = (props) => {
     {
       title: "name",
       dataIndex: "name",
-      width: "20%",
+      width: "15%",
       editable: true,
     },
     {
@@ -126,7 +126,7 @@ const Items = (props) => {
     {
       title: "unit",
       dataIndex: "unit",
-      width: "5%",
+      width: "10%",
       editable: true,
     },
     {
