@@ -10,9 +10,8 @@ import { Link } from "react-router-dom";
 
 export default function Navbar(props) {
   //get the props passing from component App
-  const { currentPage, handlePageChange } = props;
+  const {  handlePageChange } = props;
   const [mouseEnter, setMouseEnter] = useState("");
-  
   const handleMouseEnter = (title) => {
     setMouseEnter(title);
   };

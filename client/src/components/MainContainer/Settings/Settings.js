@@ -1,15 +1,15 @@
-import Item from "antd/es/list/Item";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Items from "./Items";
 import Shops from "./Shops";
 import { Tabs } from "antd";
 
 const Settings = (props) => { 
   const { userItems, userShops,refetch } = props
-  console.log(userItems,userShops);
   const onChange = (key) => {
     console.log(key);
   };
+
+  //define two sections of the tabs
   const items = [
     {
       key: "1",

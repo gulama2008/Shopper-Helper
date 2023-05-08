@@ -10,9 +10,8 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
-  ResponsiveContainer,
 } from "recharts";
-import { BarChart, Bar, Cell, PieChart, Pie } from "recharts";
+import { BarChart, Bar } from "recharts";
 
 import {
   groupingListsByDate,
@@ -26,15 +25,11 @@ dayjs.extend(customParseFormat);
 
 export default function Statistics(props) {
   const { userLists } = props;
-  console.log(userLists);
   const groupedListsByDate = groupingListsByDate(userLists);
   sortingListsAscending(groupedListsByDate);
   const groupedListsByMonth = groupingListsByMonth(userLists);
-  console.log(groupedListsByDate);
-  console.log(groupedListsByMonth);
   const dailyExpenseLists = summaryExpense(groupedListsByDate);
   const monthlyExpenseLists = summaryExpense(groupedListsByMonth);
-  console.log(monthlyExpenseLists);
   const [valueDaily, setValueDaily] = useState(1);
   const [valueMonthly, setValueMonthly] = useState(1);
   const [resultDataDaily, setResultDataDaily] = useState("");
@@ -50,36 +45,32 @@ export default function Statistics(props) {
     setValueMonthly(e.target.value);
   };
 
+  //change graph when clicking different radio options
   useEffect(() => {
     if (valueDaily === 1) {
       const date3m = dayjs().subtract(3, "month");
       const resultDataDaily = dailyExpenseLists.filter((e) => {
         return dayjs(e.date, "DD-MM-YYYY") >= date3m;
       });
-      
       setResultDataDaily(resultDataDaily);
     } else if (valueDaily === 2) {
       const date6m = dayjs().subtract(6, "month");
       const resultDataDaily = dailyExpenseLists.filter((e) => {
         return dayjs(e.date, "DD-MM-YYYY") >= date6m;
       });
-      
       setResultDataDaily(resultDataDaily);
     } else {
       setResultDataDaily(dailyExpenseLists);
     }
   }, [valueDaily]);
 
+  //change graph when clicking different radio options
   useEffect(() => {
     if (valueMonthly === 1) {
       const date3m = dayjs().subtract(6, "month");
       const resultDataMonthly = monthlyExpenseLists.filter((e) => {
-        console.log(e);
-        console.log(e.date);
-        console.log(dayjs(e.date, "MM-YYYY") >= date3m);
         return dayjs(e.date, "MM-YYYY") >= date3m;
       });
-      console.log(resultDataMonthly);
       setResultDataMonthly(resultDataMonthly);
     } else if (valueMonthly === 2) {
       const date6m = dayjs().subtract(12, "month");
@@ -96,7 +87,6 @@ export default function Statistics(props) {
     <>
       <div className="daily-total">
         <Divider orientation="left">Daily Shopping Expenses</Divider>
-        {/* <div>Daily Shopping Expenses</div> */}
         <Radio.Group
           onChange={handleChangeDaily}
           value={valueDaily}

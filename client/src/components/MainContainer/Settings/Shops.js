@@ -6,7 +6,6 @@ import { useMutation } from "@apollo/client";
 import { UPDATE_SHOPS } from "../../../utils/mutations";
 const Shops = (props) => {
   const { userShops, refetch } = props;
-  console.log(userShops);
 const [UpdateShops, { error, data }] = useMutation(UPDATE_SHOPS);
   const { token } = theme.useToken();
   const [tags, setTags] = useState(userShops);
@@ -16,11 +15,13 @@ const [UpdateShops, { error, data }] = useMutation(UPDATE_SHOPS);
   const [editInputValue, setEditInputValue] = useState("");
   const inputRef = useRef(null);
   const editInputRef = useRef(null);
+
   useEffect(() => {
     if (inputVisible) {
       inputRef.current?.focus();
     }
   }, [inputVisible]);
+
   useEffect(() => {
     editInputRef.current?.focus();
   }, [inputValue]);
@@ -29,6 +30,7 @@ const [UpdateShops, { error, data }] = useMutation(UPDATE_SHOPS);
     console.log(newTags);
     setTags(newTags);
   };
+  
   const showInput = () => {
     setInputVisible(true);
   };

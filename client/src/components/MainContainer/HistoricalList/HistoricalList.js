@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import { Button, Collapse } from "antd";
 import { Table, Typography } from "antd";
 import { DatePicker, Space, Input } from "antd";
@@ -12,6 +12,8 @@ dayjs.extend(customParseFormat);
 const { Text } = Typography;
 const { RangePicker } = DatePicker;
 const { Search } = Input;
+
+//define columns of historical list table
 const columns = [
   {
     title: "Name",
@@ -45,11 +47,9 @@ export default function HistoricalList(props) {
   
   //change userLists into new array of objs with different property date and lists
   const groupArrays = groupingListsByDate(userLists);
-  console.log(groupArrays);
   sortingListsDescending(groupArrays);
   const [resultList, setResultList] = useState(groupArrays);
   const [ dateRange, setDateRange ] = useState([]);
-  console.log(userLists);
 
   const handleDateRangeChange = (date,dateString) => { 
     setDateRange([dateString[0], dateString[1]]);
@@ -63,18 +63,14 @@ export default function HistoricalList(props) {
   const handleSearchButtonClick = (e) => { 
     e.preventDefault();
     const resultArray = groupArrays.filter((element) => { 
-      console.log(element.date);
       const elementDate = dayjs(element.date,"DD-MM-YYYY");
       const dateRangeStart = dayjs(dateRange[0], "DD-MM-YYYY");
       const dateRangeFinish = dayjs(dateRange[1], "DD-MM-YYYY");
       return elementDate >= dateRangeStart && elementDate <= dateRangeFinish;
     })
-    console.log(resultArray);
     setResultList(resultArray);
   }
-  console.log(dateRange);
   
-
   return (
     <div>
       <div>
@@ -82,7 +78,6 @@ export default function HistoricalList(props) {
           <Button className="button" onClick={handleShowAllButtonClick}>
             Show All Lists
           </Button>
-
           <div style={{ marginBottom: "20px" }}>
             <div style={{ display: "inline-block"}}>
               Or choose from the Date Range:

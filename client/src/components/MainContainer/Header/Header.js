@@ -1,8 +1,7 @@
 import React from "react";
-import { Col, Row } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import { Avatar } from "antd";
-import { Button, Dropdown, Space } from "antd";
+import {  Dropdown } from "antd";
 import "../../../styles/Header.css";
 import logo from "../../../images/logo.png"
 import { Link } from "react-router-dom";
@@ -12,6 +11,7 @@ export default function Header(props) {
   const handleSignout = () => { 
     localStorage.removeItem("id_token");
   }
+  //dropdown options
   const items = [
     {
       key: "1",
@@ -26,6 +26,7 @@ export default function Header(props) {
       ),
     },
   ];
+
   return (
     <div className="header-container">
       <div className="logo-container">

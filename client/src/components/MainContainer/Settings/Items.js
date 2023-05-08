@@ -9,12 +9,11 @@ import {
   Select,
 } from "antd";
 
-import { PlusOutlined } from "@ant-design/icons";
-import { Space, Tag, Tooltip, theme } from "antd";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { UPDATE_ITEMS } from "../../../utils/mutations";
 import Auth from "../../../utils/auth";
+
 const EditableCell = ({
   editing,
   dataIndex,
@@ -57,11 +56,7 @@ const EditableCell = ({
   );
 };
 const Items = (props) => {
-    const { userItems, userShops, refetch } =
-      props;
-    
-  console.log(userItems);
-  console.log(userShops);
+  const { userItems, userShops, refetch } = props;
   const [UpdateItems, { error, data }] = useMutation(UPDATE_ITEMS);
     
   const [form] = Form.useForm();
@@ -106,10 +101,11 @@ const Items = (props) => {
     }
   };
     
-    const handleDelete = (name) => {
-      const newData = dataSource.filter((item) => item.name !== name);
-      setDataSource(newData);
-    };
+  const handleDelete = (name) => {
+    const newData = dataSource.filter((item) => item.name !== name);
+    setDataSource(newData);
+  };
+  
   const columns = [
     {
       title: "name",
@@ -207,7 +203,6 @@ const Items = (props) => {
   });
   const handleAdd = () => {
     const newData = {
-    //   key: count,
       name: "",
       quantity: "",
         unit: "",
@@ -215,7 +210,6 @@ const Items = (props) => {
       price:""
     };
     setDataSource([...dataSource, newData]);
-    // setCount(count + 1);
   };
     
     const handleSaveChanges = async(e) => { 
