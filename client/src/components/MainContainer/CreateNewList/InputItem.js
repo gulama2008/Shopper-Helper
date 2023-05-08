@@ -2,7 +2,6 @@ import {
   Button,
   Form,
   Input,
-  Select,
   InputNumber,
   AutoComplete,
   Modal,
@@ -16,8 +15,7 @@ const mockVal = (str, repeat = 1) => ({
 });
 
 const InputItem = (props) => {
-  const { items, addItem, unitOptions,shopOptions,userShops,date } =
-    props;
+  const {  addItem, unitOptions,shopOptions,userShops,date } = props;
   console.log(shopOptions);
   console.log(userShops);
   const [form] = Form.useForm();
@@ -78,10 +76,7 @@ const InputItem = (props) => {
     } else { 
       addItem(newItem);
     }
-    
-    console.log(newItem);
   }
-  
   
   return (
     <Form
@@ -98,26 +93,16 @@ const InputItem = (props) => {
         rules={[
           {
             required: true,
-            // message: "Please input quantity!",
           },
         ]}
       >
         <Input
           placeholder="Please enter an item"
-          // value={inputItemValue ? inputItemValue.name : currentItemName}
-          // value={ inputItemValue.name}
           onChange={handleNameChange}
         />
       </Form.Item>
       <Form.Item
-        // name="Quantity"
         label="Quantity"
-        // rules={[
-        //   {
-        //     // required: true,
-        //     // message: "Please input quantity!",
-        //   },
-        // ]}
       >
         <InputNumber
           min={1}
@@ -130,7 +115,6 @@ const InputItem = (props) => {
       </Form.Item>
       <Form.Item label="Unit">
         <AutoComplete
-          // defaultValue={item.unit}
           options={unitOptions}
           style={{
             width: 80,
@@ -142,7 +126,6 @@ const InputItem = (props) => {
       </Form.Item>
       <Form.Item label="Shop">
         <AutoComplete
-          // value={value}
           options={shopOptions}
           style={{
             width: 200,

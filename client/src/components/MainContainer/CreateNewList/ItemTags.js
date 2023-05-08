@@ -4,13 +4,11 @@ import { useState } from "react";
 import "../../../styles/ItemTags.css"
 
 function ItemTags(props) {
-  const { items,addItem,userItems,date}=props
+  const { addItem,userItems,date}=props
   const [tags, setTags] = useState(userItems);
-console.log(tags);
   const handleTagClick = (e) => { 
     const item = tags.find((tag) => tag.name === e.target.innerText)
     const newItem = {...item,date:date,bought:false}    
-    // item.date = date;
     addItem(newItem);
   } 
 
@@ -28,7 +26,6 @@ console.log(tags);
           </Button>
         );
       })):(<div>No pre-set items</div>)}
-      
   </Space>)
 }
   

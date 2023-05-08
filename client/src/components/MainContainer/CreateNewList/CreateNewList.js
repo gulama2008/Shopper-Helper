@@ -7,19 +7,13 @@ import { DatePicker, Typography } from "antd";
 import "../../../styles/AddNewList.css";
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
-import { genTypeStyle } from "antd/es/alert/style";
 dayjs.extend(customParseFormat);
 const { RangePicker } = DatePicker;
-const dateFormat = "DD/MM/YYYY";
-const weekFormat = "DD/MM";
-const monthFormat = "MM/YYYY";
 const { Text } = Typography;
 const dateFormatList = ["DD/MM/YYYY", "DD/MM/YY", "DD-MM-YYYY", "DD-MM-YY"];
 
 export default function CreateNewList(props) {
-  const { userItems,userShops,clickSubmit,handleClickSubmit,recordChange,handleRecordChange,refetch } = props;
-  console.log(userItems);
-  
+  const { userItems,userShops,clickSubmit,handleClickSubmit,recordChange,refetch } = props;
   const [items, setItems] = useState([]);
   const [date, setDate] = useState(dayjs().format("DD/MM/YYYY"));
   const [unitOptions, setUnitOptions] = useState([
@@ -50,6 +44,7 @@ export default function CreateNewList(props) {
   ]);
   const [shopOptions, setShopOptions] = useState([]);
 
+  //update shop list whenever preset shop is updated
   useEffect(() => {
     const shops = userShops.map((shop) => { 
       console.log(shop);
@@ -65,11 +60,9 @@ export default function CreateNewList(props) {
   const updateItem = (newItemList) => {
     setItems(newItemList);
   };
-
   const deleteItems = () => { 
     setItems([]);
   }
-
   const handleDateChange = (date, dateString) => {
     setDate(dateString);
     const newItemList = items.map((item) => {

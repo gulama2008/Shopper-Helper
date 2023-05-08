@@ -7,10 +7,8 @@ import {
   Divider,
   Row,
   InputNumber,
-  Select,
   Typography,
   Button,
-  Input,
   Empty,
   AutoComplete,
 } from "antd";
@@ -27,8 +25,6 @@ const ShoppingList = (props) => {
   const [addList, { error, data }] = useMutation(ADD_LIST);
   const [options, setOptions] = useState(shopOptions);
   
-
-  console.log(clickSubmit);
   //change the quantity of each item in the state into the quantity entered in the input box
   const handleQuantityChange = (index) => {
     return (e) => {
@@ -118,9 +114,7 @@ const ShoppingList = (props) => {
 
   const handleSubmitButton = async (event) => {
     event.preventDefault();
-    console.log(items);
     const username = Auth.getProfile().data.username;
-    console.log(username);
     try {
       const { data } = await addList({
         variables: {
@@ -129,9 +123,7 @@ const ShoppingList = (props) => {
         },
       });
       deleteItems();
-      // window.location.reload();
       refetch()
-      // handleClickSubmit();
     } catch (err) {
       console.error(err);
     }
@@ -156,7 +148,6 @@ const ShoppingList = (props) => {
               </Text>
             </div>
           </Col>
-
           <Col className="gutter-row title-col" span={3}>
             <Divider type="vertical" className="title-divider" />
             <div>
