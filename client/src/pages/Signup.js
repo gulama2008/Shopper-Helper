@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../utils/mutations";
 import Auth from "../utils/auth";
-import {Button,Form,Input} from "antd";
+import { Button, Form, Input, Alert } from "antd";
 import "../styles/Signup.css";
 
 const formItemLayout = {
@@ -44,7 +44,8 @@ const Signup = () => {
     password: "",
   });
   const [addUser, { error, data }] = useMutation(ADD_USER);
-
+  const [signupUnsuccessful, setSignupUnsuccessful] = useState(false);
+  
   const handleUsernameChange = (event) => {
     const value = event.target.value;
     setFormState({
@@ -69,12 +70,14 @@ const Signup = () => {
 
   const handleButtonClick = async (event) => {
     event.preventDefault();
+    setSignupUnsuccessful(false);
     try {
       const { data } = await addUser({
         variables: { ...formState },
       });
       Auth.login(data.addUser.token);
     } catch (e) {
+      setSignupUnsuccessful(true);
       console.error(e);
     }
 
@@ -174,7 +177,15 @@ const Signup = () => {
         >
           <Input.Password />
         </Form.Item>
-        <Form.Item {...tailFormItemLayout} >
+        {signupUnsuccessful ? (
+          <Alert
+            message="This username has been taken!"
+            type="error"
+          />
+        ) : (
+          <></>
+        )}
+        <Form.Item {...tailFormItemLayout} style={{marginTop:"10px"}}>
           <Button
             type="primary"
             htmlType="submit"
@@ -184,7 +195,10 @@ const Signup = () => {
             Register
           </Button>
           <div className="login">
-            Or <Link to={"/login"} className="login-now">Login now!</Link>
+            Or{" "}
+            <Link to={"/login"} className="login-now">
+              Login now!
+            </Link>
           </div>
         </Form.Item>
       </Form>
