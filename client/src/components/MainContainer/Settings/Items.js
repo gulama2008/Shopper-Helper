@@ -83,6 +83,8 @@ const Items = (props) => {
   const save = async (key) => {
     try {
       const row = await form.validateFields();
+      console.log(form);
+      console.log(row);
       const newData = [...dataSource];
       const index = newData.findIndex((item) => item.name === key);
       if (index > -1) {
@@ -98,6 +100,7 @@ const Items = (props) => {
         setDataSource(newData);
         setEditingKey("");
       }
+      
     } catch (errInfo) {
       console.log("Validate Failed:", errInfo);
     }
@@ -211,7 +214,10 @@ const Items = (props) => {
         shop: "",
       price:""
     };
+  
     setDataSource([...dataSource, newData]);
+      console.log(dataSource);
+    form.resetFields();
   };
 
   const [messageApi, contextHolder] = message.useMessage();
